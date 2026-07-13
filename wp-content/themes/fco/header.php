@@ -127,7 +127,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						</div>
 					<?php elseif ((is_home() || is_singular('post'))) : ?>
 						<div class="hero-text">
-							<?php if ( ( is_front_page() && is_home() ) || is_singular('post') ) : ?>
+							<?php if ( is_front_page() && is_home() ) : ?>
 								<h1 class="entry-title"><?php echo esc_html( get_page_hero_title() ?: get_the_title() ); ?></h1>
 							<?php else : ?>
 								<h2 class="entry-title"><?php echo esc_html( get_page_hero_title() ?: get_the_title() ); ?></h2>
@@ -140,7 +140,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						</div>
 					<?php elseif (is_page('videos')) : ?>
 						<div class="hero-text">
-							<?php if ( ( is_front_page() && is_home() ) || is_singular('post') ) : ?>
+							<?php if ( is_front_page() && is_home() ) : ?>
 								<h1 class="entry-title"><?php the_title(); ?></h1>
 							<?php else : ?>
 								<h2 class="entry-title"><?php the_title(); ?></h2>
@@ -149,7 +149,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 					<?php else : ?>
 						<div class="hero-text">
 							<?php if ( is_404() ) : ?>
-								<h1 class="entry-title">404 Error</h1>
+								<h2 class="entry-title">404 Error</h2>
 							<?php elseif ( function_exists( 'get_page_hero_title' ) ) : ?>
 								<h2 class="entry-title"><?php echo esc_html( get_page_hero_title() ); ?></h2>
 							<?php else : ?>
