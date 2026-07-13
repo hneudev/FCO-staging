@@ -78,7 +78,7 @@
 	margin-bottom: 0;
 }
 
-.faq-page-container .faq-content-section .faq-topic-section h3.topic-title {
+.faq-page-container .faq-content-section .faq-topic-section .topic-title {
 	background: var(--btn-color) !important;
 	border: 1px solid var(--btn-color) !important;
 	color: var(--light-text) !important;
@@ -239,7 +239,7 @@
 		font-size: 14px;
 	}
 
-	.faq-page-container .faq-content-section .faq-topic-section h3.topic-title {
+	.faq-page-container .faq-content-section .faq-topic-section .topic-title {
 		font-size: 24px !important;
 	}
 
@@ -272,7 +272,7 @@
 		text-align: center;
 	}
 
-	.faq-page-container .faq-content-section .faq-topic-section h3.topic-title {
+	.faq-page-container .faq-content-section .faq-topic-section .topic-title {
 		font-size: 20px !important;
 	}
 
