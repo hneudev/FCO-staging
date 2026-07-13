@@ -424,7 +424,9 @@ function fco_postal_code_callback() {
  * Enqueue scripts and styles.
  */
 function fco_scripts() {
-	wp_enqueue_style( 'fco-style', get_stylesheet_uri(), array(), _S_VERSION );
+    // Critical header CSS (moved from header.php)
+    wp_enqueue_style( 'fco-header-critical', get_template_directory_uri() . '/css/header-critical.css', array(), _S_VERSION );
+    wp_enqueue_style( 'fco-style', get_stylesheet_uri(), array( 'fco-header-critical' ), _S_VERSION );
 
 	wp_enqueue_script( 'fco-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 	
