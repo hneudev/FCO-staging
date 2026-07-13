@@ -1794,7 +1794,7 @@ function display_faq_page_content() {
         ));
         
         echo '<section id="' . $topic_id . '" class="faq-topic-section">';
-        echo '<h3 class="topic-title" role="button" tabindex="0" aria-controls="' . $topic_content_id . '" aria-expanded="false">' . esc_html($topic->name) . '</h3>';
+        echo '<h3>' . '<button class="topic-title" aria-controls="' . $topic_content_id . '" aria-expanded="false">' . esc_html($topic->name) . '</button>' . '</h3>';
 
         if (!empty($faq_items)) {
             echo '<div class="faq-accordion" id="' . $topic_content_id . '" aria-hidden="true" hidden>';

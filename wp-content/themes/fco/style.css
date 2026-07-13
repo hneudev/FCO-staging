@@ -1852,14 +1852,14 @@ hr.full {
 }
 
 /* FAQ Page Styles */
-body.page #primary .entry-content .faq-page-container .faq-content-section .faq-topic-section h3.topic-title,
+body.page #primary .entry-content .faq-page-container .faq-content-section .faq-topic-section .topic-title,
 body.page-template-default.page
 	#primary
 	.entry-content
 	.faq-page-container
 	.faq-content-section
 	.faq-topic-section
-	h3.topic-title {
+	.topic-title {
 	/* Core styles that cannot be overridden */
 	display: block !important;
 	box-sizing: border-box !important;
@@ -1898,14 +1898,14 @@ body.page-template-default.page
 	transform: none !important;
 }
 
-body.page #primary .entry-content .faq-page-container .faq-content-section .faq-topic-section h3.topic-title,
+	body.page #primary .entry-content .faq-page-container .faq-content-section .faq-topic-section .topic-title,
 body.page-template-default.page
 	#primary
 	.entry-content
 	.faq-page-container
 	.faq-content-section
 	.faq-topic-section
-	h3.topic-title {
+		topic-title {
 	cursor: pointer !important;
 }
 
@@ -1915,26 +1915,26 @@ body.page
 	.faq-page-container
 	.faq-content-section
 	.faq-topic-section
-	h3.topic-title:focus-visible,
+	.topic-title:focus-visible,
 body.page-template-default.page
 	#primary
 	.entry-content
 	.faq-page-container
 	.faq-content-section
 	.faq-topic-section
-	h3.topic-title:focus-visible {
+	.topic-title:focus-visible {
 	outline: 3px solid var(--primary-color) !important;
 	outline-offset: 4px !important;
 }
 
-body.page #primary .entry-content .faq-page-container .faq-content-section .faq-topic-section h3.topic-title::after,
+body.page #primary .entry-content .faq-page-container .faq-content-section .faq-topic-section .topic-title::after,
 body.page-template-default.page
 	#primary
 	.entry-content
 	.faq-page-container
 	.faq-content-section
 	.faq-topic-section
-	h3.topic-title::after {
+	.topic-title::after {
 	content: "+";
 	position: absolute;
 	top: 50%;
@@ -1950,14 +1950,14 @@ body.page
 	.faq-page-container
 	.faq-content-section
 	.faq-topic-section.topic-open
-	h3.topic-title::after,
+	.topic-title::after,
 body.page-template-default.page
 	#primary
 	.entry-content
 	.faq-page-container
 	.faq-content-section
 	.faq-topic-section.topic-open
-	h3.topic-title::after {
+	.topic-title::after {
 	content: "-";
 }
 
@@ -1977,19 +1977,19 @@ body.page-template-default.page
 }
 
 /* Target WordPress editor overrides */
-.editor-styles-wrapper .faq-topic-section h3.topic-title {
+	.editor-styles-wrapper .faq-topic-section .topic-title {
 	all: unset !important;
 	composes: topic-title !important;
 }
 
 @media (max-width: 768px) {
-	.page-template-default.page #primary .faq-page-container .faq-content-section .faq-topic-section h3.topic-title {
+	.page-template-default.page #primary .faq-page-container .faq-content-section .faq-topic-section .topic-title {
 		font-size: 24px !important;
 	}
 }
 
 @media (max-width: 480px) {
-	.page-template-default.page #primary .faq-page-container .faq-content-section .faq-topic-section h3.topic-title {
+	.page-template-default.page #primary .faq-page-container .faq-content-section .faq-topic-section .topic-title {
 		font-size: 20px !important;
 	}
 }
