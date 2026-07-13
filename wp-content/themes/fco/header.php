@@ -18,435 +18,7 @@
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 	<link rel="stylesheet" href="https://use.typekit.net/lhz2aja.css" media="print" onload="this.media='all'">
 	<noscript><link rel="stylesheet" href="https://use.typekit.net/lhz2aja.css"></noscript>
-	<?php if (wp_is_mobile()): /* Load mobile-specific FCP styles */ ?>
-		<style>
-			#masthead {
-				position: relative;
-				overflow: hidden;
-				height: auto;
-				border-top: 10px solid var(--btn-color);
-			}
-
-			.site-branding {
-				position: relative;
-				z-index: 3;
-			}
-
-			.site-branding .wrap {
-				display: grid;
-				grid-template-columns: 260px auto;
-				padding: 24px 0;
-			}
-
-			#site-logo img {
-				width: 100%;
-				max-width: initial;
-			}
-
-			#masthead .sticky-post-seperator {
-				margin: 50px 0 0;
-			}
-
-			#hero {
-				position: relative;
-				overflow: hidden;
-				width: 100%;
-				height: 400px;
-				color: #fff;
-				z-index: 2;
-			}
-			
-			/* Blog pages height reduction - 30% smaller */
-			body.home #hero,
-			body.single-post #hero,
-			body.single-video #hero,
-			body.page-id-1336 #hero,
-			body[class*="page-"] #hero[data-page-slug="videos"] {
-				height: 280px; /* 400px * 0.7 = 280px */
-			}
-
-			#hero .wrap {
-				overflow: initial;
-				position: absolute;
-				color: #fff;
-				top: 50%;
-				transform: translateY(-50%);
-				left: 5%;
-				right: 5%;
-				z-index: 2;
-			}
-
-			.home .hero-text-container {
-				display: grid;
-				grid-template-columns: repeat(2, 1fr);
-				position: relative;
-				top: initial;
-				transform: none;
-			}
-
-			.home .hero-text {
-				grid-column: span 2;
-				padding: 0;
-			}
-
-			.home .hero-text p.signup a {
-				display: block;
-				max-width: 200px;
-				padding: 10px 20px;
-				height: 48px !important;
-				border: 1px solid #fff;
-				color: #fff;
-				background-color: transparent;
-				border-radius: 16px;
-				text-decoration: none;
-				text-align: center;
-				font-family: lft-etica, sans-serif;
-				font-weight: 700;
-				font-size: 18px;
-				line-height: 26px !important;
-			}
-
-			#masthead figure.post-thumbnail {
-				position: fixed;
-				width: 100%;
-				height: 94vw;
-				margin: 0;
-				top: 0;
-				z-index: 0;
-			}
-
-			#hero .site-featured-image {
-				position: relative;
-				width: 100%;
-				height: 100%;
-				margin: 0;
-				z-index: 1;
-			}
-			#hero .site-featured-image .post-thumbnail{
-				height: 100%;
-			}
-			#hero .site-featured-image .post-thumbnail img{
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-				object-position: center;
-			}
-			#hero .featured-walled-video {
-				position: relative;
-				height: 100%;
-			}
-
-			#hero video {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-				vertical-align: middle;
-			}
-			.svg-marker{
-				width: 100%;
-				height: 100%;
-				display: flex;
-				justify-content: end;
-				align-items: end;
-				background: var(--main-bg);
-			}
-			.svg-marker svg{
-				width: 100px;
-				height: 100px;
-				position: absolute;
-				top: initial;
-				bottom: -10px;
-				right: 0;
-			}
-			/* Tablet and above (min-width: 768px) */
-			@media (min-width: 768px) {
-				.home .hero-text-container {
-					grid-template-columns: repeat(12, 1fr);
-					top: 50%;
-					transform: translateY(-50%);
-				}
-				
-				.home .hero-text {
-					grid-column: span 7;
-					padding-right: 30px;
-				}
-
-				.site-branding .wrap {
-					grid-template-columns: 220px auto;
-					padding: 30px 0;
-				}
-
-				.home #hero {
-					height: calc(100vh - 120px);
-				}
-				
-				/* Blog pages tablet height reduction */
-				body.home #hero,
-				body.single-post #hero,
-				body.single-video #hero,
-				body.page-id-1336 #hero {
-					height: calc((100vh - 120px) * 0.7); /* 30% reduction */
-				}
-			}
-
-			/* Desktop and above (min-width: 1024px) */
-			@media (min-width: 1024px) {
-				#hero {
-					height: auto;
-					aspect-ratio: 16 / 9;
-				}
-				
-				/* Blog pages desktop height reduction */
-				body.home #hero,
-				body.single-post #hero,
-				body.single-video #hero,
-				body.page-id-1336 #hero {
-					height: auto;
-					aspect-ratio: 16 / 12.85; /* Adjusted ratio for 30% height reduction */
-				}
-				
-				.site-branding .wrap {
-					grid-template-columns: 260px auto;
-					padding: 30px 0;
-				}
-
-				.home .hero-text-container {
-					grid-template-columns: repeat(12, 1fr);
-					grid-column-gap: 30px;
-				}
-			}
-
-			/* Special cases for smaller resolutions */
-			@media (max-width: 480px) {
-				#hero {
-					height: 200px;
-				}
-				
-				/* Blog pages mobile height reduction */
-				body.home #hero,
-				body.single-post #hero,
-				body.single-video #hero,
-				body.page-id-1336 #hero {
-					height: 140px; /* 200px * 0.7 = 140px */
-				}
-				
-				#hero.short-hero {
-					height: 160px;
-				}
-				
-				/* Blog pages mobile short-hero height reduction */
-				body.home #hero.short-hero,
-				body.single-post #hero.short-hero,
-				body.single-video #hero.short-hero,
-				body.page-id-1336 #hero.short-hero {
-					height: 112px; /* 160px * 0.7 = 112px */
-				}
-			}
-		</style>
-		<?php else: /* Load desktop-specific FCP styles */ ?>
-			<style>
-				#masthead {
-					position: relative;
-					overflow: hidden;
-					height: auto;
-					border-top: 10px solid var(--btn-color);
-				}
-
-				.site-branding {
-					position: relative;
-					z-index: 3;
-				}
-
-				.site-branding .wrap {
-					display: grid;
-					grid-template-columns: 260px auto;
-					padding: 24px 0;
-				}
-
-				#site-logo img {
-					width: 100%;
-					max-width: initial;
-				}
-
-				#masthead .sticky-post-seperator {
-					margin: 50px 0 0;
-				}
-
-				#hero {
-					position: relative;
-					overflow: hidden;
-					width: 100%;
-					height: 400px;
-					color: #fff;
-					z-index: 2;
-				}
-				
-				/* Blog pages height reduction - 30% smaller */
-				body.home #hero,
-				body.single-post #hero,
-				body.single-video #hero,
-				body.page-id-1336 #hero {
-					height: 280px; /* 400px * 0.7 = 280px */
-				}
-
-				#hero.short-hero {
-					height: 220px;
-				}
-				
-				/* Blog pages short-hero height reduction */
-				body.home #hero.short-hero,
-				body.single-post #hero.short-hero,
-				body.single-video #hero.short-hero,
-				body.page-id-1336 #hero.short-hero {
-					height: 154px; /* 220px * 0.7 = 154px */
-				}
-				
-				#hero .wrap {
-					overflow: initial;
-					position: absolute;
-					color: #fff;
-					top: 50%;
-					transform: translateY(-50%);
-					left: 5%;
-					right: 5%;
-					z-index: 2;
-				}
-
-				.home .hero-text-container {
-					display: grid;
-					grid-template-columns: repeat(2, 1fr);
-					position: relative;
-					top: initial;
-					transform: none;
-				}
-
-				.home .hero-text {
-					grid-column: span 2;
-					padding: 0;
-				}
-
-				.home .hero-text p.signup a {
-					display: block;
-					max-width: 200px;
-					padding: 10px 20px;
-					height: 48px !important;
-					border: 1px solid #fff;
-					color: #fff;
-					background-color: transparent;
-					border-radius: 16px;
-					text-decoration: none;
-					text-align: center;
-					font-family: lft-etica, sans-serif;
-					font-weight: 700;
-					font-size: 18px;
-					line-height: 26px !important;
-				}
-
-				#masthead figure.post-thumbnail {
-					position: fixed;
-					width: 100%;
-					height: 94vw;
-					margin: 0;
-					top: 0;
-					z-index: 0;
-				}
-
-				#hero .site-featured-image {
-					position: relative;
-					width: 100%;
-					height: 100%;
-					margin: 0;
-					z-index: 1;
-				}
-
-				#hero .featured-walled-video {
-					position: relative;
-					height: 100%;
-				}
-
-				#hero video {
-					width: 100%;
-					height: 100%;
-					object-fit: cover;
-					vertical-align: middle;
-				}
-				.svg-marker{
-					width: 100%;
-					height: 100%;
-					display: flex;
-					justify-content: end;
-					align-items: end;
-					background: var(--main-bg);
-				}
-				.svg-marker svg{
-					position: absolute;
-					top: initial;
-					bottom: -20px;
-					right: 0;
-				}
-
-				/* Tablet and above (min-width: 768px) */
-				@media (min-width: 768px) {
-					.home .hero-text-container {
-						grid-template-columns: repeat(12, 1fr);
-						top: 50%;
-						transform: translateY(-50%);
-					}
-					
-					.home .hero-text {
-						grid-column: span 7;
-						padding-right: 30px;
-					}
-
-					.site-branding .wrap {
-						grid-template-columns: 220px auto;
-						padding: 30px 0;
-					}
-
-					.home #hero {
-						height: calc(100vh - 120px);
-					}
-				}
-
-				/* Desktop and above (min-width: 1024px) */
-				@media (min-width: 1024px) {
-					#hero {
-						/* height: auto;
-						aspect-ratio: 16 / 9; */
-					}
-
-					#hero .post-thumbnail img{
-						position: absolute;
-						width: 100%;
-						height: auto;
-						top: 50%;
-						transform: translateY(-50%);
-					}
-					
-					.site-branding .wrap {
-						grid-template-columns: 260px auto;
-						padding: 30px 0;
-					}
-
-					.home .hero-text-container {
-						grid-template-columns: repeat(12, 1fr);
-						grid-column-gap: 30px;
-					}
-				}
-
-				/* Large desktops (min-width: 1200px) */
-				@media (min-width: 1200px) {
-					.home #hero {
-						height: calc(100vh - 120px);
-					}
-
-					#hero .wrap {
-						top: 50%;
-						transform: translate(0, -50%);
-					}
-				}
-			</style>
-		<?php endif; ?>
+	<!-- Critical header CSS moved to css/header-critical.css and enqueued via functions.php -->
 	<?php wp_head(); ?>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -515,7 +87,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			<?php elseif (has_post_thumbnail() && !is_404()): ?>
 				<div class="site-featured-image">
 					<div class="post-thumbnail">
-						<?php the_post_thumbnail('full'); ?>
+						<?php fco_responsive_post_thumbnail( get_the_ID(), 'full', array( 'loading' => 'eager', 'class' => 'post-thumbnail-img' ) ); ?>
 					</div>
 				</div>
 			<?php elseif (function_exists('should_show_default_hero_bg') && should_show_default_hero_bg()): ?>
@@ -555,7 +127,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						</div>
 					<?php elseif ((is_home() || is_singular('post'))) : ?>
 						<div class="hero-text">
-							<h1 class="entry-title"><?php echo get_page_hero_title(); ?></h1>
+							<?php if ( is_front_page() && is_home() ) : ?>
+								<h1 class="entry-title"><?php echo esc_html( get_page_hero_title() ?: get_the_title() ); ?></h1>
+							<?php else : ?>
+								<h2 class="entry-title"><?php echo esc_html( get_page_hero_title() ?: get_the_title() ); ?></h2>
+							<?php endif; ?>
 							<?php if (is_active_sidebar('blog-hero-text')) : ?>
 								<div id="blog-hero-text">
 									<?php dynamic_sidebar('blog-hero-text'); ?>
@@ -564,16 +140,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						</div>
 					<?php elseif (is_page('videos')) : ?>
 						<div class="hero-text">
-							<h1 class="entry-title"><?php the_title(); ?></h1>
+							<?php if ( is_front_page() && is_home() ) : ?>
+								<h1 class="entry-title"><?php the_title(); ?></h1>
+							<?php else : ?>
+								<h2 class="entry-title"><?php the_title(); ?></h2>
+							<?php endif; ?>
 						</div>
 					<?php else : ?>
 						<div class="hero-text">
-							<?php if (is_404()) : ?>
-								<h1 class="entry-title">404 Error</h1>
-							<?php elseif (function_exists('get_page_hero_title')) : ?>
-								<h1 class="entry-title"><?php echo get_page_hero_title(); ?></h1>
+							<?php if ( is_404() ) : ?>
+								<h2 class="entry-title">404 Error</h2>
+							<?php elseif ( function_exists( 'get_page_hero_title' ) ) : ?>
+								<h2 class="entry-title"><?php echo esc_html( get_page_hero_title() ); ?></h2>
 							<?php else : ?>
-								<h1 class="entry-title"><?php the_title(); ?></h1>
+								<h2 class="entry-title"><?php the_title(); ?></h2>
 							<?php endif; ?>
 						</div>
 					<?php endif; ?>
