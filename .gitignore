@@ -1,0 +1,22 @@
+# ignore WordPress core files and directories
+/[a-z]*.php
+/wp-admin/
+/wp-includes/
+/readme.html
+/license.txt
+/xmlrpc.php
+
+# Ignore configuration files and IDE settings
+.htaccess
+wp-config.php
+.vscode/
+
+# Ignore WordPress content directories that are not needed for version control
+/wp-content/uploads/
+/wp-content/blogs.dir/
+/wp-content/upgrade/
+/wp-content/backup-db/
+
+# Ignore default plugins and themes (optional, if you only want to track your own)
+# /wp-content/plugins/
+# /wp-content/themes/twentytwentyfour/
