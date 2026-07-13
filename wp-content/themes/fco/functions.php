@@ -458,6 +458,14 @@ function fco_scripts() {
 add_action( 'wp_enqueue_scripts', 'fco_scripts' );
 
 /**
+ * Define grecaptcha stub before WPForms or other scripts that may call it early.
+ */
+function fco_define_grecaptcha_stub() {
+    echo "<script>window.grecaptcha = window.grecaptcha || { render:function(){}, ready:function(cb){ if ( typeof cb === 'function' ) cb(); }, execute:function(){}, reset:function(){} };</script>";
+}
+add_action( 'wp_head', 'fco_define_grecaptcha_stub', 1 );
+
+/**
  * Image helpers and SEO improvements
  */
 // Alt fallback for attachments
