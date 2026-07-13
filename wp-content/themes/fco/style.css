@@ -1496,16 +1496,25 @@ hr.full {
 #primary-menu li:hover > ul {
 	left: auto;
 }
-#primary-menu a {
+#primary-menu a,
+#primary-menu button.menu-item-button {
 	display: block;
 	text-decoration: none;
 	color: #060b23;
 	font-family: var(--first-font);
 	font-size: 20px;
 	text-transform: uppercase;
+	background: transparent;
+	border: none;
+	padding: 0;
+	margin: 0;
+	font: inherit;
+	cursor: pointer;
 }
 #primary-menu a:focus,
-#primary-menu a:hover {
+#primary-menu a:hover,
+#primary-menu button.menu-item-button:focus,
+#primary-menu button.menu-item-button:hover {
 	color: var(--main-bg); /* Changed from --alt-bg to --main-bg for better contrast */
 }
 
