@@ -1502,13 +1502,13 @@ hr.full {
 	text-decoration: none;
 	color: #060b23;
 	font-family: var(--first-font);
+	font-weight: var(--ff-regular);
 	font-size: 20px;
 	text-transform: uppercase;
 	background: transparent;
 	border: none;
 	padding: 0;
 	margin: 0;
-	font: inherit;
 	cursor: pointer;
 }
 #primary-menu a:focus,
