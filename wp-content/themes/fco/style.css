@@ -3050,17 +3050,20 @@ button#fco-intro-video-play:hover .play-icon {
 		margin: 0;
 		clear: both;
 	}
-	#primary-menu li a {
+	#primary-menu li a,
+	#primary-menu li button.menu-item-button {
 		letter-spacing: 1.5px;
 		transition: 0.1s linear;
 		cursor: pointer;
 	}
-	#primary-menu > li > a {
+	#primary-menu > li > a,
+	#primary-menu > li > button.menu-item-button {
 		padding: 8px 0;
 		font-size: 22px;
 		color: #fff;
 		text-transform: uppercase;
 		border: 1px solid transparent;
+		background: transparent;
 	}
 	/* Reset FAQ and contact button styles in mobile menu */
 	#primary-menu > li.faq > a,
