@@ -250,7 +250,7 @@ get_header();
 							<span>By <?php echo get_the_author().' | '.get_the_date("m.d.Y"); ?></span>
 						</div>
 						<p><?php echo get_the_excerpt(); ?></p>
-						<p><a href="<?php echo esc_url(get_the_permalink()); ?>" class="learn-more">Read More</a></p>
+							<p><a href="<?php echo esc_url(get_the_permalink()); ?>" class="learn-more" aria-label="Read More about <?php echo esc_attr( get_the_title() ); ?>">Read More</a></p>
 					</div>
 				</div>
 			<?php endwhile; ?>
