@@ -1874,8 +1874,9 @@ function display_faq_page_content() {
     echo '</div>'; // faq-sections
     echo '</div>'; // faq-page-container
     
-    // Output Enhanced Schema markup for AI search engines
-    if (!empty($faq_schema_data)) {
+    // Output Enhanced Schema markup for AI search engines (disabled by default).
+    // To enable: add_filter( 'fco_enable_theme_faq_schema', '__return_true' );
+    if ( apply_filters( 'fco_enable_theme_faq_schema', false ) && ! empty( $faq_schema_data ) ) {
         $schema = array(
             '@context' => 'https://schema.org',
             '@type' => 'FAQPage',
@@ -1914,7 +1915,7 @@ function display_faq_page_content() {
             )
         );
         
-        echo '<script type="application/ld+json">' . wp_json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) . '</script>';
+        echo '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT ) . '</script>';
     }
 }
 
@@ -2030,8 +2031,9 @@ function display_featured_faqs() {
     echo '</div>'; // featured-faq-container
     echo '</section>'; // featured-faq-section
     
-    // Output Schema markup for featured FAQs with enhanced AI search engine metadata
-    if (!empty($faq_schema_data)) {
+    // Output Schema markup for featured FAQs with enhanced AI search engine metadata (disabled by default).
+    // To enable: add_filter( 'fco_enable_theme_faq_schema', '__return_true' );
+    if ( apply_filters( 'fco_enable_theme_faq_schema', false ) && ! empty( $faq_schema_data ) ) {
         $schema = array(
             '@context' => 'https://schema.org',
             '@type' => 'FAQPage',
@@ -2059,7 +2061,7 @@ function display_featured_faqs() {
             'mainEntity' => $faq_schema_data
         );
         
-        echo '<script type="application/ld+json">' . wp_json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) . '</script>';
+        echo '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT ) . '</script>';
     }
 }
 
