@@ -130,9 +130,9 @@ function fco_widgets_init() {
 			'id'            => 'hero-overlay-text',
 			'description'   => esc_html__( 'Add text here which will go in the Hero Section on homepage.', 'fco' ),
 			'before_widget' => '<div id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</div>',
-			'before_title'  => '<h1 class="widget-title">',
-			'after_title'   => '</h1>',
+                'after_widget'  => '</div>',
+                'before_title'  => '<h2 class="widget-title">',
+                'after_title'   => '</h2>',
 		)
 	);
 	register_sidebar(
@@ -454,6 +454,132 @@ function fco_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'fco_scripts' );
+
+/**
+ * Image helpers and SEO improvements
+ */
+// Alt fallback for attachments
+function fco_get_image_alt_fallback( $attachment_id, $fallback = '' ) {
+    if ( ! $attachment_id ) {
+        return esc_attr( $fallback );
+    }
+    $alt = trim( get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ) );
+    if ( ! empty( $alt ) ) {
+        return esc_attr( $alt );
+    }
+    $title = get_the_title( $attachment_id );
+    if ( ! empty( $title ) ) {
+        return esc_attr( $title );
+    }
+    return esc_attr( $fallback );
+}
+
+// Responsive post thumbnail output with width/height, srcset and alt fallback
+function fco_responsive_post_thumbnail( $post_id = null, $size = 'full', $args = array() ) {
+    if ( is_null( $post_id ) ) {
+        $post_id = get_the_ID();
+    }
+    $thumb_id = get_post_thumbnail_id( $post_id );
+    if ( ! $thumb_id ) {
+        return '';
+    }
+
+    $alt = isset( $args['alt'] ) ? $args['alt'] : fco_get_image_alt_fallback( $thumb_id, get_the_title( $post_id ) );
+    $img_attr = wp_get_attachment_image_src( $thumb_id, $size );
+    $width = $img_attr ? $img_attr[1] : '';
+    $height = $img_attr ? $img_attr[2] : '';
+
+    $attributes = array(
+        'alt' => $alt,
+        'loading' => isset( $args['loading'] ) ? $args['loading'] : 'lazy',
+        'decoding' => 'async',
+    );
+    if ( $width ) {
+        $attributes['width'] = $width;
+    }
+    if ( $height ) {
+        $attributes['height'] = $height;
+    }
+
+    echo wp_get_attachment_image( $thumb_id, $size, false, $attributes );
+}
+
+// Ensure custom logo has an alt attribute fallback (site name)
+add_filter( 'get_custom_logo', 'fco_custom_logo_alt_fallback' );
+function fco_custom_logo_alt_fallback( $html ) {
+    if ( strpos( $html, 'alt=' ) !== false ) {
+        return $html;
+    }
+    $site_name = esc_attr( get_bloginfo( 'name' ) );
+    $html = str_replace( '<img', '<img alt="' . $site_name . '"', $html );
+    return $html;
+}
+
+// Output JSON-LD for WebPage / Article and Organization (basic)
+add_action( 'wp_head', 'fco_output_json_ld', 2 );
+function fco_output_json_ld() {
+    if ( is_admin() ) {
+        return;
+    }
+
+    $schema = array(
+        '@context' => 'https://schema.org',
+        '@graph' => array()
+    );
+
+    // Organization / MedicalOrganization
+    $org = array(
+        '@type' => 'MedicalOrganization',
+        'name' => get_bloginfo( 'name' ),
+        'url' => home_url('/'),
+    );
+    $phone = get_option( 'fco_phone_number' );
+    if ( $phone ) {
+        $org['telephone'] = $phone;
+    }
+    $street = get_option( 'fco_street_address' );
+    if ( $street ) {
+        $address = array( '@type' => 'PostalAddress', 'streetAddress' => $street );
+        $city = get_option( 'fco_city' ); if ( $city ) $address['addressLocality'] = $city;
+        $state = get_option( 'fco_state' ); if ( $state ) $address['addressRegion'] = $state;
+        $postal = get_option( 'fco_postal_code' ); if ( $postal ) $address['postalCode'] = $postal;
+        $org['address'] = $address;
+    }
+    $schema['@graph'][] = $org;
+
+    // WebPage / Article
+    $page_schema = array( '@type' => is_singular('post') ? 'Article' : 'WebPage', 'url' => get_permalink(), 'inLanguage' => get_bloginfo('language') );
+    $page_schema['name'] = wp_strip_all_tags( get_the_title() ?: get_bloginfo('name') );
+    if ( is_singular('post') ) {
+        global $post;
+        $page_schema['datePublished'] = get_the_date( 'c', $post );
+        $page_schema['dateModified'] = get_the_modified_date( 'c', $post );
+        $author = get_the_author_meta( 'display_name', $post->post_author );
+        if ( $author ) {
+            $page_schema['author'] = array( '@type' => 'Person', 'name' => $author );
+        }
+        $image_id = get_post_thumbnail_id( $post );
+        if ( $image_id ) {
+            $img = wp_get_attachment_image_src( $image_id, 'full' );
+            if ( $img ) {
+                $page_schema['image'] = array( '@type' => 'ImageObject', 'url' => $img[0], 'width' => $img[1], 'height' => $img[2] );
+            }
+        }
+    }
+    $schema['@graph'][] = $page_schema;
+
+    echo '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT ) . '</script>' . "\n";
+}
+
+// Add defer to selected enqueued scripts to improve LCP (non-blocking)
+add_filter( 'script_loader_tag', 'fco_add_defer_attribute', 10, 3 );
+function fco_add_defer_attribute( $tag, $handle, $src ) {
+    $defer_handles = array( 'fco-navigation', 'fco-diagnostics', 'fco-accordion-debug', 'video-popovers' );
+    if ( in_array( $handle, $defer_handles ) ) {
+        return '<script src="' . esc_url( $src ) . '" defer></script>';
+    }
+    return $tag;
+}
 
 /**
  * Restore the Classic Widgets view.

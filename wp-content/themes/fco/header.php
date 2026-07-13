@@ -515,7 +515,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			<?php elseif (has_post_thumbnail() && !is_404()): ?>
 				<div class="site-featured-image">
 					<div class="post-thumbnail">
-						<?php the_post_thumbnail('full'); ?>
+						<?php fco_responsive_post_thumbnail( get_the_ID(), 'full', array( 'loading' => 'eager', 'class' => 'post-thumbnail-img' ) ); ?>
 					</div>
 				</div>
 			<?php elseif (function_exists('should_show_default_hero_bg') && should_show_default_hero_bg()): ?>
@@ -555,7 +555,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						</div>
 					<?php elseif ((is_home() || is_singular('post'))) : ?>
 						<div class="hero-text">
-							<h1 class="entry-title"><?php echo get_page_hero_title(); ?></h1>
+							<?php if ( ( is_front_page() && is_home() ) || is_singular('post') ) : ?>
+								<h1 class="entry-title"><?php echo esc_html( get_page_hero_title() ?: get_the_title() ); ?></h1>
+							<?php else : ?>
+								<h2 class="entry-title"><?php echo esc_html( get_page_hero_title() ?: get_the_title() ); ?></h2>
+							<?php endif; ?>
 							<?php if (is_active_sidebar('blog-hero-text')) : ?>
 								<div id="blog-hero-text">
 									<?php dynamic_sidebar('blog-hero-text'); ?>
@@ -564,16 +568,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						</div>
 					<?php elseif (is_page('videos')) : ?>
 						<div class="hero-text">
-							<h1 class="entry-title"><?php the_title(); ?></h1>
+							<?php if ( ( is_front_page() && is_home() ) || is_singular('post') ) : ?>
+								<h1 class="entry-title"><?php the_title(); ?></h1>
+							<?php else : ?>
+								<h2 class="entry-title"><?php the_title(); ?></h2>
+							<?php endif; ?>
 						</div>
 					<?php else : ?>
 						<div class="hero-text">
-							<?php if (is_404()) : ?>
+							<?php if ( is_404() ) : ?>
 								<h1 class="entry-title">404 Error</h1>
-							<?php elseif (function_exists('get_page_hero_title')) : ?>
-								<h1 class="entry-title"><?php echo get_page_hero_title(); ?></h1>
+							<?php elseif ( function_exists( 'get_page_hero_title' ) ) : ?>
+								<h2 class="entry-title"><?php echo esc_html( get_page_hero_title() ); ?></h2>
 							<?php else : ?>
-								<h1 class="entry-title"><?php the_title(); ?></h1>
+								<h2 class="entry-title"><?php the_title(); ?></h2>
 							<?php endif; ?>
 						</div>
 					<?php endif; ?>
