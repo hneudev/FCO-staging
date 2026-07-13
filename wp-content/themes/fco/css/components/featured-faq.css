@@ -1,0 +1,231 @@
+/* Featured FAQ Section (Homepage)
+============================== */
+.featured-faq-section {
+	padding: 60px 0;
+	background: #ee6f60;
+	border-top: 1px solid #e0e0e0;
+}
+
+.featured-faq-container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+.featured-faq-header {
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+.featured-faq-title {
+	margin: 0 0 10px 0;
+	font-size: 2.5em;
+	font-weight: 700;
+}
+
+.featured-faq-title-link {
+	color: var(--primary-color);
+	text-decoration: none;
+	transition: color 0.3s ease;
+}
+.featured-faq-title-link:visited {
+	color: var(--secondary-color);
+}
+
+.featured-faq-title-link:hover {
+	color: var(--secondary-color);
+	text-decoration: underline;
+}
+
+.featured-faq-subtitle {
+	font-size: 1.1em;
+	color: #666;
+	margin: 0;
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+.featured-faq-accordion {
+	max-width: 800px;
+	margin: 0 auto;
+	background: #fff;
+	border-radius: 12px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	overflow: hidden;
+}
+
+.featured-faq-item {
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.featured-faq-item:last-child {
+	border-bottom: none;
+}
+
+.featured-faq-trigger {
+	width: 100%;
+	background: none;
+	border: none;
+	padding: 25px 30px;
+	text-align: left;
+	cursor: pointer;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 17px;
+	font-weight: 600;
+	color: var(--text-color);
+	transition: all 0.3s ease;
+}
+
+.featured-faq-trigger:hover {
+	background: #f8f9fa;
+	color: var(--primary-color);
+}
+
+.featured-faq-trigger:focus {
+	outline: 2px solid var(--primary-color);
+	outline-offset: -2px;
+}
+
+.featured-faq-trigger[aria-expanded="true"] {
+	background: #f0f7ff;
+	color: var(--primary-color);
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.featured-faq-question {
+	flex: 1;
+	margin-right: 20px;
+	line-height: 1.4;
+	text-align: left;
+}
+
+.featured-faq-icon {
+	flex-shrink: 0;
+	width: 28px;
+	height: 28px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--primary-color);
+	color: white;
+	border-radius: 50%;
+	font-size: 20px;
+	font-weight: bold;
+	transition: transform 0.3s ease;
+}
+
+.featured-faq-trigger[aria-expanded="true"] .featured-faq-icon {
+	transform: rotate(45deg);
+	background: var(--secondary-color);
+}
+
+.featured-faq-content {
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.4s ease;
+}
+
+.featured-faq-content.open {
+	max-height: 1000px;
+	transition: max-height 0.6s ease;
+}
+
+.featured-faq-answer {
+	padding: 25px 30px;
+	color: var(--text-color);
+	line-height: 1.6;
+	font-size: 16px;
+}
+
+.featured-faq-answer p {
+	margin: 0 0 15px 0;
+}
+
+.featured-faq-answer p:last-child {
+	margin-bottom: 0;
+}
+
+.featured-faq-answer strong {
+	color: var(--primary-color);
+	font-weight: 600;
+}
+
+.featured-faq-footer {
+	text-align: center;
+	margin-top: 40px;
+}
+
+.featured-faq-more-link {
+	display: inline-block;
+	background: var(--primary-color);
+	color: white;
+	padding: 15px 30px;
+	text-decoration: none;
+	border-radius: 6px;
+	font-weight: 600;
+	font-size: 16px;
+	transition: all 0.3s ease;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.featured-faq-more-link:hover {
+	background: var(--main-bg);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+	color: white;
+	text-decoration: none;
+}
+
+/* Responsive Design for Featured FAQs */
+@media (max-width: 768px) {
+	.featured-faq-section {
+		padding: 40px 0;
+	}
+
+	.featured-faq-container {
+		padding: 0 15px;
+	}
+
+	.featured-faq-title {
+		font-size: 2em;
+	}
+
+	.featured-faq-subtitle {
+		font-size: 1em;
+	}
+
+	.featured-faq-trigger {
+		padding: 20px;
+		font-size: 16px;
+	}
+
+	.featured-faq-answer {
+		padding: 20px;
+		font-size: 15px;
+	}
+
+	.featured-faq-icon {
+		width: 24px;
+		height: 24px;
+		font-size: 18px;
+	}
+}
+
+@media (max-width: 480px) {
+	.featured-faq-trigger {
+		padding: 15px;
+		font-size: 15px;
+	}
+
+	.featured-faq-answer {
+		padding: 15px;
+		font-size: 14px;
+	}
+
+	.featured-faq-more-link {
+		padding: 12px 24px;
+		font-size: 15px;
+	}
+}

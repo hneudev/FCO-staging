@@ -1,0 +1,103 @@
+.aftercare #masthead {
+    border-top: 4px solid var(--btn-color);
+}
+.aftercare #site-logo {
+    width: 200px;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: initial !important;
+}
+.aftercare .toggle-menu,
+.aftercare #site-navigation{
+    display: none !important;
+}
+.aftercare #hero {
+    display: none !important;
+}
+.aftercare #primary{
+    padding: 0 0 45px;
+}
+.aftercare #primary .entry-content{
+    display: initial !important;
+    margin: 0;
+    padding: 0;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: initial !important;
+}
+.page-template-default.aftercare #primary .entry-content > *{
+    grid-column: initial !important;
+    margin: 0 0 20px;
+}
+.page-template-default.aftercare #primary .entry-content > *:last-child{
+    margin: 0;
+}
+.aftercare h2.wp-block-heading{
+    font-size: 22px !important;
+    line-height: 26px !important;
+}
+.aftercare h4.wp-block-heading{
+    font-size: 16px !important;
+    line-height: 20px !important;
+}
+.aftercare p, .aftercare ul, .aftercare ol{
+    font-size: 14px !important;
+    line-height: 20px !important;
+}
+.aftercare #request-consultation {
+    display: none;
+}
+.aftercare #colophon {
+    padding: 30px 0;
+    background: initial;
+    border-top: 2px solid var(--btn-color) !important;
+    color: var(--main-bg);
+}
+.aftercare #colophon .wrap hr.separator.full {
+    display: none;
+}
+.aftercare #colophon .wrap hr.separator.full:first-child {
+    display: initial;
+    background: var(--alt-bg);
+}
+.aftercare #colophon .footer-top {
+    display: none;
+}
+.aftercare #colophon .footer-bottom{
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: initial !important;
+}
+.aftercare #colophon .footer-three{
+    grid-template-columns: initial;
+    grid-gap: initial;
+}
+.aftercare #colophon .footer-three .widget-title {
+    display: none;
+}
+.aftercare #colophon .footer-three .widget_custom_html .custom-html-widget {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0 30px;
+}
+.aftercare #colophon .footer-three .widget_custom_html .custom-html-widget p:last-child{
+    justify-self: end;
+}
+.aftercare #colophon .textwidget a {
+    color: var(--main-bg);
+}
+.aftercare #colophon .footer-three .widget_custom_html:last-child {
+    display: none;
+}
+.aftercare #colophon .menu-block-title {
+    display: none;
+}
+.aftercare #colophon #social-menu {
+    display: none;
+}
+.aftercare .grecaptcha-badge{
+    display: none !important;
+}
+.aftercare button.print-button{
+    display: none !important;
+}

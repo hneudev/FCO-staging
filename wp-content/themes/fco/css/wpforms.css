@@ -1,0 +1,305 @@
+.wpforms-field-container{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 12px;
+}
+.wpforms-field-name{
+  grid-column: 1 / -1;
+}
+.wpforms-field-textarea{
+  grid-column: 1 / -1;
+}
+div.wpforms-container .wpforms-form .wpforms-field{
+  padding: 0 !important;
+}
+div.wpforms-container .wpforms-form input,
+div.wpforms-container .wpforms-form select{
+  padding: 10px 20px !important;
+  height: 60px !important;
+  line-height: 50px !important;
+  border: 1px solid #12243a !important;
+  color: #fff !important;
+  background-color: transparent !important;
+  border-radius: 3px !important;
+}
+div.wpforms-container .wpforms-form textarea{
+  padding: 10px 20px !important;
+  height: 200px !important;
+  line-height: 1.5 !important;
+  border: 1px solid #12243a !important;
+  background-color: transparent !important;
+  color: #fff !important;
+  border-radius: 3px !important;
+}
+div.wpforms-container .wpforms-form .wpforms-one-half{
+  width: calc(50% - 6px) !important;
+  margin-left: 12px !important;
+}
+
+div.wpforms-container .wpforms-form .wpforms-one-half.wpforms-first{
+  margin-left: 0 !important;
+}
+.wpforms-submit-container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    padding: 20px 0 0 0 !important;
+}
+.wpforms-submit-container button.wpforms-submit{
+    padding: 10px 20px !important;
+    height: 60px !important;
+    line-height: 30px !important;
+    background: var(--btn-color) !important;
+    border: 1px solid var(--btn-color) !important;
+    border-radius: initial !important;
+    color: #fff !important;
+    font-family: var(--first-font);
+    font-weight: 700;
+    font-size: 24px !important;
+}
+.wpforms-form input::-webkit-input-placeholder,
+.wpforms-form textarea::-webkit-input-placeholder{ /* Chrome/Opera/Safari */
+  color: var(--main-bg);
+}
+.wpforms-form input::-moz-placeholder,
+.wpforms-form textarea::-moz-placeholder { /* Firefox 19+ */
+  color: var(--main-bg);
+}
+.wpforms-form input::-ms-input-placeholder,
+.wpforms-form textarea::-ms-input-placeholder { /* IE 10+ */
+  color: var(--main-bg);
+}
+.wpforms-form input::-moz-placeholder,
+.wpforms-form textarea::-moz-placeholder { /* Firefox 18- */
+  color: var(--main-bg);
+}
+
+.entry-content div.wpforms-container .wpforms-form input,
+.entry-content div.wpforms-container .wpforms-form select{
+    color: var(--main-bg) !important;
+}
+.entry-content div.wpforms-container .wpforms-form textarea{
+    color: var(--main-bg) !important;
+}
+
+/* #request-consultation form.wpforms-form{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 12px;
+}
+#request-consultation form.wpforms-form .wpforms-field-container{
+  grid-column: span 2;
+  width: 100% !important;
+}
+#request-consultation form.wpforms-form .wpforms-submit-container{
+  grid-column: span 1;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+#request-consultation .wpforms-field-name,
+#request-consultation .wpforms-field-email{
+  grid-column: span 1;
+} */
+#request-consultation .wpforms-submit-container{
+  display: block;
+  /* width: calc(50% - 10px) !important;
+  margin: auto !important; */
+}
+#request-consultation div.wpforms-container .wpforms-form input,
+#request-consultation div.wpforms-container .wpforms-form textarea{
+  /* background: #fff !important; */
+  color: #fff !important;
+  border: 1px solid #fff !important;
+  border-radius: initial !important;
+}
+#request-consultation div.wpforms-container-full{
+  margin: 0 !important;
+}
+#request-consultation div.wpforms-container-full .wpforms-form label.wpforms-error{
+  margin: 4px 0 0;
+  text-align: left;
+  color: var(--alt-bg);
+  font-size: 14px;
+  visibility: visible;
+}
+#request-consultation .wpforms-form input::-webkit-input-placeholder
+{ /* Chrome/Opera/Safari */
+  color: #12243a;
+}
+#request-consultation .wpforms-form input::-moz-placeholder
+{ /* Firefox 19+ */
+  color: #12243a;
+}
+#request-consultation .wpforms-form input::-ms-input-placeholder
+{ /* IE 10+ */
+  color: #12243a;
+}
+
+#request-consultation .wpforms-form input::-webkit-input-placeholder,
+#request-consultation .wpforms-form textarea::-webkit-input-placeholder{ /* Chrome/Opera/Safari */
+  color: rgba(255, 255, 255, 0.7);
+}
+#request-consultation .wpforms-form input::-moz-placeholder,
+#request-consultation .wpforms-form textarea::-moz-placeholder { /* Firefox 19+ */
+  color: rgba(255, 255, 255, 0.7);
+}
+#request-consultation .wpforms-form input::-ms-input-placeholder,
+#request-consultation .wpforms-form textarea::-ms-input-placeholder { /* IE 10+ */
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 767px){
+  .wpforms-field-container{
+    grid-gap: 12px;
+  }
+  div.wpforms-container .wpforms-form input,
+  div.wpforms-container .wpforms-form select{
+    height: 48px !important;
+    line-height: 38px !important; 
+  }
+  .wpforms-submit-container{
+    grid-gap: 12px;
+    padding: 12px 0 0 !important;
+  }
+  .wpforms-submit-container button.wpforms-submit{
+    height: 48px !important;
+    line-height: 28px !important;
+  }
+
+  #request-consultation form.wpforms-form{
+    grid-template-columns: 100%;
+  }
+  #request-consultation form.wpforms-form .wpforms-submit-container{
+    padding: 10px 0 0 !important;
+  }
+}
+
+@media (max-width: 480px){
+  .wpforms-submit-container button.wpforms-submit{
+    grid-column: 1 / -1;
+  }
+  #request-consultation .wpforms-field-name,
+  #request-consultation .wpforms-field-email,
+  #request-consultation .wpforms-field-phone{
+    grid-column: 1 / -1;
+  }
+}
+
+
+#request-consultation .wrap #mc_embed_signup{
+  grid-column: 2 / 12;
+}
+#mc_embed_signup form{
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+#mc_embed_signup_scroll{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 12px;
+  align-items: start;
+}
+#mc_embed_signup_scroll .name-field{
+  grid-column: 1 / 2;
+}
+#mc_embed_signup_scroll .email-field{
+  grid-column: 2 / 3;
+}
+#mc_embemc_embed_signup_scrolld_signup .submit-field{
+  grid-column: 3 / 4;
+}
+#mc_embed_signup_scroll #mce-responses{
+  grid-row: 2;
+  grid-column: 1 / -1;
+  margin: 0;
+  width: 100%;
+}
+#mc_embed_signup #mce-success-response{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-family: myriad-pro, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: #000 !important;
+}
+#mc_embed_signup .mc-field-group{
+  width: 100% !important;
+  padding: 0 !important;
+}
+#mc_embed_signup .name-field input,
+#mc_embed_signup .email-field input{
+  padding: 10px 20px !important;
+  height: 60px !important;
+  line-height: 50px !important;
+  background: #fff;
+  color: #12243a;
+  border: none !important;
+  outline: none;
+  border-radius: initial;
+}
+#mc_embed_signup .submit-field input{
+  margin: 0;
+  padding: 10px 20px;
+  height: 60px;
+  line-height: 30px;
+  background: #12243a;
+  border: 1px solid #12243a;
+  border-radius: 3px;
+  color: #fff;
+  font-family: myriad-pro, sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+}
+#mc_embed_signup .submit-field input:hover,
+#mc_embed_signup .submit-field input:focus{
+  background: #12243a;;
+}
+#mc_embed_signup #mc-embedded-subscribe-form div.mce_inline_error{
+  background: none !important;
+  color: #12243a !important;
+  margin: 0 !important;
+}
+@media (max-width: 1200px){
+  #request-consultation .wrap #mc_embed_signup{
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 767px){
+  #mc_embed_signup_scroll{
+    grid-gap: 10px;
+  }
+  #mc_embed_signup_scroll .name-field{
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+  #mc_embed_signup_scroll .email-field{
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  #mc_embed_signup_scroll .submit-field{
+    grid-column: 1 / -1;
+    grid-row: 3;
+  }
+  #mc_embed_signup_scroll #mce-responses{
+    grid-row: initial;
+  }
+  #mc_embed_signup .name-field input,
+  #mc_embed_signup .email-field input{
+    height: 48px !important;
+    line-height: 38px !important;
+  }
+  #mc_embed_signup .submit-field input{
+    height: 48px !important;
+    line-height: 28px !important;
+  }
+  #mc_embed_signup #mce-success-response{
+    font-size: 24px;
+    line-height: 30px;
+  }
+}

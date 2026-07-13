@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>FAQ Show More Test</title>
+		<style>
+			.faq-container {
+				max-width: 800px;
+				margin: 0 auto;
+				padding: 20px;
+			}
+
+			.faq-item {
+				margin-bottom: 10px;
+				border: 1px solid #e0e0e0;
+				border-radius: 4px;
+				overflow: hidden;
+			}
+
+			.faq-question {
+				width: 100%;
+				padding: 15px 20px;
+				background: #f8f8f8;
+				border: none;
+				text-align: left;
+				cursor: pointer;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				font-weight: 500;
+				transition: background-color 0.3s ease;
+			}
+
+			.faq-question:hover {
+				background: #f0f0f0;
+			}
+
+			.faq-question:focus {
+				outline: 2px solid #007bff;
+				outline-offset: -2px;
+			}
+
+			.faq-question::after {
+				content: '+';
+				font-size: 20px;
+				font-weight: bold;
+				transition: transform 0.3s ease;
+			}
+
+			.faq-question[aria-expanded="true"]::after {
+				transform: rotate(45deg);
+			}
+
+			.faq-answer {
+				padding: 0;
+				max-height: 0;
+				overflow: hidden;
+				transition: max-height 0.3s ease-out, padding 0.3s ease;
+			}
+
+			.faq-answer[aria-hidden="false"] {
+				padding: 15px 20px;
+				max-height: 500px;
+				transition: max-height 0.5s ease-in, padding 0.3s ease;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>FAQ Show More Test</h1>
+
+		<div class="faq-container">
+			<div class="faq-item">
+				<button class="faq-question" aria-expanded="false" aria-controls="faq1">
+					What services do you offer?
+				</button>
+				<div id="faq1" class="faq-answer" aria-hidden="true">
+					We offer comprehensive orthopedic care including joint replacement, sports medicine, spine care, and physical therapy.
+				</div>
+			</div>
+
+			<div class="faq-item">
+				<button class="faq-question" aria-expanded="false" aria-controls="faq2">
+					Do you accept insurance?
+				</button>
+				<div id="faq2" class="faq-answer" aria-hidden="true">
+					Yes, we accept most major insurance plans. Please contact our office to verify your specific insurance coverage.
+				</div>
+			</div>
+
+			<div class="faq-item">
+				<button class="faq-question" aria-expanded="false" aria-controls="faq3">
+					How do I schedule an appointment?
+				</button>
+				<div id="faq3" class="faq-answer" aria-hidden="true">
+					You can schedule an appointment by calling our office or using our online scheduling system on our website.
+				</div>
+			</div>
+
+			<div class="faq-item">
+				<button class="faq-question" aria-expanded="false" aria-controls="faq4">
+					What should I bring to my first appointment?
+				</button>
+				<div id="faq4" class="faq-answer" aria-hidden="true">
+					Please bring your ID, insurance card, medical history, current medications list, and any relevant imaging or test results.
+				</div>
+			</div>
+		</div>
+
+		<script>
+			/**
+			 * FAQ Accordion Functionality
+			 */
+			function initFAQAccordion() {
+				const faqQuestions = document.querySelectorAll('.faq-question');
+
+				faqQuestions.forEach(question => {
+					question.addEventListener('click', () => {
+						const answer = document.getElementById(question.getAttribute('aria-controls'));
+						const isExpanded = question.getAttribute('aria-expanded') === 'true';
+
+						// Close all other answers
+						faqQuestions.forEach(otherQuestion => {
+							if (otherQuestion !== question) {
+								otherQuestion.setAttribute('aria-expanded', 'false');
+								const otherAnswer = document.getElementById(otherQuestion.getAttribute('aria-controls'));
+								otherAnswer.setAttribute('aria-hidden', 'true');
+							}
+						});
+
+						// Toggle current answer
+						question.setAttribute('aria-expanded', !isExpanded);
+						answer.setAttribute('aria-hidden', isExpanded);
+					});
+				});
+			}
+
+			// Initialize when DOM is ready
+			document.addEventListener("DOMContentLoaded", function () {
+				initFAQAccordion();
+			});
+		</script>
+	</body>
+</html>

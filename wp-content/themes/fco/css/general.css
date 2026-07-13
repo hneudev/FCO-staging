@@ -1,0 +1,10 @@
+.wrap{
+    position: relative;
+    overflow: hidden;
+    width: 90%;
+    max-width: 1400px;
+    margin: auto;
+}
+.widget-title span{
+    display: block;
+}

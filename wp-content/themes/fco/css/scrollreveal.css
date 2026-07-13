@@ -1,0 +1,66 @@
+#site-logo,
+#site-navigation,
+#hero video,
+#hero .site-featured-image,
+#hero .hero-text{
+    visibility: hidden;
+}
+
+#video-intro-block .widget_media_video,
+#video-intro-block .widget_custom_html{
+    visibility: hidden;
+}
+
+#home-testimonials .wrap{
+    visibility: hidden;
+}
+
+#first-intro .widget_media_image,
+#first-intro .widget_text .widget-title,
+#first-intro .widget_text .textwidget{
+    visibility: hidden;
+}
+
+#featured-section-intro .widget_media_image,
+#featured-section-intro .widget_text .widget-title,
+#featured-section-intro .widget_text .textwidget{
+    visibility: hidden;
+}
+
+#clients-logos .client-logo{
+    visibility: hidden;
+}
+
+#request-consultation .accent-layer,
+#request-consultation .widget_text,
+#request-consultation div.wpforms-container-full .wpforms-form *{
+    visibility: hidden;
+}
+
+#second-intro .widget_media_image,
+#second-intro .widget_text .widget-title,
+#second-intro .widget_text .textwidget{
+    visibility: hidden;
+}
+
+#blog-section .wrap{
+    visibility: hidden;
+}
+
+#colophon .footer-top,
+#colophon hr.separator,
+#colophon .footer-bottom{
+    visibility: hidden;
+}
+
+.page #primary .entry-content{
+    visibility: hidden;
+}
+
+.posts-archive-block .post{
+    visibility: hidden;
+}
+
+.single-post #primary article{
+    visibility: hidden;
+}
