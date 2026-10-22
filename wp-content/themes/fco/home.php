@@ -39,7 +39,7 @@ get_header();
 <div id="home-testimonials" class="homepage-section trustindex-section">
 	<div class="wrap">
 		<div class="trustindex-container">
-			<?php echo do_shortcode('[trustindex data-widget-id=401c9e955710574b9c46ad26026]'); ?>
+			<?php echo do_shortcode('[trustindex data-widget-id=043e513846fd11795346c020185]'); ?>
 		</div>
 	</div>
 </div>
