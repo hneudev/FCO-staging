@@ -13,6 +13,39 @@ function qlwapp_format_phone( $phone ) {
 	return $phone;
 }
 
+function qlwapp_format_username( $username ) {
+
+	$username = ltrim( trim( (string) $username ), '@' );
+
+	return strtolower( $username );
+}
+
+/**
+ * WhatsApp username rules: 3-35 characters, lowercase letters, numbers, dots
+ * and underscores, with at least one letter.
+ */
+function qlwapp_is_valid_username( $username ) {
+	return (bool) preg_match( '/^(?=.*[a-z])[a-z0-9._]{3,35}$/', qlwapp_format_username( $username ) );
+}
+
+/**
+ * Normalise the username of a contact-like array. An invalid username would
+ * build a link with no destination, so the contact falls back to its phone.
+ */
+function qlwapp_sanitize_contact_username( $data ) {
+
+	if ( isset( $data['username'] ) ) {
+		$data['username'] = qlwapp_format_username( $data['username'] );
+	}
+
+	// Partial updates may omit the username: only validate what is being saved.
+	if ( isset( $data['type'], $data['username'] ) && 'username' === $data['type'] && ! qlwapp_is_valid_username( $data['username'] ) ) {
+		$data['type'] = 'phone';
+	}
+
+	return $data;
+}
+
 function qlwapp_get_replacements() {
 
 	global $wp;

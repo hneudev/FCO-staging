@@ -17,6 +17,7 @@
                 <key name="*">
                     <key name="label"></key>
                     <key name="phone"></key>
+                    <key name="username"></key>
                     <key name="message"></key>
                 </key>
             </key>
@@ -35,6 +36,7 @@
             <key name="*">
                 <key name="label"></key>
                 <key name="phone"></key>
+                <key name="username"></key>
                 <key name="message"></key>
             </key>
         </key>

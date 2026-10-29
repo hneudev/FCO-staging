@@ -155,9 +155,7 @@ class Breeze_Admin {
 		}
 		// Clear cache when a scheduled post get's published.
 		if ( 'future' === $old_status && 'publish' === $new_status ) {
-			do_action( 'breeze_clear_varnish' );
-			Breeze_PurgeCache::breeze_cache_flush();
-			Breeze_MinificationCache::clear_minification();
+			do_action( 'purge_post_cache', $post->ID );
 		}
 	}
 
@@ -226,6 +224,8 @@ class Breeze_Admin {
 		if ( empty( $blog_varnish ) ) {
 			update_blog_option( $blog_id, 'breeze_varnish_cache', $varnish );
 		}
+
+		self::store_installed_version_if_missing( $blog_id );
 	}
 
 
@@ -238,9 +238,52 @@ class Breeze_Admin {
 	 * @return void
 	 */
 	public function clear_cache_if_changed_api( $product, $data_store ) {
-		// Check if this is a REST API update and clear the cache only if this is the first time hook is called.
-		if ( defined( 'REST_REQUEST' ) && REST_REQUEST && did_action( 'woocommerce_after_product_object_save' ) === 1 ) {
-			$this->breeze_clear_all_cache();
+		// Only run on REST API updates and only the first time the hook fires for this request.
+		if ( ! defined( 'REST_REQUEST' ) || ! REST_REQUEST || did_action( 'woocommerce_after_product_object_save' ) !== 1 ) {
+			return;
+		}
+
+		$product_id        = $product->get_id();
+		$cache_base_path   = breeze_get_cache_base_path();
+		$post_related_urls = Breeze_PurgeCache::collect_urls_for_cache_purge( $product_id );
+
+		// Clear local file cache for all URLs (includes shop/cat/tag ?page=N and /page/N/).
+		$post_related_urls = array_values( array_unique( $post_related_urls ) );
+		breeze_purge_local_cache_for_urls( $post_related_urls, $cache_base_path );
+
+		// Clear Varnish cache for all URLs.
+		$this->clear_varnish_for_urls( $post_related_urls );
+
+		// Clear WordPress object cache.
+		Breeze_PurgeCache::clear_op_cache_for_posts( $product_id );
+
+		// Clear Cloudflare cache.
+		if ( ! empty( $post_related_urls ) ) {
+			Breeze_CloudFlare_Helper::purge_cloudflare_cache_urls( $post_related_urls );
+		}
+	}
+
+	/**
+	 * Clear Varnish cache for specific URLs.
+	 * Note: Do NOT use the ?breeze query string as it triggers a full site purge.
+	 *
+	 * @param array $urls Array of URLs to purge from Varnish cache.
+	 *
+	 * @return void
+	 */
+	private function clear_varnish_for_urls( $urls ) {
+		if ( empty( $urls ) || ! is_array( $urls ) ) {
+			return;
+		}
+
+		$main = new Breeze_PurgeVarnish();
+		foreach ( $urls as $url ) {
+			// Skip paginated URLs: one request per page exhausts PHP-FPM on large
+			// catalogues, and the archive purge already covers them.
+			if ( Breeze_PurgeCache::is_paginated_url( $url ) ) {
+				continue;
+			}
+			$main->purge_cache( trailingslashit( $url ) );
 		}
 	}
 
@@ -779,6 +822,16 @@ INLINEJS;
 			'googletagmanager',
 		);
 		$default_file            = array(
+			'breeze-enable-html-cache'               => '1',
+			'breeze-html-doublecheck'                => '0',
+			'breeze-doublecheck-elements'            =>
+				array(),
+			'breeze-doublecheck-load'                => 'async',
+			'breeze-html-doublecheck-loader'         => '0',
+			'breeze-html-doublecheck-loader-overlay' => '',
+			'breeze-doublecheck-exclude-url'         =>
+				array(),
+			'breeze-doublecheck-exclude-url-error'   => '',
 			'breeze-minify-html'       => '0',
 			// --
 			'breeze-minify-css'        => '0',
@@ -810,8 +863,6 @@ INLINEJS;
 			'cached-query-strings'                 => array(),
 			'breeze-wp-emoji'                      => '0',
 			'breeze-store-googlefonts-locally'     => '0',
-			'breeze-store-googleanalytics-locally' => '0',
-			'breeze-store-facebookpixel-locally'   => '0',
 			'breeze-store-gravatars-locally'       => '0',
 			'breeze-enable-api'                    => '0',
 			'breeze-api-token'                     => $token,
@@ -872,6 +923,33 @@ INLINEJS;
 		$default_data['varnish'] = array_merge( $default_varnish, $varnish );
 
 		return $default_data;
+	}
+
+	/**
+	 * Store the installed Breeze version when this blog has none.
+	 *
+	 * Called from activation and new-subsite setup. Breeze_Upgrade does not
+	 * write a version for a fresh install. An existing version is left in
+	 * place so a later plugin update still runs the upgrade.
+	 *
+	 * @param int $blog_id Blog ID. 0 writes the current blog on a single site.
+	 * @return void
+	 */
+	private static function store_installed_version_if_missing( $blog_id = 0 ) {
+		$blog_id = (int) $blog_id;
+
+		if ( is_multisite() && 0 < $blog_id ) {
+			$stored_version = get_blog_option( $blog_id, 'breeze_version' );
+			if ( false === $stored_version || '' === $stored_version ) {
+				update_blog_option( $blog_id, 'breeze_version', BREEZE_VERSION );
+			}
+			return;
+		}
+
+		$stored_version = get_option( 'breeze_version' );
+		if ( false === $stored_version || '' === $stored_version ) {
+			update_option( 'breeze_version', BREEZE_VERSION, true );
+		}
 	}
 
 	/*
@@ -944,6 +1022,8 @@ INLINEJS;
 				if ( empty( $blog_varnish ) ) {
 					update_blog_option( (int) $blog->blog_id, 'breeze_varnish_cache', $varnish );
 				}
+
+				self::store_installed_version_if_missing( (int) $blog->blog_id );
 			}
 
 			if ( $network_wide ) {
@@ -1019,6 +1099,8 @@ INLINEJS;
 			if ( ! $singe_network_varnish ) {
 				breeze_update_option( 'varnish_cache', $varnish );
 			}
+
+			self::store_installed_version_if_missing();
 		}
 
 		// add header to htaccess if setting is enabled or by default if first installed
@@ -1134,6 +1216,8 @@ INLINEJS;
 				delete_site_option( 'breeze_exclude_url_pages' );
 				delete_site_option( 'breeze_hide_notice' );
 				delete_site_option( 'breeze_version' );
+				delete_site_option( 'breeze_version_upgraded_from' );
+				delete_site_option( 'breeze_upgrade_running' );
 				delete_site_option( 'breeze_cf_microservice_url' );
 				delete_site_option( 'breeze_cf_platform' );
 
@@ -1159,6 +1243,7 @@ INLINEJS;
 					delete_option( 'breeze_exclude_url_pages' );
 					delete_option( 'breeze_hide_notice' );
 					delete_option( 'breeze_version' );
+					delete_option( 'breeze_version_upgraded_from' );
 					delete_option( 'breeze_cf_microservice_url' );
 					delete_option( 'breeze_cf_platform' );
 					restore_current_blog();
@@ -1181,6 +1266,8 @@ INLINEJS;
 				delete_option( 'breeze_exclude_url_pages' );
 				delete_option( 'breeze_hide_notice' );
 				delete_option( 'breeze_version' );
+				delete_option( 'breeze_version_upgraded_from' );
+				delete_option( 'breeze_upgrade_running' );
 				delete_option( 'breeze_cf_microservice_url' );
 				delete_option( 'breeze_cf_platform' );
 

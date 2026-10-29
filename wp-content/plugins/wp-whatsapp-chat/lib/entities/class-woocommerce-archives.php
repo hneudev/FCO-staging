@@ -12,6 +12,7 @@ class WooCommerce_Archives extends SingleEntity {
 	public $icon               = 'qlwapp-whatsapp-icon';
 	public $type               = 'phone';
 	public $phone              = QLWAPP_PHONE_NUMBER;
+	public $username           = '';
 	public $group              = QLWAPP_GROUP_LINK;
 	public $developer          = 'no';
 	public $rounded            = 'yes';

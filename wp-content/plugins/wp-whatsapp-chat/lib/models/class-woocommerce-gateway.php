@@ -108,8 +108,9 @@ class WooCommerce_Gateway {
 			$settings['group'] = sanitize_url( $settings['group'] );
 		}
 		if ( isset( $settings['type'] ) ) {
-			$settings['type'] = in_array( $settings['type'], array( 'phone', 'group' ) ) ? $settings['type'] : 'phone';
+			$settings['type'] = in_array( $settings['type'], array( 'phone', 'group', 'username' ) ) ? $settings['type'] : 'phone';
 		}
+		$settings = qlwapp_sanitize_contact_username( $settings );
 		if ( isset( $settings['order_status'] ) ) {
 			$settings['order_status'] = sanitize_text_field( $settings['order_status'] );
 		}

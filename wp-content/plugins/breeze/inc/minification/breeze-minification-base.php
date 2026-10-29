@@ -28,13 +28,123 @@ abstract class Breeze_MinificationBase {
 	//Returns the content
 	abstract public function getcontent();
 
+	protected function decode_asset_url( $url ) {
+		$decoded = $url;
+		$passes  = 0;
+
+		while ( false !== strpos( $decoded, '%' ) && $passes < 5 ) {
+			$next = urldecode( $decoded );
+			if ( $next === $decoded ) {
+				return $decoded;
+			}
+
+			$decoded = $next;
+			++$passes;
+		}
+
+		// Fail closed when more decoding would still alter the URL.
+		if ( $passes >= 5 && urldecode( $decoded ) !== $decoded ) {
+			return null;
+		}
+
+		return $decoded;
+	}
+
+	protected function asset_url_traverses( $url ) {
+		if ( false !== strpos( $url, "\0" ) ) {
+			return true;
+		}
+
+		$path = parse_url( $url, PHP_URL_PATH );
+		if ( ! is_string( $path ) ) {
+			return false;
+		}
+
+		// Reject encoded parent segments and encoded separators before decoding.
+		if ( 1 === preg_match( '/\.\.(%2f|%5c)|%2e%2e/i', $path ) ) {
+			return true;
+		}
+
+		return null === $this->strip_dot_segments( $path );
+	}
+
+	/**
+	 * Remove current-directory segments and reject parent-directory segments.
+	 *
+	 * Backslashes are treated as separators because PHP accepts them as path
+	 * separators on Windows. Empty segments are discarded so repeated slashes
+	 * cannot obscure a parent segment.
+	 *
+	 * @param string $path URL path or path left after removing the root URL.
+	 * @return string|null Normalized path, or null when the path is unsafe.
+	 */
+	protected function strip_dot_segments( $path ) {
+		if ( false !== strpos( $path, "\0" ) ) {
+			return null;
+		}
+
+		$path        = str_replace( '\\', '/', $path );
+		$has_leading = ( 0 === strpos( $path, '/' ) );
+		$segments    = explode( '/', $path );
+		$safe        = array();
+
+		foreach ( $segments as $segment ) {
+			if ( '' === $segment || '.' === $segment ) {
+				continue;
+			}
+
+			if ( '..' === $segment ) {
+				return null;
+			}
+
+			$safe[] = $segment;
+		}
+
+		$normalized = implode( '/', $safe );
+		if ( $has_leading ) {
+			$normalized = '/' . $normalized;
+		}
+
+		return $normalized;
+	}
+
+	protected function path_is_inside_root( $path ) {
+		$root     = realpath( BREEZE_ROOT_DIR );
+		$resolved = realpath( $path );
+
+		if ( false === $root || false === $resolved || ! is_file( $resolved ) ) {
+			return false;
+		}
+
+		$root_prefix    = rtrim( str_replace( '\\', '/', $root ), '/' ) . '/';
+		$resolved_slash = str_replace( '\\', '/', $resolved ) . '/';
+
+		// Windows paths are case-insensitive, while Unix paths are not.
+		if ( '\\' === DIRECTORY_SEPARATOR ) {
+			return 0 === stripos( $resolved_slash, $root_prefix );
+		}
+
+		return 0 === strpos( $resolved_slash, $root_prefix );
+	}
+
 	//Converts an URL to a full path
 	protected function getpath( $url ) {
 		$url = apply_filters( 'breeze_filter_cssjs_alter_url', $url );
 
-		if ( strpos( $url, '%' ) !== false ) {
-			$url = urldecode( $url );
+		if ( ! is_string( $url ) || '' === $url ) {
+			return false;
 		}
+
+		// Check both representations so encoded traversal cannot survive.
+		if ( $this->asset_url_traverses( $url ) ) {
+			return false;
+		}
+
+		$decoded_url = $this->decode_asset_url( $url );
+		if ( ! is_string( $decoded_url ) || $this->asset_url_traverses( $decoded_url ) ) {
+			return false;
+		}
+		$url = $decoded_url;
 
 		// normalize
 		if ( strpos( $url, '//' ) === 0 ) {
@@ -91,7 +201,15 @@ abstract class Breeze_MinificationBase {
 			return false;
 		}
 
+		$path = $this->strip_dot_segments( $path );
+		if ( ! is_string( $path ) ) {
+			return false;
+		}
+
 		$path = str_replace( '//', '/', BREEZE_ROOT_DIR . $path );
+		if ( ! $this->path_is_inside_root( $path ) ) {
+			return false;
+		}
 
 		return $path;
 	}
@@ -379,11 +497,31 @@ abstract class Breeze_MinificationBase {
 		return false;
 	}
 
+	/**
+	 * Stamps a bundle this render links to as "used now".
+	 *
+	 * The stamp is the file's mtime and it is the only thing that keeps an
+	 * unchanged bundle alive through the post-purge cleanup, so a failure here
+	 * eventually costs the page the file it links to. It means the file itself
+	 * cannot be written by the user PHP runs as, which typically happens when
+	 * WP-CLI, a deploy script or another pool created it. Record it so an
+	 * administrator is told rather than left to find the 404s.
+	 *
+	 * @param string $file_path Full path of the bundle.
+	 *
+	 * @return void
+	 */
+	protected function mark_bundle_used( $file_path = '' ) {
+		if ( ! @touch( $file_path ) ) {
+			Breeze_MinificationCache::record_unwritable_file( $file_path );
+		}
+	}
+
 	public function get_cache_file_url( $type = 'css' ) {
-		$cache_dir = BREEZE_MINIFICATION_CACHE . breeze_current_user_type() . ( ! empty( $type ) ? $type . '/' : '' );
+		$cache_dir = BREEZE_MINIFICATION_CACHE . breeze_effective_user_type() . ( ! empty( $type ) ? $type . '/' : '' );
 		if ( is_multisite() ) {
 			$blog_id   = get_current_blog_id();
-			$cache_dir = BREEZE_MINIFICATION_CACHE . $blog_id . '/' . breeze_current_user_type() . ( ! empty( $type ) ? $type . '/' : '' );
+			$cache_dir = BREEZE_MINIFICATION_CACHE . $blog_id . '/' . breeze_effective_user_type() . ( ! empty( $type ) ? $type . '/' : '' );
 		}
 
 		return $cache_dir;

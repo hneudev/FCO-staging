@@ -18,6 +18,13 @@ function popupCenter(w, h)
 	return ',top=' + top + ',left=' + left;
 }
 
+function decodeHtmlEntities(value) {
+	let textarea = document.createElement('textarea');
+	textarea.innerHTML = value;
+
+	return textarea.value;
+}
+
 jQuery.fn.expand = function() {
 	let textarea = jQuery(this);
 	let val = textarea.val();
@@ -212,22 +219,13 @@ jQuery(document).ready(function() {
 		// remove added form
 		form.remove();
 
-		// popup close interval
-		let timer = setInterval(function() {
-			if (tiWindow.closed) {
+		waitForPopupResponse(tiWindow, {
+			adminUrl: 'https://admin.trustindex.io/',
+			onResponse: function(response) {
+				callback(response.reply);
+			},
+			onClose: function() {
 				callback(false);
-				clearInterval(timer);
-			}
-		}, 1000);
-
-		// wait for response from Trustindex
-		jQuery(window).one('message', function(event) {
-			// event comes from the correct window
-			if (tiWindow == event.originalEvent.source) {
-				clearInterval(timer);
-				callback(event.originalEvent.data.reply);
-
-				tiWindow.close();
 			}
 		});
 	};
@@ -263,23 +261,13 @@ jQuery(document).ready(function() {
 		// remove added form
 		form.remove();
 
-		// popup close interval
-		let timer = setInterval(function() {
-			if (tiWindow.closed) {
+		waitForPopupResponse(tiWindow, {
+			adminUrl: 'https://admin.trustindex.io/',
+			onResponse: function(response) {
+				callback(!!response.success);
+			},
+			onClose: function() {
 				callback(undefined);
-				clearInterval(timer);
-			}
-		}, 1000);
-
-		// wait for response from Trustindex
-		jQuery(window).one('message', function(event) {
-			// event comes from the correct window
-			if (tiWindow == event.originalEvent.source) {
-				clearInterval(timer);
-
-				callback(!!event.originalEvent.data.success);
-
-				tiWindow.close();
 			}
 		});
 	};
@@ -637,6 +625,25 @@ jQuery(document).ready(function() {
 			currentPreview.classList.toggle('is-active');
 		}
 	});
+
+	/*************************************************************************/
+	/* Wordpress Source Connect on Admin Page */
+	document.addEventListener('click', function (event) {
+		if (event.target.matches('a[href*="trustindex"][href*="a=sys&c="]')) {
+			let sourceDataScript = document.getElementById('ti-plugin-source-data');
+			if (sourceDataScript) {
+				let jsonStr = JSON.parse(sourceDataScript.innerHTML).data;
+				let data = JSON.parse(decodeHtmlEntities(jsonStr));
+
+				if ('Google' === data.platform) {
+					data.redirect = event.target.href;
+
+					event.preventDefault();
+					window.location.href = 'https://admin.trustindex.io/wp-plugin-source.html#' + encodeURIComponent(JSON.stringify(data));
+				}
+			}
+		}
+	});
 });
 
 
@@ -881,3 +888,43 @@ jQuery(document).on('click', '.btn-rateus-support', function(event) {
 		}
 	}).always(() => location.reload(true));
 });
+
+// - import/popup-response.js
+function waitForPopupResponse(tiWindow, options) {
+	// popup blocked by the browser, no response will come
+	if (!tiWindow) {
+		options.onClose();
+
+		return;
+	}
+
+	let adminOrigin = new URL(options.adminUrl).origin;
+	let closeCheckTimer = null;
+
+	let onMessage = function(event) {
+		let isPopupMessage = event.source === tiWindow && event.origin === adminOrigin;
+
+		if (!isPopupMessage || (options.isResponse && !options.isResponse(event.data))) {
+			return;
+		}
+
+		stopWaiting();
+		options.onResponse(event.data);
+
+		tiWindow.close();
+	};
+
+	let stopWaiting = function() {
+		clearInterval(closeCheckTimer);
+		window.removeEventListener('message', onMessage);
+	};
+
+	window.addEventListener('message', onMessage);
+
+	closeCheckTimer = setInterval(function() {
+		if (tiWindow.closed) {
+			stopWaiting();
+			options.onClose();
+		}
+	}, 1000);
+}

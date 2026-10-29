@@ -254,6 +254,7 @@
 
 			if ( null != mainNav && hasClass( mainNav, '.main-navigation' ) ) {
 				// Prevent default mouse events
+				if ( event.target.matches('a') && event.target.closest('.sub-menu') ) { return; }
 				event.preventDefault();
 
 			} else if (

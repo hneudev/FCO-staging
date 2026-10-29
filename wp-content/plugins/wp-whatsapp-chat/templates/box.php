@@ -23,7 +23,7 @@ if ( ! isset( $primary_contact ) && class_exists( '\\QuadLayers\\QLWAPP\\Models\
 					</div>
 				<div class="qlwapp-body">
 					<?php if ( isset( $primary_contact ) ) : ?>
-						<a class="qlwapp-account" data-action="open" data-phone="<?php echo qlwapp_format_phone( $primary_contact['phone'] ); ?>" data-message="<?php echo esc_html( $primary_contact['message'] ?? '' ); ?>" data-whatsapp-link-type="<?php echo esc_attr( $primary_contact['whatsapp_link_type'] ?? 'web' ); ?>" role="button" tabindex="0" target="_blank">
+						<a class="qlwapp-account" data-action="open" data-type="<?php echo esc_attr( $primary_contact['type'] ?? 'phone' ); ?>" data-phone="<?php echo qlwapp_format_phone( $primary_contact['phone'] ); ?>" data-username="<?php echo esc_attr( $primary_contact['username'] ?? '' ); ?>" data-message="<?php echo esc_html( $primary_contact['message'] ?? '' ); ?>" data-whatsapp-link-type="<?php echo esc_attr( $primary_contact['whatsapp_link_type'] ?? 'web' ); ?>" role="button" tabindex="0" target="_blank">
 							<?php if ( ! empty( $primary_contact['avatar'] ) ) : ?>
 								<div class="qlwapp-avatar">
 									<div class="qlwapp-avatar-container">
@@ -47,7 +47,7 @@ if ( ! isset( $primary_contact ) && class_exists( '\\QuadLayers\\QLWAPP\\Models\
 		<?php endif; ?>
 
 		<?php if ( isset( $primary_contact ) ) : ?>
-		<a class="qlwapp-toggle" data-action="<?php echo ( $button['box'] === 'yes' ? 'box' : 'open' ); ?>" data-phone="<?php echo qlwapp_format_phone( $primary_contact['phone'] ); ?>" data-message="<?php echo esc_html( $primary_contact['message'] ?? '' ); ?>" data-whatsapp-link-type="<?php echo esc_attr( $primary_contact['whatsapp_link_type'] ?? 'web' ); ?>" role="button" tabindex="0" target="_blank">
+		<a class="qlwapp-toggle" data-action="<?php echo ( $button['box'] === 'yes' ? 'box' : 'open' ); ?>" data-type="<?php echo esc_attr( $primary_contact['type'] ?? 'phone' ); ?>" data-phone="<?php echo qlwapp_format_phone( $primary_contact['phone'] ); ?>" data-username="<?php echo esc_attr( $primary_contact['username'] ?? '' ); ?>" data-message="<?php echo esc_html( $primary_contact['message'] ?? '' ); ?>" data-whatsapp-link-type="<?php echo esc_attr( $primary_contact['whatsapp_link_type'] ?? 'web' ); ?>" role="button" tabindex="0" target="_blank">
 			<?php if ( $button['icon'] ) : ?>
 				<i class="qlwapp-icon <?php echo esc_attr( $button['icon'] ); ?>"></i>
 			<?php endif; ?>

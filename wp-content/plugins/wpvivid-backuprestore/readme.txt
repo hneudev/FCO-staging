@@ -2,9 +2,9 @@
 Contributors: wpvivid
 Tags: duplicate, clone, migrate, staging, backup
 Requires at least: 4.5
-Tested up to: 7.0
-Requires PHP: 5.3
-Stable tag: 0.9.130
+Tested up to: 7.1.2
+Requires PHP: 5.6
+Stable tag: 0.9.136
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -75,6 +75,7 @@ WPvivid Backup & Migration plugin supports Dropbox, Google Drive, Microsoft OneD
 == Installation ==
 
 = Install WPvivid Backup & Migration Plugin =
+
 1.Go to your sites admin dashboard.
 2.Navigate to Plugins Menu and search for WPvivid Backup & Migration.
 3.Find WPvivid Backup & Migration and click Install Now.
@@ -100,6 +101,20 @@ Yes, absolutely. Whenever you need help, start a thread on the [support forum](h
 Yes, we do. Here are the guides for [migrating your site to a new host](https://wpvivid.com/get-started-transfer-site.html), [creating a manual backup](https://wpvivid.com/get-started-create-a-manual-backup.html), [restoring your site from a backup](https://wpvivid.com/get-started-restore-site.html), and more on [our docs page](https://wpvivid.com/documents).
 
 == Changelog ==
+= 0.9.136 =
+- Upgraded the phpseclib3 library for improved SFTP cloud storage compatibility.
+- Fixed: Database Snapshot settings were not included when exporting plugin settings.
+= 0.9.135 =
+- Fixed some vulnerabilities in the plugin code. Special thanks to Badr Azeez. Alex Thomas, and Wordfence Argus for reporting and assisting with the fixes.
+= 0.9.134 =
+- Fixed two vulnerabilities in the plugin code. Special thanks to Meher Sudhakar Abbireddi, reconnaissance, and WPScan for reporting and assisting with the fixes.
+= 0.9.133 =
+- Fixed some vulnerabilities in the plugin code. Special thanks to Duc Manh, Nir Yehoshua, and WPScan for reporting and assisting with the fixes.
+- Optimized the plugin code.
+= 0.9.132 =
+- Fixed a vulnerability in the plugin code.
+= 0.9.131 =
+- Fixed two vulnerabilities in the plugin code. Special thanks to Nir Yehoshua from Cipher Security Labs for reporting and assisting with the fixes.
 = 0.9.130 =
 - Fixed: A PHP deprecated warning could be logged after backups were successfully uploaded to Dropbox on PHP 8.2.
 = 0.9.129 =
@@ -208,5 +223,6 @@ Yes, we do. Here are the guides for [migrating your site to a new host](https://
 [See historical changelog entries](https://raw.githubusercontent.com/wpvivid-backup/wpvivid-backuprestore/main/CHANGELOG_LEGACY.md).
 
 == Upgrade Notice ==
-= 0.9.130 =
-- Fixed: A PHP deprecated warning could be logged after backups were successfully uploaded to Dropbox on PHP 8.2.
+= 0.9.136 =
+- Upgraded the phpseclib3 library for improved SFTP cloud storage compatibility.
+- Fixed: Database Snapshots settings were not included when exporting plugin settings.

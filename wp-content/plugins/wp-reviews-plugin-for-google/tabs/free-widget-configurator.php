@@ -190,10 +190,7 @@ update_option($pluginManagerInstance->get_option_name('review-download-modal'), 
 }
 update_option($pluginManagerInstance->get_option_name('page-details'), $pageDetails, false);
 $GLOBALS['wp_object_cache']->delete( $pluginManagerInstance->get_option_name('page-details'), 'options' );
-$lang = strtolower(substr(get_locale(), 0, 2));
-if (!isset($pluginManager::$widget_languages[ $lang ])) {
-$lang = 'en';
-}
+$lang = $pluginManager::getWidgetLanguage(get_locale());
 update_option($pluginManagerInstance->get_option_name('lang'), $lang, false);
 header('Location: admin.php?page='.esc_attr($_page).'&tab=free-widget-configurator');
 exit;
@@ -720,7 +717,8 @@ echo esc_html(sprintf(__('Our exclusive "Top Rated" badge is awarded to service 
 </p>
 </div>
 <?php endif; ?>
-<?php echo wp_kses($pluginManagerInstance->renderWidgetAdmin(true, false, ['style-id' => esc_attr($id), 'set-id' => esc_attr($set)]), $pluginManager::$allowedAttributesForWidget); ?>
+<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- renderWidgetAdmin() escapes its own markup ?>
+<?php echo $pluginManagerInstance->renderWidgetAdmin(true, false, ['style-id' => esc_attr($id), 'set-id' => esc_attr($set)]); ?>
 </div>
 </div>
 </div>
@@ -771,7 +769,8 @@ esc_html(__('This widget style helps build trust and effectively increases sales
 <div class="clear"></div>
 </div>
 <div class="preview">
-<?php echo wp_kses($pluginManagerInstance->renderWidgetAdmin(true, false, ['style-id' => esc_attr($styleId), 'set-id' => esc_attr($id)]), $pluginManager::$allowedAttributesForWidget); ?>
+<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- renderWidgetAdmin() escapes its own markup ?>
+<?php echo $pluginManagerInstance->renderWidgetAdmin(true, false, ['style-id' => esc_attr($styleId), 'set-id' => esc_attr($id)]); ?>
 </div>
 </div>
 </div>
@@ -799,7 +798,8 @@ esc_html(__('This widget style helps build trust and effectively increases sales
 <div class="clear"></div>
 </div>
 <div class="preview">
-<?php echo wp_kses($pluginManagerInstance->renderWidgetAdmin(true, false, ['style-id' => esc_attr($styleId), 'set-id' => esc_attr($id), 'verified-by-trustindex' => true]), $pluginManager::$allowedAttributesForWidget); ?>
+<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- renderWidgetAdmin() escapes its own markup ?>
+<?php echo $pluginManagerInstance->renderWidgetAdmin(true, false, ['style-id' => esc_attr($styleId), 'set-id' => esc_attr($id), 'verified-by-trustindex' => true]); ?>
 </div>
 </div>
 <div class="ti-notice ti-notice-info ti-verified-badge-notice">
@@ -862,7 +862,8 @@ echo esc_html(sprintf(__('Our exclusive "Top Rated" badge is awarded to service 
 </span>
 </div>
 <div class="preview ti-widget-editor-preview">
-<?php echo wp_kses($pluginManagerInstance->renderWidgetAdmin(true), $pluginManager::$allowedAttributesForWidget); ?>
+<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- renderWidgetAdmin() escapes its own markup ?>
+<?php echo $pluginManagerInstance->renderWidgetAdmin(true); ?>
 </div>
 </div>
 </div>
@@ -937,10 +938,7 @@ echo esc_html(sprintf(__('Style %d', 'wp-reviews-plugin-for-google'), 2));
 <option value="<?php echo esc_attr($format); ?>" <?php echo $pluginManagerInstance->getWidgetOption('dateformat') == $format ? 'selected' : ''; ?>><?php
 switch ($format) {
 case 'modern':
-$lang = substr(get_locale(), 0, 2);
-if (!in_array($lang, array_keys($pluginManager::$widget_date_format_locales))) {
-$lang = 'en';
-}
+$lang = $pluginManager::getWidgetLanguage(get_locale());
 $tmp = explode('|', $pluginManager::$widget_date_format_locales[$lang]);
 echo esc_html(str_replace([ '%d', '%s' ], [ 2, $tmp[3] ], $tmp[0]));
 break;
