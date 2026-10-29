@@ -20,6 +20,12 @@ $pluginManagerInstance->handleCssFile();
 header('Location: admin.php?page='.esc_attr($_page).'&tab=advanced');
 exit;
 }
+if (isset($_GET['clear_widget_html_cache'])) {
+check_admin_referer('ti-clear-widget-html-cache');
+$pluginManagerInstance->clearWidgetHtmlCacheExpiration();
+header('Location: admin.php?page='.esc_attr($_page).'&tab=advanced');
+exit;
+}
 if (isset($_POST['save-notification-email'])) {
 check_admin_referer('ti-notification-email-save');
 $type = isset($_POST['type']) ? sanitize_text_field(wp_unslash($_POST['type'])) : null;
@@ -31,8 +37,9 @@ exit;
 }
 $yesIcon = '<span class="dashicons dashicons-yes-alt"></span>';
 $noIcon = '<span class="dashicons dashicons-dismiss"></span>';
-$pluginUpdated = ($pluginManagerInstance->get_plugin_current_version() <= "13.3.1");
+$pluginUpdated = ($pluginManagerInstance->get_plugin_current_version() <= "14.2");
 $cssInline = get_option($pluginManagerInstance->get_option_name('load-css-inline'), 0);
+$widgetHtmlCacheIds = $pluginManagerInstance->getCachedWidgetHtmlIds();
 $css = get_option($pluginManagerInstance->get_option_name('css-content'));
 $tiSuccess = "";
 if (isset($_COOKIE['ti-success'])) {
@@ -47,12 +54,13 @@ $tiCommand = null;
 if ($tiCommand === 'connect') {
 check_admin_referer('connect-reg_' . $pluginManagerInstance->get_plugin_slug());
 $sanitizedEmail = isset($_POST['email']) ? sanitize_email(wp_unslash($_POST['email'])) : "";
-$sanitizedPassword = isset($_POST['password']) ? sanitize_text_field(wp_unslash($_POST['password'])) : "";
-if ($sanitizedEmail && $sanitizedPassword) {
+// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- The password is only sent to the Trustindex API as a POST parameter, it is never rendered, stored or used in a query.
+$password = isset($_POST['password']) && is_string($_POST['password']) ? wp_unslash($_POST['password']) : "";
+if ($sanitizedEmail && '' !== $password) {
 $serverOutput = $pluginManagerInstance->connect_trustindex_api([
 'signin' => [
 'username' => $sanitizedEmail,
-'password' => html_entity_decode($sanitizedPassword),
+'password' => $password,
 ],
 'callback' => bin2hex(openssl_random_pseudo_bytes(10))
 ], 'connect');
@@ -186,6 +194,20 @@ echo wp_kses_post($noIcon);
 <input type="checkbox" value="1" <?php if ($cssInline): ?>checked<?php endif;?> onchange="window.location.href = '?page=<?php echo esc_attr($_page); ?>&tab=advanced&_wpnonce=<?php echo esc_attr(wp_create_nonce('ti-toggle-css')); ?>&toggle_css_inline=' + (this.checked ? 1 : 0)">
 <label><?php echo esc_html(__('Enable CSS internal loading', 'wp-reviews-plugin-for-google')); ?></label>
 </span>
+</li>
+</ul>
+</li>
+<?php endif; ?>
+<?php if ($widgetHtmlCacheIds): ?>
+<li>
+<?php echo esc_html(__('Widget cache', 'wp-reviews-plugin-for-google')); ?>
+<ul>
+<li>
+<?php echo esc_html(__('The widgets are stored on your server and refreshed hourly.', 'wp-reviews-plugin-for-google')); ?>
+<a href="<?php echo esc_url(wp_nonce_url('?page='.esc_attr($_page).'&tab=advanced&clear_widget_html_cache', 'ti-clear-widget-html-cache')); ?>" class="ti-btn ti-btn-loading-on-click"><?php echo esc_html(__('Clear cache', 'wp-reviews-plugin-for-google')); ?></a>
+<div class="ti-notice ti-notice-warning">
+<p><?php echo esc_html(__('Clear it if you have modified your widget in the Trustindex editor and you would like to see the changes immediately.', 'wp-reviews-plugin-for-google')); ?></p>
+</div>
 </li>
 </ul>
 </li>

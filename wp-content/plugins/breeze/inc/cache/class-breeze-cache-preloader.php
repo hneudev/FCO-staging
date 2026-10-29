@@ -372,15 +372,17 @@ class Breeze_Cache_Preloader {
 			return false;
 		}
 
-		if ( ! self::has_action_scheduler_tables() ) {
-			self::log( '[Breeze Preload] Action Scheduler tables missing for blog ' . $blog_id . ' — skipping preload scheduling.' );
-			return false;
-		}
-
+		// Check the setting before the tables: the table check costs 4 SHOW TABLES
+		// queries per blog, and a network fan-out runs it for every sub-blog.
 		if ( ! self::is_cache_warmup_enabled() ) {
 			delete_option( self::get_queue_key() );
 			delete_option( self::get_last_warm_key() );
 			self::log( '[Breeze Preload] Cache warmup is disabled for blog ' . $blog_id . ' — skipping preload scheduling.' );
+			return false;
+		}
+
+		if ( ! self::has_action_scheduler_tables() ) {
+			self::log( '[Breeze Preload] Action Scheduler tables missing for blog ' . $blog_id . ' — skipping preload scheduling.' );
 			return false;
 		}
 
@@ -719,10 +721,23 @@ class Breeze_Cache_Preloader {
 				return false;
 			}
 
-			// Chain is stalled (or has not started). Cancel any ghost AS jobs for
-			// THIS blog only (per-blog group) so we don't end up with a duplicate
-			// warm if the loopback recovers later, and so we don't kill another
-			// sub-blog's healthy chain.
+			// Nothing queued → there is no preload session to rescue. Check the
+			// queue BEFORE touching Action Scheduler: otherwise every idle
+			// heartbeat tick (queue empty, last-warm stale or absent) would run
+			// an as_unschedule_all_actions() lookup against the Action Scheduler
+			// tables for nothing. A stray CHAIN_HOOK job with an empty queue is
+			// harmless — preload_next() simply no-ops and deletes the empty
+			// queue — so there is nothing to cancel in that case.
+			$queue = get_option( self::get_queue_key(), array() );
+			if ( empty( $queue ) || ! is_array( $queue ) ) {
+				return false;
+			}
+
+			// Chain is stalled (or has not started) AND URLs remain in the
+			// queue. Cancel any ghost AS jobs for THIS blog only (per-blog group)
+			// so we don't end up with a duplicate warm if the loopback recovers
+			// later, and so we don't kill another sub-blog's healthy chain.
+			
 			if ( self::is_action_scheduler_available() && self::has_action_scheduler_tables() ) {
 				as_unschedule_all_actions( self::CHAIN_HOOK, array(), self::get_blog_group() );
 			}
@@ -1127,9 +1142,10 @@ class Breeze_Cache_Preloader {
 	/**
 	 * Action Scheduler job: warm the cache for a single URL.
 	 *
-	 * @param string $url Absolute local URL to warm.
+	 * @param string $url     Absolute local URL to warm.
+	 * @param array  $variant Optional 'user-agent', 'cookies' and 'headers' for a cache variant.
 	 */
-	public static function preload_url( string $url ): void {
+	public static function preload_url( string $url, array $variant = array() ): void {
 		if ( empty( $url ) ) {
 			self::log( '[Breeze Preload] Received empty URL — skipping.' );
 			return;
@@ -1164,8 +1180,8 @@ class Breeze_Cache_Preloader {
 				'sslverify'   => apply_filters( 'breeze_ssl_check_certificate', false ),
 				'headers'     => array(
 					'X-Breeze-Preload' => '1',
-				),
-			)
+				) + ( $variant['headers'] ?? array() ),
+			) + array_intersect_key( $variant, array( 'cookies' => 0, 'user-agent' => 0 ) )
 		);
 
 		// Non-blocking: the request is fired and forgotten. WordPress will

@@ -396,7 +396,7 @@
 
 // Function to add 'active' class
 function activateSubMenu() {
-    const subMenu = this.querySelector('ul.sub-menu');
+    const subMenu = this.closest('li').querySelector('ul.sub-menu');
     if (subMenu) {
         subMenu.classList.add('active');
         this.setAttribute('aria-expanded', 'true');
@@ -405,7 +405,7 @@ function activateSubMenu() {
 
 // Function to remove 'active' class
 function deactivateSubMenu(event) {
-    const subMenu = this.querySelector('ul.sub-menu');
+    const subMenu = this.closest('li').querySelector('ul.sub-menu');
     if (subMenu) {
         const relatedTarget = event.relatedTarget;
         if (!this.contains(relatedTarget)) {
@@ -417,13 +417,17 @@ function deactivateSubMenu(event) {
 
 // Event Listener to toggle 'active' class for click/touch events
 function toggleSubMenu(event) {
-    const subMenu = this.querySelector('ul.sub-menu');
+    const subMenu = this.closest('li').querySelector('ul.sub-menu');
     if (subMenu) {
         // If submenu isn't active, prevent default to open it.
+        if (subMenu.contains(event.target)) return;
+        event.preventDefault();
         if (!subMenu.classList.contains('active')) {
-            event.preventDefault();
             subMenu.classList.add('active');
             this.setAttribute('aria-expanded', 'true');
+        } else {
+            subMenu.classList.remove('active');
+            this.setAttribute('aria-expanded', 'false');
         }
     }
 }
@@ -436,10 +440,18 @@ menuItems.forEach(item => {
     item.addEventListener('mouseleave', deactivateSubMenu);
 
     // Click and touch events
-    const link = item.querySelector('a');
+    const link = item.querySelector(':scope > a, :scope > button');
     if (link) {
-        link.addEventListener('click', toggleSubMenu);
-        link.addEventListener('touchstart', (event) => toggleSubMenu.call(item, event));
+        link.addEventListener('click', function(event) {
+        if (!item.querySelector('ul.sub-menu').contains(event.target)) {
+            toggleSubMenu.call(item, event);
+        }
+    });
+        link.addEventListener('touchstart', function(event) {
+        if (!item.querySelector('ul.sub-menu').contains(event.target)) {
+            toggleSubMenu.call(item, event);
+        }
+    });
     }
 });
 

@@ -49,7 +49,7 @@ class WooCommerce_Archives {
 	}
 
 	public function save( $data ) {
-		$entity = $this->repository->create( $data );
+		$entity = $this->repository->create( qlwapp_sanitize_contact_username( $data ) );
 
 		if ( $entity ) {
 			return true;

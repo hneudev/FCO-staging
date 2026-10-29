@@ -89,7 +89,14 @@ class Manager {
 		$modules = $this->do_filter( 'modules', [] );
 
 		ksort( $modules );
-		$modules = array_merge( [ 'content-ai' => $modules['content-ai'] ], $modules ); // Move Content AI to first position.
+		// Move AI Visibility to first position, followed by Content AI.
+		$modules = array_merge(
+			[
+				'ai-visibility' => $modules['ai-visibility'],
+				'content-ai'    => $modules['content-ai'],
+			],
+			$modules
+		);
 		foreach ( $modules as $id => $module ) {
 			$this->add_module( $id, $module );
 		}
@@ -155,7 +162,7 @@ class Manager {
 		];
 
 		$modules['link-genius'] = [
-			'title'         => esc_html__( 'Link Genius', 'seo-by-rank-math' ),
+			'title'         => esc_html__( 'AI Link Genius', 'seo-by-rank-math' ),
 			'desc'          => esc_html__( 'An advanced internal linking tool that analyzes your posts, tracks link data, highlights opportunities, and offers detailed report.', 'seo-by-rank-math' ),
 			'icon'          => 'link',
 			'probadge'      => true,
@@ -188,7 +195,6 @@ class Manager {
 			'icon'        => 'content-ai',
 			'upgradeable' => true,
 			'settings'    => Helper::get_settings_url( 'general', 'content-ai' ),
-			'betabadge'   => true,
 		];
 
 		$modules['llms-txt'] = [
@@ -227,11 +233,13 @@ class Manager {
 		];
 
 		$modules['ai-visibility'] = [
-			'title'    => esc_html__( 'AI Visibility', 'seo-by-rank-math' ),
-			'desc'     => esc_html__( 'Track your brand\'s AI search visibility. Monitor brand mentions, citations, & sentiment, and discover opportunities to grow your AI visibility.', 'seo-by-rank-math' ),
-			'icon'     => 'ai-visibility',
-			'class'    => 'RankMath\AI_Visibility\AI_Visibility',
-			'settings' => Helper::get_admin_url( 'ai-visibility' ),
+			'title'       => esc_html__( 'AI Visibility', 'seo-by-rank-math' ),
+			'desc'        => esc_html__( 'Track your brand\'s AI search visibility. Monitor brand mentions, citations, & sentiment, and discover opportunities to grow your AI visibility.', 'seo-by-rank-math' ),
+			'icon'        => 'ai-visibility',
+			'class'       => 'RankMath\AI_Visibility\AI_Visibility',
+			'settings'    => Helper::get_admin_url( 'ai-visibility' ),
+			'betabadge'   => true,
+			'upgradeable' => true,
 		];
 
 		return $modules;
@@ -446,7 +454,7 @@ class Manager {
 								<?php } ?>
 								<?php if ( $is_upgradeable && ! $is_pro_active ) { ?>
 									<span class="is-upgradeable rank-math-tooltip">
-										<a href="<?php KB::the( 'pro', esc_html( $module->get( 'title' ) ) . ' Module Upgradable Icon' ); ?>">
+										<a href="<?php KB::the( in_array( $key, [ 'content-ai', 'ai-visibility' ], true ) ? 'ai-pricing' : 'pro', esc_html( $module->get( 'title' ) ) . ' Module Upgradable Icon' ); ?>">
 											<div>&#171;</div>
 										</a>
 										<span><?php echo esc_html__( 'More powerful options are available in the PRO version.', 'seo-by-rank-math' ); ?></span>
@@ -555,14 +563,14 @@ class Manager {
 						<h3><?php esc_html_e( 'Take SEO to the Next Level!', 'seo-by-rank-math' ); ?></h3>
 						<ul>
 							<li><?php esc_html_e( 'Unlimited personal websites', 'seo-by-rank-math' ); ?></li>
-							<li><?php esc_html_e( 'Free 15-Day Content AI Trial', 'seo-by-rank-math' ); ?></li>
+							<li><?php esc_html_e( 'Free 15-day Rank Math AI Trial', 'seo-by-rank-math' ); ?></li>
 							<li><?php esc_html_e( 'Track 500 Keywords', 'seo-by-rank-math' ); ?></li>
 							<li><?php esc_html_e( 'Powerful Schema Generator', 'seo-by-rank-math' ); ?></li>
 							<li><?php esc_html_e( '24/7 Support', 'seo-by-rank-math' ); ?></li>
 						</ul>
 					</header>
 					<div class="status wp-clearfix">
-						<button class="button button-secondary"><?php esc_html_e( 'Buy', 'seo-by-rank-math' ); ?></button>
+						<button class="button button-secondary"><?php esc_html_e( 'Buy Now', 'seo-by-rank-math' ); ?></button>
 					</div>
 				</a>
 			</div>

@@ -14,6 +14,7 @@ class Contact extends CollectionEntity {
 	public $avatar            = 'https://www.gravatar.com/avatar/00000000000000000000000000000000';
 	public $type              = 'phone';
 	public $phone             = QLWAPP_PHONE_NUMBER;
+	public $username          = '';
 	public $group             = QLWAPP_GROUP_LINK;
 	public $firstname         = 'John';
 	public $lastname          = 'Doe';

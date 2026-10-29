@@ -1,0 +1,2920 @@
+# Copyright (C) 2026 Koen Reus
+# This file is distributed under the same license as the Post to Google My Business (Google Business Profile) plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Post to Google My Business (Google Business Profile) 3.5.4\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/post-to-google-my-business\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-21T14:18:56+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: post-to-google-my-business\n"
+
+#. Plugin Name of the plugin
+#: post-to-google-my-business.php
+msgid "Post to Google My Business (Google Business Profile)"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: post-to-google-my-business.php
+msgid "https://digitaldistortion.dev"
+msgstr ""
+
+#. Description of the plugin
+#: post-to-google-my-business.php
+msgid "(Auto-)post and manage Google Business Profile posts from the WordPress dashboard"
+msgstr ""
+
+#. Author of the plugin
+#: post-to-google-my-business.php
+msgid "Koen Reus"
+msgstr ""
+
+#. Author URI of the plugin
+#: post-to-google-my-business.php
+msgid "https://koenreus.com"
+msgstr ""
+
+#: src/Admin/AbstractPage.php:34
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: src/Admin/AdminPage.php:133
+msgid "Google settings"
+msgstr ""
+
+#: src/Admin/AdminPage.php:138
+msgid "Auto-post settings"
+msgstr ""
+
+#: src/Admin/AdminPage.php:142
+msgid "Post type settings"
+msgstr ""
+
+#: src/Admin/AdminPage.php:146
+msgid "Evergreen content"
+msgstr ""
+
+#: src/Admin/AdminPage.php:150
+msgid "Misc"
+msgstr ""
+
+#: src/Admin/AdminPage.php:160
+msgid "Default location"
+msgstr ""
+
+#: src/Admin/AdminPage.php:161
+msgid "Select the post-types where the GMB metabox & auto-post controls should be displayed"
+msgstr ""
+
+#: src/Admin/AdminPage.php:169
+msgid "Post to GMB by default"
+msgstr ""
+
+#: src/Admin/AdminPage.php:170
+msgid "The Auto-post checkbox will be checked by default, and your WordPress posts will be automatically published to GMB, unless you uncheck it."
+msgstr ""
+
+#: src/Admin/AdminPage.php:176
+msgid "Default template"
+msgstr ""
+
+#: src/Admin/AdminPage.php:183
+msgid "Enabled request types (advanced)"
+msgstr ""
+
+#: src/Admin/AdminPage.php:184
+msgid "Select which request types the plugin should listen for to create auto-posts. Do not change unless you know what you are doing. Incorrect settings could result in duplicate posts or spamming your listing with posts."
+msgstr ""
+
+#: src/Admin/AdminPage.php:187
+msgid "Posts/pages/CPTs created in the WordPress Dashboard through the Block- or Classic editor"
+msgstr ""
+
+#: src/Admin/AdminPage.php:188
+msgid "Internal (e.g. items created internally by 3rd party plugins like import plugins)"
+msgstr ""
+
+#: src/Admin/AdminPage.php:189
+msgid "REST API (Items created through the WP REST API)"
+msgstr ""
+
+#: src/Admin/AdminPage.php:190
+msgid "XML-RPC (Items created through XML-RPC)"
+msgstr ""
+
+#: src/Admin/AdminPage.php:199
+msgid "Enabled for post types"
+msgstr ""
+
+#: src/Admin/AdminPage.php:200
+msgid "Select the post-types where the GMB metabox should be displayed"
+msgstr ""
+
+#: src/Admin/AdminPage.php:209
+msgid "Delete GMB posts"
+msgstr ""
+
+#: src/Admin/AdminPage.php:210
+msgid "Delete post(s) from GMB when the parent post/page/content in WordPress is deleted"
+msgstr ""
+
+#: src/Admin/AdminPage.php:216
+msgid "Uninstall cleanup"
+msgstr ""
+
+#: src/Admin/AdminPage.php:217
+msgid "Choose which data the plugin should (try to) delete when uninstalling the plugin"
+msgstr ""
+
+#: src/Admin/AdminPage.php:220
+msgid "Delete plugin settings"
+msgstr ""
+
+#: src/Admin/AdminPage.php:221
+msgid "Delete GMB post data, post campaigns & auto-post templates"
+msgstr ""
+
+#: src/Admin/AdminPage.php:226
+msgid "Disable date & time selector for events/offers"
+msgstr ""
+
+#: src/Admin/AdminPage.php:227
+msgid "Disable the event/offer date & time selector to allow for relative dates in those fields"
+msgstr ""
+
+#: src/Admin/AdminPage.php:233
+msgid "Bypass WP-Cron"
+msgstr ""
+
+#: src/Admin/AdminPage.php:234
+msgid "Enable this only if your posts are not being published. Will publish posts in foreground, at expense of performance."
+msgstr ""
+
+#: src/Admin/AdminPage.php:240
+msgid "Enable Alert/COVID-19 post type"
+msgstr ""
+
+#: src/Admin/AdminPage.php:241
+msgid "Enable ALERT post type. This is a currently unused GBP post type that will take priority over all other posts until it is deleted, introduced during the COVID-19 pandemic for emergency announcements."
+msgstr ""
+
+#: src/Admin/AdminPage.php:254
+msgid "Connected"
+msgstr ""
+
+#: src/Admin/AdminPage.php:254
+msgid "Not connected"
+msgstr ""
+
+#: src/Admin/AdminPage.php:323
+msgid "Manage multiple businesses or locations?"
+msgstr ""
+
+#: src/Admin/AdminPage.php:325
+#: src/Admin/AdminPage.php:349
+msgid "Upgrade to Premium (Pro)"
+msgstr ""
+
+#: src/Admin/AdminPage.php:326
+msgid "to pick a location per post, or post to multiple locations at once."
+msgstr ""
+
+#: src/Admin/AdminPage.php:329
+msgid "Not the right time?"
+msgstr ""
+
+#: src/Admin/AdminPage.php:331
+#: src/Admin/AdminPage.php:343
+#: src/Admin/AdminPage.php:355
+msgid "Upgrade to Premium"
+msgstr ""
+
+#: src/Admin/AdminPage.php:332
+msgid "and schedule your GBP posts to be automagically published at a later time."
+msgstr ""
+
+#: src/Admin/AdminPage.php:335
+msgid "Manage GBP locations for clients?"
+msgstr ""
+
+#: src/Admin/AdminPage.php:337
+msgid "Upgrade to Premium (Agency)"
+msgstr ""
+
+#: src/Admin/AdminPage.php:338
+msgid "to connect multiple Google accounts, and centrally manage GBP post campaigns."
+msgstr ""
+
+#: src/Admin/AdminPage.php:341
+msgid "Publish <em>real</em> GBP products."
+msgstr ""
+
+#: src/Admin/AdminPage.php:344
+msgid "to enable publishing GBP products"
+msgstr ""
+
+#: src/Admin/AdminPage.php:347
+msgid "Automatically re-publish your GBP posts a specific or unlimited amount of times."
+msgstr ""
+
+#: src/Admin/AdminPage.php:350
+msgid "to set custom intervals and specify the amount of reposts."
+msgstr ""
+
+#: src/Admin/AdminPage.php:353
+msgid "Use ACF or custom meta fields in your post templates."
+msgstr ""
+
+#: src/Admin/AdminPage.php:356
+msgid "for custom meta field and ACF support."
+msgstr ""
+
+#: src/Admin/AdminPage.php:359
+msgid "I hope you enjoy using my Post to Google My Business plugin! Help spread the word with a"
+msgstr ""
+
+#: src/Admin/AdminPage.php:361
+msgid "5-star rating on WordPress.org"
+msgstr ""
+
+#: src/Admin/AdminPage.php:362
+msgid ". Many thanks! - Koen Reus, plugin developer"
+msgstr ""
+
+#: src/Admin/AdminPage.php:385
+msgid "Connect to Google Business Profile"
+msgstr ""
+
+#: src/Admin/AdminPage.php:393
+#: src/Admin/AdminPage.php:398
+msgid "+ Add another Google account"
+msgstr ""
+
+#: src/Admin/AdminPage.php:397
+msgid "Multi-account support is a Post to Google My Business Agency Feature"
+msgstr ""
+
+#: src/Admin/AdminPage.php:405
+msgid "Disconnect Google account from this website"
+msgstr ""
+
+#: src/Admin/AdminPage.php:410
+msgid "Disconnect all Google accounts from this website"
+msgstr ""
+
+#: src/Admin/AdminPage.php:453
+#: templates/admin/settings.php:5
+msgid "Post to Google My Business settings"
+msgstr ""
+
+#: src/Admin/AdminPage.php:457
+msgid "Settings"
+msgstr ""
+
+#: src/Admin/AdminPage.php:470
+msgid "Evergreen content is a Post to Google My Business Pro feature"
+msgstr ""
+
+#: src/Admin/AdminPage.php:471
+msgid "Evergreen content screenshot"
+msgstr ""
+
+#: src/Admin/AdminPage.php:472
+msgid "Define a posting schedule, select your existing content in bulk, and the plugin will automatically keep your GMB listing(s) fresh with new posts."
+msgstr ""
+
+#: src/Admin/AdminPage.php:473
+msgid "Post to Google my Business Pro lets you:"
+msgstr ""
+
+#: src/Admin/AdminPage.php:475
+msgid "Create multiple auto-post templates"
+msgstr ""
+
+#: src/Admin/AdminPage.php:476
+msgid "Publish posts to multiple GMB locations at once"
+msgstr ""
+
+#: src/Admin/AdminPage.php:477
+msgid "Automatically re-cycle your posts"
+msgstr ""
+
+#: src/Admin/AdminPage.php:478
+#: templates/admin/postcampaigns.php:11
+#: templates/admin/settings.php:25
+msgid "Publish posts to multiple locations across multiple Google accounts at once"
+msgstr ""
+
+#: src/Admin/AdminPage.php:481
+#: templates/admin/autopost_template.php:26
+#: templates/admin/postcampaigns.php:14
+#: templates/admin/posteditor.php:55
+#: templates/admin/settings.php:28
+msgid "View pricing &amp; buy now &raquo;"
+msgstr ""
+
+#: src/Admin/AutoPostTemplateUpsell.php:8
+#: src/Admin/AutoPostTemplateUpsell.php:12
+#: src/Premium/PostTypes/PostTypeAutoPostTemplate.php:15
+msgid "Auto-post templates"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:61
+msgid "Post to Google My Business Dashboard"
+msgstr ""
+
+#. translators: %s renders a red notification bullet with the amount of notifications in the plugin
+#: src/Admin/DashboardPage.php:66
+#, php-format
+msgid "Dashboard %s"
+msgstr ""
+
+#: src/Admin/DashboardPage.php:91
+#: src/Admin/DashboardPage.php:106
+msgid "Dismiss this notice."
+msgstr ""
+
+#: src/Admin/PostCampaignsUpsell.php:8
+#: src/Admin/PostCampaignsUpsell.php:12
+msgid "Post Campaigns"
+msgstr ""
+
+#: src/API/GoogleMyBusiness.php:46
+msgid "Could not parse JSON response from Google API."
+msgstr ""
+
+#: src/API/ProxyAuthenticationAPI.php:51
+msgid "Invalid JSON response from authentication server."
+msgstr ""
+
+#. translators: %1$d represents the HTTP status code, %2$s is the error response body
+#: src/API/ProxyAuthenticationAPI.php:66
+#, php-format
+msgid "Unexpected response code %1$d: %2$s"
+msgstr ""
+
+#. translators: %1$s is comma separated list of queried locations, %2$s represents the actual MySQL error generated
+#: src/ApiCache/LocationCacheRepository.php:80
+#: src/ApiCache/LocationCacheRepository.php:101
+#, php-format
+msgid "Failed to retrieve location data for %1$s: %2$s"
+msgstr ""
+
+#. translators: %s is error message
+#: src/BackgroundProcessing/LocationSyncProcess.php:66
+#, php-format
+msgid "Something went wrong trying to load the Google Business Profile locations for this account: %s"
+msgstr ""
+
+#: src/BackgroundProcessing/LocationSyncProcess.php:67
+msgid "Check Google account settings"
+msgstr ""
+
+#. translators: %1$s is the Google Post ID of the post, %2$s is the error message
+#: src/BackgroundProcessing/PostPublishProcess.php:75
+#, php-format
+msgid "Failed to delete post %1$s from GMB: %2$s"
+msgstr ""
+
+#. translators: %s represents error message
+#: src/BackgroundProcessing/PostPublishProcess.php:95
+#, php-format
+msgid "Updating status failed: %s"
+msgstr ""
+
+#: src/BackgroundProcessing/PostPublishProcess.php:156
+msgid "No Google account connected at time of publishing"
+msgstr ""
+
+#: src/BackgroundProcessing/PostPublishProcess.php:201
+#: src/BackgroundProcessing/PostPublishProcess.php:216
+msgid "The response did not contain the expected fields"
+msgstr ""
+
+#. translators: %s represents error message
+#: src/BackgroundProcessing/PostPublishProcess.php:223
+#, php-format
+msgid "Failed to create/update post: %s"
+msgstr ""
+
+#: src/BackgroundProcessing/PostPublishProcess.php:229
+#: src/Premium/BackgroundProcessing/ProductPublishProcess.php:178
+msgid "Go to post"
+msgstr ""
+
+#. translators: %s represents error message
+#: src/BackgroundProcessing/PostPublishProcess.php:233
+#, php-format
+msgid "There recently has been an issue publishing a post to one of your GMB locations: %s."
+msgstr ""
+
+#: src/BackgroundProcessing/PostPublishProcess.php:234
+msgid "Post to Google My Business:"
+msgstr ""
+
+#: src/Components/BusinessSelector.php:76
+#: src/Premium/Components/MultiAccountBusinessSelector.php:96
+msgid "No Google account connected"
+msgstr ""
+
+#. translators: %s represents error message
+#: src/Components/BusinessSelector.php:131
+#, php-format
+msgid "Could not retrieve account or location groups from Google My Business: %s"
+msgstr ""
+
+#: src/Components/BusinessSelector.php:135
+#: src/Components/BusinessSelector.php:392
+msgid "No user account or location groups found. Did you log in to the correct Google account?"
+msgstr ""
+
+#. translators: %s represents error message
+#: src/Components/BusinessSelector.php:168
+#, php-format
+msgid "Could not retrieve locations from Google My Business: %s"
+msgstr ""
+
+#: src/Components/BusinessSelector.php:172
+msgid "No businesses found."
+msgstr ""
+
+#: src/Components/BusinessSelector.php:255
+msgid "Service Area Business"
+msgstr ""
+
+#: src/Components/BusinessSelector.php:301
+msgid "Location grayed out?"
+msgstr ""
+
+#: src/Components/BusinessSelector.php:302
+msgid "It means the location is blocked from using the LocalPostAPI, and can't be posted to using the plugin."
+msgstr ""
+
+#: src/Components/BusinessSelector.php:303
+msgid "Learn more..."
+msgstr ""
+
+#: src/Components/BusinessSelector.php:309
+#: src/Premium/Components/MultiAccountBusinessSelector.php:134
+msgid "Search/Filter locations..."
+msgstr ""
+
+#: src/Components/BusinessSelector.php:310
+#: src/Premium/Components/MultiAccountBusinessSelector.php:142
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/aptemplate_metabox.js:5
+#: js/premium/metabox.js:3
+#: js/premium/metabox.js:5
+#: js/premium/settings.js:3
+#: js/premium/settings.js:5
+#: js/settings.js:1
+#: js/settings.js:3
+#: js_src/admin/components/BusinessSelector.js:559
+#: js_src/admin/components/BusinessSelector.js:568
+msgid "Refresh locations"
+msgstr ""
+
+#: src/Components/BusinessSelector.php:347
+#: src/Components/BusinessSelector.php:375
+#: src/Components/BusinessSelector.php:406
+#: src/Subscriber/AuthenticationAdminPostSubscriber.php:88
+#: src/Subscriber/AuthenticationAdminPostSubscriber.php:123
+msgid "Invalid nonce"
+msgstr ""
+
+#: src/Components/BusinessSelector.php:420
+msgid "No businesses found in this group."
+msgstr ""
+
+#: src/Components/GooglePostEntityListTable.php:33
+msgid "Published GMB Post"
+msgstr ""
+
+#: src/Components/GooglePostEntityListTable.php:34
+msgid "Published GMB Posts"
+msgstr ""
+
+#: src/Components/GooglePostEntityListTable.php:46
+msgid "Shop code"
+msgstr ""
+
+#: src/Components/GooglePostEntityListTable.php:47
+#: src/Premium/Subscribers/CSVAdminPostSubscriber.php:52
+msgid "Location"
+msgstr ""
+
+#: src/Components/GooglePostEntityListTable.php:48
+msgid "Status"
+msgstr ""
+
+#: src/Components/GooglePostEntityListTable.php:61
+msgid "Refresh status"
+msgstr ""
+
+#: src/Components/GooglePostEntityListTable.php:62
+#: src/Components/SubPostListTable.php:131
+#: src/Components/SubPostListTable.php:224
+#: src/Subscriber/CalendarFeedAjaxSubscriber.php:165
+msgid "Delete"
+msgstr ""
+
+#: src/Components/GooglePostEntityListTable.php:119
+#: src/Premium/Subscribers/CSVAdminPostSubscriber.php:76
+msgid "Unknown location"
+msgstr ""
+
+#: src/Components/GooglePostEntityListTable.php:157
+#: src/Premium/Subscribers/CSVAdminPostSubscriber.php:91
+msgid "Unknown"
+msgstr ""
+
+#: src/Components/GooglePostEntityListTable.php:159
+msgid "View on Google"
+msgstr ""
+
+#: src/Components/GooglePostEntityListTable.php:185
+msgid "Download CSV"
+msgstr ""
+
+#: src/Components/PostEditor.php:78
+msgid "Dynamic date, calculated/retrieved when GBP post is published"
+msgstr ""
+
+#. translators: date time, Timezone: timezone
+#: src/Components/PostEditor.php:88
+#, php-format
+msgid "%1$s %2$s, Timezone: %3$s"
+msgstr ""
+
+#: src/Components/SubPostListTable.php:49
+msgid "GMB Post"
+msgstr ""
+
+#: src/Components/SubPostListTable.php:50
+msgid "GMB Posts"
+msgstr ""
+
+#: src/Components/SubPostListTable.php:72
+#: src/Subscriber/CalendarFeedAjaxSubscriber.php:130
+#: templates/admin/variablebrowser.php:14
+#: templates/admin/variablebrowser.php:16
+msgid "Post type"
+msgstr ""
+
+#: src/Components/SubPostListTable.php:73
+msgid "Publish date"
+msgstr ""
+
+#: src/Components/SubPostListTable.php:74
+msgid "Created"
+msgstr ""
+
+#: src/Components/SubPostListTable.php:221
+#: src/Subscriber/CalendarFeedAjaxSubscriber.php:164
+msgid "List created posts"
+msgstr ""
+
+#: src/Components/SubPostListTable.php:222
+#: src/Premium/PostTypes/PostCampaign.php:20
+#: src/Premium/PostTypes/PostTypeAutoPostTemplate.php:19
+#: src/Subscriber/CalendarFeedAjaxSubscriber.php:163
+msgid "Edit"
+msgstr ""
+
+#: src/Components/SubPostListTable.php:223
+msgid "Duplicate"
+msgstr ""
+
+#: src/Components/SubPostListTable.php:238
+msgid "Repost enabled"
+msgstr ""
+
+#. translators: %d is a number representing the amount of tasks still to process
+#: src/Components/SubPostListTable.php:270
+#: js/metabox.js:1
+#: js/premium/metabox.js:1
+#: js_src/admin/components/SubPostListTable.js:141
+#, php-format,js-format
+msgid "%d publishing tasks queued"
+msgstr ""
+
+#: src/Components/SubPostListTable.php:275
+msgid "This post will be deleted when the next post is auto-posted"
+msgstr ""
+
+#: src/Components/SubPostListTable.php:286
+msgid "Draft"
+msgstr ""
+
+#. translators: %s = human-readable time difference
+#: src/Components/SubPostListTable.php:289
+#, php-format
+msgctxt "%s = human-readable time difference"
+msgid "%s ago"
+msgstr ""
+
+#: src/FormFieldParser.php:349
+msgid "Products are not supported in the free version of the plugin. Please choose a different post type in your template."
+msgstr ""
+
+#: src/FormFieldParser.php:439
+msgid "Could not detect image. Image is required for products!"
+msgstr ""
+
+#: src/FormFieldParser.php:574
+msgid "Original image file not found"
+msgstr ""
+
+#. translators: %s is image url
+#: src/FormFieldParser.php:617
+#: src/FormFieldParser.php:786
+#, php-format
+msgid "Could not detect post image file size. Make sure the image file/url is accessible remotely. Url: %s"
+msgstr ""
+
+#. translators: %1$dx%2$dpx is the size of the failed image (width x height), %3$s is image url
+#: src/FormFieldParser.php:797
+#, php-format
+msgid "Post image must be at least 250x250px. Selected image is %1$dx%2$dpx. Url: %3$s"
+msgstr ""
+
+#. translators: %1$s is formatted image size, %2$s is image URL
+#: src/FormFieldParser.php:802
+#, php-format
+msgid "Post image file too small, must be at least 10 KB. Selected image is %1$s. Url: %2$s"
+msgstr ""
+
+#. translators: %1$s is formatted image size, %2$s is image URL
+#: src/FormFieldParser.php:805
+#, php-format
+msgid "Post image file too big, must be 5 MB at most. Selected image is %1$s. Url: %2$s"
+msgstr ""
+
+#: src/FormFieldParser.php:985
+msgid "Could not parse post locations"
+msgstr ""
+
+#: src/Google/AbstractGoogleJsonObject.php:29
+msgid "Unknown property"
+msgstr ""
+
+#: src/Google/CallToAction.php:29
+msgid "Invalid call to action"
+msgstr ""
+
+#: src/Google/CallToAction.php:41
+msgid "Invalid URL supplied for call to action"
+msgstr ""
+
+#: src/Google/CallToAction.php:47
+msgid "IPs are not allowed for call-to-action URLs"
+msgstr ""
+
+#: src/Google/Date.php:42
+msgid "Year must be from 1 to 9999, or 0 if specifying a date without a year."
+msgstr ""
+
+#: src/Google/Date.php:52
+msgid "Month must be from 1 to 12, or 0 if specifying a year without a month and day. "
+msgstr ""
+
+#: src/Google/Date.php:62
+msgid "Day must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant. "
+msgstr ""
+
+#: src/Google/LocalPost.php:73
+msgid "Invalid Topic type"
+msgstr ""
+
+#: src/Google/LocalPost.php:98
+msgid "Invalid Alert type"
+msgstr ""
+
+#: src/Google/LocalPost.php:142
+msgid "Post text should be between 1 and 1500 characters"
+msgstr ""
+
+#: src/Google/LocalPost.php:206
+msgid "Posts can only have 1 image"
+msgstr ""
+
+#: src/Google/LocalPostEvent.php:18
+msgid "Event/offer title is required"
+msgstr ""
+
+#: src/Google/LocalPostOffer.php:21
+msgid "Offer redeem online URL is invalid"
+msgstr ""
+
+#: src/Google/MediaItem.php:23
+msgid "Invalid media format"
+msgstr ""
+
+#: src/Google/MediaItem.php:26
+msgid "Creating posts with videos is currently not supported by Google"
+msgstr ""
+
+#: src/Google/MediaItem.php:33
+msgid "Invalid media URL"
+msgstr ""
+
+#: src/Google/TimeInterval.php:47
+msgid "End date is before start date"
+msgstr ""
+
+#: src/Google/TimeOfDay.php:20
+msgid "Hour should be from 0 to 23"
+msgstr ""
+
+#: src/Google/TimeOfDay.php:27
+msgid "Minutes should be between 0 and 59"
+msgstr ""
+
+#: src/Google/TimeOfDay.php:34
+msgid "Seconds should be between 0 and 59"
+msgstr ""
+
+#: src/Google/TimeOfDay.php:41
+msgid "Nanos should be between 0 and 999,999,999"
+msgstr ""
+
+#. translators: %s represents error message
+#: src/GoogleUserManager.php:44
+#, php-format
+msgid "Unable to retrieve public keys from Google: %s"
+msgstr ""
+
+#. translators: %1$d represents status code, %2$s is response body
+#: src/GoogleUserManager.php:51
+#, php-format
+msgid "Unexpected HTTP response code (%1$d) from Google: %2$s"
+msgstr ""
+
+#: src/GoogleUserManager.php:59
+msgid "Missing \"expires\" header in Google response."
+msgstr ""
+
+#: src/GoogleUserManager.php:67
+msgid "Invalid \"expires\" header format in Google response."
+msgstr ""
+
+#. translators: %s represents error message
+#: src/GoogleUserManager.php:74
+#, php-format
+msgid "Failed to parse public key JSON from Google response: %s"
+msgstr ""
+
+#: src/GoogleUserManager.php:80
+msgid "Google response is missing expected \"keys\" data."
+msgstr ""
+
+#: src/GoogleUserManager.php:145
+msgid "You did not give the plugin permission to manage your Google Business Profile listings. The plugin will not work without this permission. Please retry the authentication and make sure you grant the plugin permission to manage your locations."
+msgstr ""
+
+#: src/Metabox/PostCreationMetabox.php:193
+msgid "Please configure Post to Google My Business first"
+msgstr ""
+
+#: src/Metabox/PostCreationMetabox.php:195
+msgid "(Connect, pick a default location and Save Changes)"
+msgstr ""
+
+#: src/Metabox/PostCreationMetabox.php:273
+msgid "There was an error while loading the location list. Please check the location selector in the \"Advanced post settings\" for details."
+msgstr ""
+
+#: src/Metabox/PostCreationMetabox.php:298
+msgid "You do not have permission to publish posts"
+msgstr ""
+
+#. translators: %s represents error message
+#: src/Metabox/PostCreationMetabox.php:334
+#, php-format
+msgid "Error creating post: %s"
+msgstr ""
+
+#: src/Metabox/PostCreationMetabox.php:363
+msgid "Auto-post template successfully updated"
+msgstr ""
+
+#: src/Metabox/PostCreationMetabox.php:376
+msgid "You do not have permission to edit posts"
+msgstr ""
+
+#: src/Metabox/PostCreationMetabox.php:394
+msgid "Post could not be loaded"
+msgstr ""
+
+#: src/Metabox/PostCreationMetabox.php:402
+msgid "You do not have permission to delete posts"
+msgstr ""
+
+#: src/Metabox/PostCreationMetabox.php:414
+msgid "Invalid post ID"
+msgstr ""
+
+#: src/Metabox/PostCreationMetabox.php:443
+#: src/Notices/BrandedStickyNotice.php:9
+#: src/Subscriber/AdminPageSubscriber.php:61
+#: src/Subscriber/SiteHealthSubscriber.php:34
+msgid "Post to Google My Business"
+msgstr ""
+
+#: src/Mustache/Context/CustomMetaContext.php:22
+#: src/Premium/Mustache/Context/PremiumCustomMetaContext.php:91
+msgid "Custom meta fields"
+msgstr ""
+
+#: src/Mustache/Context/LocationContext.php:41
+msgid "Google location details"
+msgstr ""
+
+#: src/Mustache/Context/LocationContext.php:45
+msgid "Location name/title"
+msgstr ""
+
+#: src/Mustache/Context/LocationContext.php:50
+msgid "Location store code"
+msgstr ""
+
+#: src/Mustache/Context/LocationContext.php:55
+msgid "Location website URL"
+msgstr ""
+
+#: src/Mustache/Context/PostContext.php:50
+msgid "WordPress post data"
+msgstr ""
+
+#: src/Mustache/Context/PostContext.php:54
+msgid "Post ID"
+msgstr ""
+
+#: src/Mustache/Context/PostContext.php:59
+msgid "Post title"
+msgstr ""
+
+#: src/Mustache/Context/PostContext.php:64
+msgid "Post content"
+msgstr ""
+
+#: src/Mustache/Context/PostContext.php:68
+msgid "Post excerpt"
+msgstr ""
+
+#: src/Mustache/Context/PostContext.php:72
+msgid "Post slug"
+msgstr ""
+
+#: src/Mustache/Context/PostContext.php:77
+msgid "Post url"
+msgstr ""
+
+#: src/Mustache/Context/PostContext.php:81
+msgid "Post date"
+msgstr ""
+
+#: src/Mustache/Context/PostContext.php:85
+msgid "Post thumbnail URL"
+msgstr ""
+
+#: src/Mustache/Context/SiteContext.php:35
+msgid "Website details"
+msgstr ""
+
+#: src/Mustache/Context/SiteContext.php:39
+msgid "Website name"
+msgstr ""
+
+#: src/Mustache/Context/SiteContext.php:43
+msgid "Website description"
+msgstr ""
+
+#: src/Mustache/Context/SiteContext.php:47
+msgid "Website url"
+msgstr ""
+
+#: src/Mustache/Context/ThirdParty/AcfContext.php:24
+msgid "ACF/SCF fields"
+msgstr ""
+
+#: src/Mustache/Context/ThirdParty/WooCommerceContext.php:30
+msgid "WooCommerce product & shop data"
+msgstr ""
+
+#: src/Mustache/Context/UserContext.php:52
+msgid "Post author data"
+msgstr ""
+
+#: src/Plugin.php:238
+msgid "GMB Agency Client"
+msgstr ""
+
+#: src/Plugin.php:257
+#: templates/admin/posteditor.php:14
+#: js/metabox.js:1
+#: js/premium/metabox.js:1
+#: js_src/admin/metabox.js:219
+msgid "Update"
+msgstr ""
+
+#: src/Plugin.php:262
+#: templates/admin/posteditor.php:17
+msgid "Event"
+msgstr ""
+
+#: src/Plugin.php:267
+#: templates/admin/posteditor.php:20
+msgid "Offer"
+msgstr ""
+
+#: src/Plugin.php:272
+#: templates/admin/posteditor.php:23
+msgid "Product"
+msgstr ""
+
+#: src/Plugin.php:277
+#: templates/admin/posteditor.php:9
+msgid "Alert"
+msgstr ""
+
+#: src/Premium/Admin/PremiumAdminPage.php:37
+msgid "Enable evergreen content"
+msgstr ""
+
+#: src/Premium/Admin/PremiumAdminPage.php:38
+msgid "Auto-publish random content -marked as evergreen- to GMB"
+msgstr ""
+
+#: src/Premium/Admin/PremiumAdminPage.php:43
+msgid "Evergreen by default"
+msgstr ""
+
+#: src/Premium/Admin/PremiumAdminPage.php:44
+msgid "Automatically mark new content as evergreen (checks evergreen checkbox by default when enabled)"
+msgstr ""
+
+#: src/Premium/Admin/PremiumAdminPage.php:49
+msgid "Posting schedule"
+msgstr ""
+
+#: src/Premium/Admin/PremiumAdminPage.php:50
+msgid "Choose the interval at which the plugin will auto-post evergreen content"
+msgstr ""
+
+#: src/Premium/Admin/PremiumAdminPage.php:56
+msgid "Loop"
+msgstr ""
+
+#: src/Premium/Admin/PremiumAdminPage.php:57
+msgid "If there is no unique content left in the queue, delete oldest posts and re-publish them"
+msgstr ""
+
+#: src/Premium/Admin/PremiumAdminPage.php:66
+msgid "Post type default template"
+msgstr ""
+
+#: src/Premium/Admin/PremiumAdminPage.php:79
+msgid "Allowlisted custom meta fields"
+msgstr ""
+
+#: src/Premium/Admin/PremiumAdminPage.php:80
+msgid "This makes custom meta fields accessible to the post template engine. Enter one field name per line. Usage in templates: {{meta.your_field_name}}"
+msgstr ""
+
+#: src/Premium/Admin/PremiumAdminPage.php:127
+msgid "The chosen schedule is invalid"
+msgstr ""
+
+#: src/Premium/Admin/PremiumAdminPage.php:145
+msgid "The chosen schedule is impossible, make sure it doesn't resolve to an impossible date such as the 30th of February."
+msgstr ""
+
+#: src/Premium/Admin/PremiumAdminPage.php:159
+#: src/Premium/Subscribers/PremiumSubmitboxMetaSubscriber.php:92
+#: js/premium/block_editor.js:1
+#: js_src/premium/components/ApTemplateSelector.js:22
+msgid "Default auto-post template"
+msgstr ""
+
+#: src/Premium/Admin/PremiumAdminPage.php:161
+#: src/Premium/Subscribers/PremiumSubmitboxMetaSubscriber.php:94
+msgid "Untitled"
+msgstr ""
+
+#: src/Premium/Admin/PremiumAdminPage.php:192
+msgid "Manage Google account(s)"
+msgstr ""
+
+#: src/Premium/Admin/PremiumAdminPage.php:193
+msgid "See Google accounts added by other users"
+msgstr ""
+
+#: src/Premium/API/GMBCookieAPI.php:135
+#: src/Premium/BackgroundProcessing/ProductPublishProcess.php:88
+msgid "Could not match backend ID to frontend ID. Try updating the cookie settings"
+msgstr ""
+
+#: src/Premium/API/GMBCookieAPI.php:297
+msgid "Could not find account data. Cookie settings may be outdated. Try updating the cookie settings"
+msgstr ""
+
+#. translators: %s represents JSON last error message
+#: src/Premium/API/GMBCookieAPI.php:303
+#, php-format
+msgid "Could not parse account data JSON: %s."
+msgstr ""
+
+#: src/Premium/API/GMBCookieAPI.php:322
+msgid "Could not detect \"at\" code. Cookie settings may be outdated. Try updating the cookie settings"
+msgstr ""
+
+#: src/Premium/API/GMBCookieAPI.php:336
+msgid "Could not detect Google account. Double check the cookie values."
+msgstr ""
+
+#: src/Premium/BackgroundProcessing/ProductPublishProcess.php:52
+msgid "Invalid user key"
+msgstr ""
+
+#: src/Premium/BackgroundProcessing/ProductPublishProcess.php:59
+msgid "No cookies set for product creation"
+msgstr ""
+
+#: src/Premium/BackgroundProcessing/ProductPublishProcess.php:168
+msgid "Published"
+msgstr ""
+
+#. translators: %s represents error message
+#: src/Premium/BackgroundProcessing/ProductPublishProcess.php:172
+#, php-format
+msgid "Failed to create/update product: %s"
+msgstr ""
+
+#. translators: %s represents error message
+#: src/Premium/BackgroundProcessing/ProductPublishProcess.php:182
+#, php-format
+msgid "There recently has been an issue publishing a product to one of your GMB locations: %s."
+msgstr ""
+
+#. translators: %s represents error message
+#: src/Premium/BackgroundProcessing/ProductPublishProcess.php:197
+#, php-format
+msgid "Failed to delete product from GMB: %s"
+msgstr ""
+
+#: src/Premium/Components/MultiAccountBusinessSelector.php:47
+msgid "Toggle selection"
+msgstr ""
+
+#: src/Premium/Components/MultiAccountBusinessSelector.php:56
+msgid "Update cookies"
+msgstr ""
+
+#: src/Premium/Components/MultiAccountBusinessSelector.php:56
+msgid "Set cookies"
+msgstr ""
+
+#: src/Premium/Components/MultiAccountBusinessSelector.php:64
+msgid "Download debug data"
+msgstr ""
+
+#: src/Premium/Components/MultiAccountBusinessSelector.php:69
+msgid "Disconnect account from this website"
+msgstr ""
+
+#: src/Premium/Components/MultiAccountBusinessSelector.php:137
+msgid "Select all"
+msgstr ""
+
+#: src/Premium/Components/MultiAccountBusinessSelector.php:138
+msgid "Select none"
+msgstr ""
+
+#: src/Premium/Components/MultiAccountBusinessSelector.php:167
+msgid "To be able to create products on your Google Business Profile, you will need to enter additional cookie values."
+msgstr ""
+
+#: src/Premium/Components/MultiAccountBusinessSelector.php:168
+#: templates/admin/posteditor.php:322
+#: js/metabox.js:1
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:5
+#: js/settings.js:1
+#: js_src/admin/components/PostEditor.js:632
+msgid "Learn more"
+msgstr ""
+
+#: src/Premium/Components/MultiAccountBusinessSelector.php:186
+msgid "Save"
+msgstr ""
+
+#: src/Premium/Components/MultiAccountBusinessSelector.php:195
+msgid "No permission to manage Google accounts"
+msgstr ""
+
+#: src/Premium/Components/MultiAccountBusinessSelector.php:201
+msgid "Invalid account ID"
+msgstr ""
+
+#. translators: %s represents error message
+#: src/Premium/Components/MultiAccountBusinessSelector.php:215
+#, php-format
+msgid "Could not connect to the Google account: %s"
+msgstr ""
+
+#: src/Premium/Google/Product.php:26
+msgid "Product name can't be empty"
+msgstr ""
+
+#: src/Premium/Google/Product.php:30
+msgid "Invalid product price"
+msgstr ""
+
+#: src/Premium/Google/Product.php:34
+msgid "Product category can't be empty"
+msgstr ""
+
+#: src/Premium/Google/Product.php:88
+msgid "Max price is not a number"
+msgstr ""
+
+#: src/Premium/Google/Product.php:95
+msgid "No image, image is required for Products"
+msgstr ""
+
+#: src/Premium/Metabox/AutopostTemplateMetabox.php:49
+#: src/Premium/PostTypes/PostTypeAutoPostTemplate.php:16
+#: js/premium/block_editor.js:1
+#: js_src/premium/components/ApTemplateSelector.js:31
+msgid "Auto-post template"
+msgstr ""
+
+#: src/Premium/Metabox/AutopostTemplateMetabox.php:122
+msgid "Google locations could not be fully loaded at the time of saving. Location settings were not updated. Please reload locations in the business selector and save again."
+msgstr ""
+
+#: src/Premium/Mustache/Context/ThirdParty/PremiumWooCommerceContext.php:62
+msgid "Url for the shopping cart page"
+msgstr ""
+
+#: src/Premium/Mustache/Context/ThirdParty/PremiumWooCommerceContext.php:66
+msgid "Url for the checkout page"
+msgstr ""
+
+#: src/Premium/Mustache/Context/ThirdParty/PremiumWooCommerceContext.php:70
+msgid "Url for the main shop page"
+msgstr ""
+
+#: src/Premium/Mustache/Context/ThirdParty/PremiumWooCommerceContext.php:74
+msgid "The currency symbol for the used currency"
+msgstr ""
+
+#: src/Premium/Mustache/Context/ThirdParty/PremiumWooCommerceContext.php:79
+msgid "Product details object"
+msgstr ""
+
+#: src/Premium/Mustache/Context/ThirdParty/PremiumWooCommerceContext.php:83
+msgid "Product title"
+msgstr ""
+
+#: src/Premium/Mustache/Context/ThirdParty/PremiumWooCommerceContext.php:87
+msgid "Product short description"
+msgstr ""
+
+#: src/Premium/Mustache/Context/ThirdParty/PremiumWooCommerceContext.php:91
+#: templates/admin/posteditor.php:282
+msgid "Product description"
+msgstr ""
+
+#: src/Premium/Mustache/Context/ThirdParty/PremiumWooCommerceContext.php:95
+msgid "Is product in stock?"
+msgstr ""
+
+#: src/Premium/PostTypes/PostCampaign.php:16
+msgid "Post campaigns"
+msgstr ""
+
+#: src/Premium/PostTypes/PostCampaign.php:17
+msgid "Post campaign"
+msgstr ""
+
+#: src/Premium/PostTypes/PostCampaign.php:18
+#: src/Premium/PostTypes/PostTypeAutoPostTemplate.php:17
+msgid "New"
+msgstr ""
+
+#: src/Premium/PostTypes/PostCampaign.php:19
+msgid "Add new GMB campaign"
+msgstr ""
+
+#: src/Premium/PostTypes/PostCampaign.php:21
+msgid "Edit GMB post campaign"
+msgstr ""
+
+#: src/Premium/PostTypes/PostCampaign.php:22
+msgid "New GMB post campaign"
+msgstr ""
+
+#: src/Premium/PostTypes/PostCampaign.php:23
+#: src/Premium/PostTypes/PostTypeAutoPostTemplate.php:22
+msgid "View"
+msgstr ""
+
+#: src/Premium/PostTypes/PostCampaign.php:24
+msgid "View GMB post campaign"
+msgstr ""
+
+#: src/Premium/PostTypes/PostCampaign.php:25
+msgid "Find GMB post campaign"
+msgstr ""
+
+#: src/Premium/PostTypes/PostCampaign.php:26
+msgid "No GMB post campaigns found"
+msgstr ""
+
+#: src/Premium/PostTypes/PostCampaign.php:27
+msgid "No GMB post campaigns found in the trash"
+msgstr ""
+
+#: src/Premium/PostTypes/PostTypeAutoPostTemplate.php:18
+msgid "Add new auto-post template"
+msgstr ""
+
+#: src/Premium/PostTypes/PostTypeAutoPostTemplate.php:20
+#: templates/metabox.php:9
+msgid "Edit auto-post template"
+msgstr ""
+
+#: src/Premium/PostTypes/PostTypeAutoPostTemplate.php:21
+msgid "New auto-post template"
+msgstr ""
+
+#: src/Premium/PostTypes/PostTypeAutoPostTemplate.php:23
+msgid "View auto-post template"
+msgstr ""
+
+#: src/Premium/PostTypes/PostTypeAutoPostTemplate.php:24
+msgid "Find auto-post template"
+msgstr ""
+
+#: src/Premium/PostTypes/PostTypeAutoPostTemplate.php:25
+msgid "No auto-post templates found"
+msgstr ""
+
+#: src/Premium/PostTypes/PostTypeAutoPostTemplate.php:26
+msgid "No auto-post templates found in the trash"
+msgstr ""
+
+#: src/Premium/Subscribers/CSVAdminPostSubscriber.php:41
+msgid "You do not have permission to do this"
+msgstr ""
+
+#: src/Premium/Subscribers/CSVAdminPostSubscriber.php:49
+msgid "Account"
+msgstr ""
+
+#: src/Premium/Subscribers/CSVAdminPostSubscriber.php:50
+msgid "ID"
+msgstr ""
+
+#: src/Premium/Subscribers/CSVAdminPostSubscriber.php:51
+msgid "Storecode"
+msgstr ""
+
+#: src/Premium/Subscribers/CSVAdminPostSubscriber.php:53
+msgid "State"
+msgstr ""
+
+#: src/Premium/Subscribers/CSVAdminPostSubscriber.php:54
+msgid "URL"
+msgstr ""
+
+#: src/Premium/Subscribers/EvergreenBulkActionSubscriber.php:25
+msgid "Add to GMB evergreen content"
+msgstr ""
+
+#: src/Premium/Subscribers/EvergreenBulkActionSubscriber.php:26
+msgid "Remove from GMB evergreen content"
+msgstr ""
+
+#: src/Premium/Subscribers/EvergreenBulkActionSubscriber.php:43
+msgid "Evergreen"
+msgstr ""
+
+#: src/Premium/Subscribers/EvergreenBulkActionSubscriber.php:50
+msgid "Yes"
+msgstr ""
+
+#: src/Premium/Subscribers/EvergreenBulkActionSubscriber.php:50
+msgid "No"
+msgstr ""
+
+#. translators: %d is the numeric amount of items affected
+#: src/Premium/Subscribers/EvergreenBulkActionSubscriber.php:68
+#, php-format
+msgid "Changed evergreen status of %d items."
+msgstr ""
+
+#: src/Premium/Subscribers/PremiumEvergreenScheduleSubscriber.php:135
+msgid "Evergreen content is currently: "
+msgstr ""
+
+#: src/Premium/Subscribers/PremiumEvergreenScheduleSubscriber.php:138
+msgid "disabled."
+msgstr ""
+
+#: src/Premium/Subscribers/PremiumEvergreenScheduleSubscriber.php:144
+msgid "halted. Error: Could not find the scheduled event."
+msgstr ""
+
+#: src/Premium/Subscribers/PremiumEvergreenScheduleSubscriber.php:150
+msgid "enabled."
+msgstr ""
+
+#: src/Premium/Subscribers/PremiumEvergreenScheduleSubscriber.php:151
+msgid " Next item will be published at: "
+msgstr ""
+
+#: src/Premium/Subscribers/PremiumSubmitboxMetaSubscriber.php:114
+#: js/premium/block_editor.js:1
+#: js_src/premium/components/evergreen-toggle.js:19
+msgid "Add to evergreen content"
+msgstr ""
+
+#: src/Premium/Subscribers/TaxonomySubscriber.php:83
+msgid "Autopost to GMB"
+msgstr ""
+
+#. translators: %1$s refers to a specific term or category (singular), %2$s is plural
+#: src/Premium/Subscribers/TaxonomySubscriber.php:85
+#, php-format
+msgid "Automatically post items with this %1$s to GMB. Autopost will only occur once, even when this option is enabled for multiple %2$s."
+msgstr ""
+
+#. translators: %s is campaign tags/campaign categories
+#: src/Premium/Subscribers/TaxonomySubscriber.php:107
+#, php-format
+msgid "Show all %s"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignCategoryTaxonomy.php:11
+#: src/Premium/Taxonomies/CampaignCategoryTaxonomy.php:13
+msgid "Campaign categories"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignCategoryTaxonomy.php:12
+msgid "Campaign category"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignCategoryTaxonomy.php:14
+msgid "All campaign categories"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignCategoryTaxonomy.php:15
+msgid "Parent campaign categories"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignCategoryTaxonomy.php:16
+msgid "Parent campaign categories:"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignCategoryTaxonomy.php:17
+msgid "New Campaign categories name"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignCategoryTaxonomy.php:18
+msgid "Add new campaign category"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignCategoryTaxonomy.php:19
+msgid "Edit campaign category"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignCategoryTaxonomy.php:20
+msgid "Update campaign category"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignCategoryTaxonomy.php:21
+msgid "View campaign category"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignCategoryTaxonomy.php:22
+msgid "Separate campaign categories with commas"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignCategoryTaxonomy.php:23
+msgid "Add or remove campaign categories"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignCategoryTaxonomy.php:24
+#: src/Premium/Taxonomies/CampaignTagTaxonomy.php:24
+msgid "Choose from the most used"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignCategoryTaxonomy.php:25
+msgid "Popular campaign categories"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignCategoryTaxonomy.php:26
+msgid "Search campaign categories"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignCategoryTaxonomy.php:27
+#: src/Premium/Taxonomies/CampaignTagTaxonomy.php:27
+msgid "Not Found"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignCategoryTaxonomy.php:28
+msgid "No campaign categories"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignCategoryTaxonomy.php:29
+msgid "Campaign category list"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignCategoryTaxonomy.php:30
+msgid "Campaign category list navigation"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignTagTaxonomy.php:11
+#: src/Premium/Taxonomies/CampaignTagTaxonomy.php:13
+msgid "Campaign tags"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignTagTaxonomy.php:12
+msgid "Campaign tag"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignTagTaxonomy.php:14
+msgid "All campaign tags"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignTagTaxonomy.php:15
+msgid "Parent campaign tags"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignTagTaxonomy.php:16
+msgid "Parent campaign tags:"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignTagTaxonomy.php:17
+msgid "New Campaign tags name"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignTagTaxonomy.php:18
+msgid "Add new campaign tag"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignTagTaxonomy.php:19
+msgid "Edit campaign tag"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignTagTaxonomy.php:20
+msgid "Update campaign tag"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignTagTaxonomy.php:21
+msgid "View campaign tag"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignTagTaxonomy.php:22
+msgid "Separate campaign tags with commas"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignTagTaxonomy.php:23
+msgid "Add or remove campaign tags"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignTagTaxonomy.php:25
+msgid "Popular campaign tags"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignTagTaxonomy.php:26
+msgid "Search campaign tags"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignTagTaxonomy.php:28
+msgid "No campaign tags"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignTagTaxonomy.php:29
+msgid "Campaign tag list"
+msgstr ""
+
+#: src/Premium/Taxonomies/CampaignTagTaxonomy.php:30
+msgid "Campaign tag list navigation"
+msgstr ""
+
+#: src/Premium/Taxonomies/TaxonomyField.php:21
+msgid "The taxonomy does not exist"
+msgstr ""
+
+#: src/Premium/Taxonomies/TaxonomyField.php:25
+msgid "Invalid field type"
+msgstr ""
+
+#: src/REST/GetAccountsRoute.php:20
+msgid "Could not load account data"
+msgstr ""
+
+#: src/REST/GetPostVariables.php:67
+msgid "No public posts available for preview."
+msgstr ""
+
+#: src/REST/PreviewPostRoute.php:72
+#, php-format
+msgid "Could not generate preview: %s"
+msgstr ""
+
+#. translators: %s is a red notification bullet with the amount of notifications
+#: src/Subscriber/AdminPageSubscriber.php:63
+#, php-format
+msgid "Post to GMB %s"
+msgstr ""
+
+#: src/Subscriber/AuthenticationAdminPostSubscriber.php:51
+msgid "Retry"
+msgstr ""
+
+#: src/Subscriber/AuthenticationAdminPostSubscriber.php:57
+#: src/Subscriber/AuthenticationAdminPostSubscriber.php:91
+msgid "You do not have permission to add Google accounts"
+msgstr ""
+
+#. translators: %s represents error message
+#: src/Subscriber/AuthenticationAdminPostSubscriber.php:64
+#, php-format
+msgid "Could not generate authentication URL: %s"
+msgstr ""
+
+#: src/Subscriber/AuthenticationAdminPostSubscriber.php:73
+msgid "You do not have permission to manage connected Google accounts"
+msgstr ""
+
+#: src/Subscriber/AuthenticationAdminPostSubscriber.php:94
+msgid "Did not receive authentication code"
+msgstr ""
+
+#. translators: %s represents error message
+#: src/Subscriber/AuthenticationAdminPostSubscriber.php:100
+#, php-format
+msgid "Could not obtain access tokens: %s"
+msgstr ""
+
+#. translators: %s represents error message
+#: src/Subscriber/AuthenticationAdminPostSubscriber.php:108
+#, php-format
+msgid "Could not verify Google access token: %s. Is the date & time on your server set correctly?"
+msgstr ""
+
+#. translators: %s represents error message
+#: src/Subscriber/AuthenticationAdminPostSubscriber.php:111
+#, php-format
+msgid "Could not verify Google access token: %s"
+msgstr ""
+
+#: src/Subscriber/AuthenticationAdminPostSubscriber.php:130
+msgid "The request was cancelled"
+msgstr ""
+
+#. translators: %s represents error message
+#: src/Subscriber/AuthenticationAdminPostSubscriber.php:134
+#, php-format
+msgid "The authorization failed: %s"
+msgstr ""
+
+#: src/Subscriber/CalendarFeedAjaxSubscriber.php:120
+msgid ""
+"Post contains errors and possibly hasn't been published to one or more locations.\n"
+"\n"
+"Most recent error:"
+msgstr ""
+
+#: src/Subscriber/CalendarFeedAjaxSubscriber.php:122
+msgid "To check errors per location, press \"List created posts\" below"
+msgstr ""
+
+#: src/Subscriber/CalendarFeedAjaxSubscriber.php:129
+msgid "Parent"
+msgstr ""
+
+#: src/Subscriber/CalendarFeedAjaxSubscriber.php:131
+msgid "Publication date"
+msgstr ""
+
+#: src/Subscriber/CalendarFeedAjaxSubscriber.php:140
+msgid "Scheduled deletion date"
+msgstr ""
+
+#: src/Subscriber/CalendarFeedAjaxSubscriber.php:154
+msgid "Content"
+msgstr ""
+
+#: src/Subscriber/CalendarFeedAjaxSubscriber.php:162
+msgid "Go to parent WordPress post"
+msgstr ""
+
+#: src/Subscriber/ConditionalNotificationSubscriber.php:46
+msgid "WordPress Repository"
+msgstr ""
+
+#: src/Subscriber/ConditionalNotificationSubscriber.php:52
+#: src/Subscriber/ConditionalNotificationSubscriber.php:162
+#: src/Upgrader/Upgrade_2_2_11.php:46
+#: src/Upgrader/Upgrade_3_0_0.php:314
+#: src/Upgrader/Upgrade_3_1_6.php:45
+#: src/Upgrader/Upgrade_3_4_0.php:91
+msgid "Plugin Developer"
+msgstr ""
+
+#: src/Subscriber/ConditionalNotificationSubscriber.php:58
+msgid "Ok, you deserve it"
+msgstr ""
+
+#: src/Subscriber/ConditionalNotificationSubscriber.php:63
+msgid "Maybe later"
+msgstr ""
+
+#: src/Subscriber/ConditionalNotificationSubscriber.php:68
+msgid "I already did"
+msgstr ""
+
+#: src/Subscriber/ConditionalNotificationSubscriber.php:75
+#: src/Subscriber/ConditionalNotificationSubscriber.php:167
+#: src/Upgrader/Upgrade_2_2_11.php:50
+#: src/Upgrader/Upgrade_3_0_0.php:318
+#: src/Upgrader/Upgrade_3_1_6.php:49
+#: src/Upgrader/Upgrade_3_4_0.php:95
+msgid "Developer profile photo"
+msgstr ""
+
+#: src/Subscriber/ConditionalNotificationSubscriber.php:81
+msgid "7 posts!"
+msgstr ""
+
+#: src/Subscriber/ConditionalNotificationSubscriber.php:99
+msgid "28 posts! Awesome"
+msgstr ""
+
+#: src/Subscriber/ConditionalNotificationSubscriber.php:117
+msgid "Wow! 100 posts!"
+msgstr ""
+
+#: src/Subscriber/ConditionalNotificationSubscriber.php:144
+msgctxt "anchor text"
+msgid "Google tab in the plugin settings"
+msgstr ""
+
+#: src/Subscriber/ConditionalNotificationSubscriber.php:150
+msgid "Getting started with Post to Google My Business"
+msgstr ""
+
+#: src/Subscriber/ConditionalNotificationSubscriber.php:157
+msgid "tutorial video"
+msgstr ""
+
+#: src/Subscriber/PostSubmitBoxSubscriber.php:110
+msgid "Auto-post to GMB on Publish/Update"
+msgstr ""
+
+#: src/Subscriber/SiteHealthSubscriber.php:17
+msgid "Post to Google My Business mbstring test"
+msgstr ""
+
+#: src/Subscriber/SiteHealthSubscriber.php:27
+msgid "Post to Google My Business: mbstring is enabled"
+msgstr ""
+
+#: src/Subscriber/SiteHealthSubscriber.php:27
+msgid "Post to Google My Business: mbstring is not enabled"
+msgstr ""
+
+#: src/Subscriber/SiteHealthSubscriber.php:28
+msgid "The PHP mbstring extension helps cut your GBP posts to the appropriate max length"
+msgstr ""
+
+#: src/Subscriber/SiteHealthSubscriber.php:28
+msgid "The PHP mbstring extension is not enabled on your server. It is required for cutting your posts to the appropriate max length. Enable it through your webhosting control panel or ask your server administrator to enable it for you."
+msgstr ""
+
+#: src/Upgrader/Upgrade_2_2_11.php:34
+#: src/Upgrader/Upgrade_3_0_0.php:301
+msgid "Thanks for updating Post to Google My Business!"
+msgstr ""
+
+#: src/Upgrader/Upgrade_2_2_11.php:41
+#: src/Upgrader/Upgrade_3_0_0.php:309
+#: src/Upgrader/Upgrade_3_4_0.php:86
+msgid "leave a rating"
+msgstr ""
+
+#: src/Upgrader/Upgrade_2_2_11.php:57
+msgid "[Pro] Auto-post only with specific tag/category"
+msgstr ""
+
+#: src/Upgrader/Upgrade_2_2_11.php:58
+msgid "This allows you to limit auto-post to a specific tag or category. Your post will be auto-posted when they have a tag/category where this option is enabled."
+msgstr ""
+
+#: src/Upgrader/Upgrade_2_2_11.php:60
+#: src/Upgrader/Upgrade_2_2_11.php:70
+#: src/Upgrader/Upgrade_2_2_11.php:80
+#: src/Upgrader/Upgrade_2_2_11.php:90
+msgid "Screenshot"
+msgstr ""
+
+#: src/Upgrader/Upgrade_2_2_11.php:67
+msgid "Post calendar"
+msgstr ""
+
+#: src/Upgrader/Upgrade_2_2_11.php:68
+msgid "Track your posts in time with the new post calender. For easy scheduling and planning."
+msgstr ""
+
+#: src/Upgrader/Upgrade_2_2_11.php:77
+msgid "Full editor for auto-post template"
+msgstr ""
+
+#: src/Upgrader/Upgrade_2_2_11.php:78
+msgid "Fine-tune one template for all your automated posts to follow. The new editor gives you complete control over the auto-post template."
+msgstr ""
+
+#: src/Upgrader/Upgrade_2_2_11.php:87
+msgid "COVID-19 alert/update post support"
+msgstr ""
+
+#: src/Upgrader/Upgrade_3_0_0.php:71
+msgctxt "anchor text"
+msgid "Google account settings"
+msgstr ""
+
+#. translators: %s is link to Google account settings
+#: src/Upgrader/Upgrade_3_0_0.php:74
+#, php-format
+msgid "Thanks for updating Post to Google My Business! Due to major changes in the Google account management system, re-authenticating might be required. Check the %s and reconnect your account if needed."
+msgstr ""
+
+#: src/Upgrader/Upgrade_3_0_0.php:250
+msgid "[Agency] Multi-account support"
+msgstr ""
+
+#: src/Upgrader/Upgrade_3_0_0.php:251
+msgid "Connect multiple Google accounts to a single site, and publish posts across multiple GBP locations & Google accounts in one go."
+msgstr ""
+
+#: src/Upgrader/Upgrade_3_0_0.php:260
+msgid "[Pro] Evergreen content"
+msgstr ""
+
+#: src/Upgrader/Upgrade_3_0_0.php:261
+msgid "Select your pre-existing content in bulk and have the plugin automatically publish random items from your selection at a schedule you define"
+msgstr ""
+
+#: src/Upgrader/Upgrade_3_0_0.php:270
+msgid "[Pro] Multiple auto-post templates"
+msgstr ""
+
+#: src/Upgrader/Upgrade_3_0_0.php:271
+msgid "Instead of one generic auto-post template, you can now create multiple templates for different occasions."
+msgstr ""
+
+#: src/Upgrader/Upgrade_3_0_0.php:280
+msgid "[All Premium] Product support"
+msgstr ""
+
+#: src/Upgrader/Upgrade_3_0_0.php:281
+msgid "Publish your latest (WooCommerce) products to your GBP listing. The plugin now supports \"real\" products in GBP!"
+msgstr ""
+
+#: src/Upgrader/Upgrade_3_0_0.php:290
+msgid "Bulk actions & Pagination"
+msgstr ""
+
+#: src/Upgrader/Upgrade_3_0_0.php:291
+msgid "The post list is now cleaner, faster & more versatile with the newly added pagination and bulk actions."
+msgstr ""
+
+#. translators: %1$s is display name/username, %2$s is link to leave a review (anchor: "leave a rating"), %3$s is plugin developer name (Koen) + "Plugin Developer" title
+#: src/Upgrader/Upgrade_3_0_0.php:304
+#, php-format
+msgid ""
+"Hey %1$s,\n"
+"\n"
+"Thanks for updating Post to Google My Business to version 3, the \"big update\"! The plugin received a massive overhaul from a technical standpoint, making it faster, more stable & more intuitive.\n"
+"\n"
+"I've also added a ton of features that you've all been asking for. I've highlighted the major ones in the \"New features\" section, which you can check out below!\n"
+"\n"
+"If you like the plugin and have a moment to %2$s, that's much appreciated and really helps me move the plugin forward.\n"
+"\n"
+"%3$s"
+msgstr ""
+
+#: src/Upgrader/Upgrade_3_1_6.php:27
+msgid "Easily sync your WooCommerce products to GBP"
+msgstr ""
+
+#. translators: %1$s is username/display name, %2$s is link to Product Sync for GBP plugin, %3$s is link to early access, %4$s is developer name (Koen) with "Plugin Developer" on the next line
+#: src/Upgrader/Upgrade_3_1_6.php:30
+#, php-format
+msgid ""
+"Hey %1$s,\n"
+"\n"
+"I noticed you're using WooCommerce and wanted to tell you about the new plugin I've been working on: %2$s.\n"
+"\n"
+"It makes it super easy to sync your entire WooCommerce product catalog directly to your Google Business Profile listing.\n"
+"\n"
+"If you're interested in giving it a try, then %3$s.\n"
+"\n"
+"%4$s"
+msgstr ""
+
+#: src/Upgrader/Upgrade_3_1_6.php:35
+#: templates/admin/posteditor.php:64
+msgid "Product Sync for GBP"
+msgstr ""
+
+#: src/Upgrader/Upgrade_3_1_6.php:40
+msgid "click here to get early access"
+msgstr ""
+
+#: src/Upgrader/Upgrade_3_4_0.php:24
+msgid "Dynamic templates"
+msgstr ""
+
+#: src/Upgrader/Upgrade_3_4_0.php:25
+msgid "Build flexible auto-post templates using dynamic data from your site. Set it once and let it update itself."
+msgstr ""
+
+#: src/Upgrader/Upgrade_3_4_0.php:35
+msgid "Live preview"
+msgstr ""
+
+#: src/Upgrader/Upgrade_3_4_0.php:36
+msgid "Preview your post or template before publishing, so you know exactly what will be sent to Google."
+msgstr ""
+
+#: src/Upgrader/Upgrade_3_4_0.php:46
+msgid "Variable browser"
+msgstr ""
+
+#: src/Upgrader/Upgrade_3_4_0.php:47
+msgid "Browse and insert available data from your site without guessing variable names."
+msgstr ""
+
+#: src/Upgrader/Upgrade_3_4_0.php:57
+msgid "Custom fields support"
+msgstr ""
+
+#: src/Upgrader/Upgrade_3_4_0.php:58
+msgid "Use data from custom fields directly in your posts, including support for ACF, SCF and WooCommerce."
+msgstr ""
+
+#: src/Upgrader/Upgrade_3_4_0.php:70
+msgid "Templates just got a big upgrade"
+msgstr ""
+
+#. translators: %1$s is display name, %2$s is docs link, %3$s is review link, %4$s is developer signature
+#: src/Upgrader/Upgrade_3_4_0.php:73
+#, php-format
+msgid ""
+"Hey %1$s,\n"
+"\n"
+"Templates in Post to Google My Business just got a big upgrade.\n"
+"\n"
+"If you've used the %%variable%% system before, this builds on top of that with a more flexible approach. You can now structure your templates more freely and pull in data from posts, custom fields or WooCommerce in a much cleaner way.\n"
+"\n"
+"To make this easier to use, there's also a new variable browser and a live preview.\n"
+"\n"
+"The old %%variable%% system still works, but this gives you much more control over how your posts are structured.\n"
+"\n"
+"If you're curious how it works, I've put together a quick guide %2$s.\n"
+"\n"
+"And if you're enjoying the plugin, taking a moment to %3$s really helps.\n"
+"\n"
+"%4$s"
+msgstr ""
+
+#: src/Upgrader/Upgrade_3_4_0.php:81
+msgid "here"
+msgstr ""
+
+#: templates/admin/autopost_template.php:2
+msgctxt "Link to settings page"
+msgid "the auto-post settings"
+msgstr ""
+
+#: templates/admin/autopost_template.php:7
+msgid "Multiple auto-post templates are a Post to Google My Business \"Professional\" feature"
+msgstr ""
+
+#. translators: %s is link to the auto-post template settings page "the auto-post settings"
+#: templates/admin/autopost_template.php:12
+#, php-format
+msgid "You can modify the default auto-post template in %s."
+msgstr ""
+
+#: templates/admin/autopost_template.php:16
+#: templates/admin/postcampaigns.php:3
+msgid "Post campaigns screenshot"
+msgstr ""
+
+#: templates/admin/autopost_template.php:18
+msgid "Post to Google my Business Professional lets you:"
+msgstr ""
+
+#: templates/admin/autopost_template.php:20
+msgid "Create multiple auto-post templates for different types of content"
+msgstr ""
+
+#: templates/admin/autopost_template.php:21
+msgid "Assign auto-post templates to specific post types"
+msgstr ""
+
+#: templates/admin/autopost_template.php:22
+msgid "Pick an auto-post template before publishing"
+msgstr ""
+
+#: templates/admin/autopost_template.php:23
+msgid "Publish posts to multiple locations at once"
+msgstr ""
+
+#: templates/admin/dashboard.php:7
+msgid "Post to Google My Business dashboard"
+msgstr ""
+
+#. translators: %s is the amount of notifications in a styled html component
+#: templates/admin/dashboard.php:15
+#, php-format
+msgid "Notifications (%s)"
+msgstr ""
+
+#. translators: %s is the amount of new features (count) in a styled html component
+#: templates/admin/dashboard.php:33
+#, php-format
+msgid "New features (%s)"
+msgstr ""
+
+#: templates/admin/dashboard.php:54
+msgid "Calendar"
+msgstr ""
+
+#: templates/admin/postcampaigns.php:2
+msgid "Post Campaigns are a Post to Google My Business \"Agency\" feature"
+msgstr ""
+
+#: templates/admin/postcampaigns.php:4
+msgid "Manage & schedule your own, or your clients' Google My Business posts from a single location, without being tied to a specific WordPress post or page."
+msgstr ""
+
+#: templates/admin/postcampaigns.php:6
+msgid "Post to Google my Business for Agencies lets you:"
+msgstr ""
+
+#: templates/admin/postcampaigns.php:8
+#: templates/admin/settings.php:22
+msgid "Connect <strong>multiple</strong> Google accounts to a single website"
+msgstr ""
+
+#: templates/admin/postcampaigns.php:9
+#: templates/admin/settings.php:23
+msgid "Assign accounts & GMB locations to specific WordPress users (and hide others)"
+msgstr ""
+
+#: templates/admin/postcampaigns.php:10
+#: templates/admin/settings.php:24
+msgid "Let your users add &amp; manage their own Google accounts"
+msgstr ""
+
+#: templates/admin/posteditor.php:50
+msgid "Products are a Post to Google My Business Premium feature"
+msgstr ""
+
+#: templates/admin/posteditor.php:52
+msgid "Because products require a proprietary authentication method, they are not available in the free version of the plugin. Upgrade to <strong>any</strong> of the Premium versions of Post to Google My Business to (automatically) publish your products to your Google Business Profile."
+msgstr ""
+
+#. translators: %s is link to Product Sync for GBP plugin
+#: templates/admin/posteditor.php:66
+#, php-format
+msgid "Using WooCommerce? Check out my new plugin: %s. It makes it super easy to sync your entire WooCommerce product catalog directly to your Google Business Profile."
+msgstr ""
+
+#: templates/admin/posteditor.php:76
+msgid "the guide"
+msgstr ""
+
+#. translators: %s is link to configuration guide, anchor text: "the guide"
+#: templates/admin/posteditor.php:78
+#, php-format
+msgid "Additional configuration is required for publishing products. Please check %s."
+msgstr ""
+
+#: templates/admin/posteditor.php:87
+msgid "Post image/video"
+msgstr ""
+
+#: templates/admin/posteditor.php:96
+msgid "JPG or PNG, 720x540px minimum size"
+msgstr ""
+
+#: templates/admin/posteditor.php:102
+msgid "Post text"
+msgstr ""
+
+#: templates/admin/posteditor.php:111
+#: templates/admin/posteditor.php:290
+msgid "Characters:"
+msgstr ""
+
+#: templates/admin/posteditor.php:113
+#: templates/admin/posteditor.php:292
+msgid "Word count:"
+msgstr ""
+
+#: templates/admin/posteditor.php:116
+#: templates/admin/posteditor.php:295
+msgid "Insert dynamic data"
+msgstr ""
+
+#: templates/admin/posteditor.php:122
+msgid "Check out template guide"
+msgstr ""
+
+#. translators: %s gets replaced by the link to the support page with available dynamic tags that can be used
+#: templates/admin/posteditor.php:124
+#, php-format
+msgid "The text that should appear on your post. Recommended 150-300 characters. 80 characters show in the Google Search results. 1500 characters maximum. %s"
+msgstr ""
+
+#: templates/admin/posteditor.php:134
+msgid "Event title"
+msgstr ""
+
+#: templates/admin/posteditor.php:145
+msgid "All day event (time will be ignored)"
+msgstr ""
+
+#: templates/admin/posteditor.php:150
+msgid "Start date"
+msgstr ""
+
+#: templates/admin/posteditor.php:162
+msgid "End date"
+msgstr ""
+
+#: templates/admin/posteditor.php:177
+msgid "Offer title"
+msgstr ""
+
+#: templates/admin/posteditor.php:184
+msgid "Example: 20% off in store or online"
+msgstr ""
+
+#: templates/admin/posteditor.php:189
+msgid "Coupon code (optional)"
+msgstr ""
+
+#: templates/admin/posteditor.php:199
+msgid "Link to redeem offer (optional)"
+msgstr ""
+
+#: templates/admin/posteditor.php:209
+msgid "Terms and conditions (optional)"
+msgstr ""
+
+#: templates/admin/posteditor.php:239
+msgid "Product name"
+msgstr ""
+
+#: templates/admin/posteditor.php:241
+msgid "Product Name"
+msgstr ""
+
+#: templates/admin/posteditor.php:245
+msgid "Category"
+msgstr ""
+
+#: templates/admin/posteditor.php:248
+msgid "Custom"
+msgstr ""
+
+#: templates/admin/posteditor.php:249
+msgid "Use WordPress/WooCommerce parent category name"
+msgstr ""
+
+#: templates/admin/posteditor.php:253
+msgid "Custom category..."
+msgstr ""
+
+#: templates/admin/posteditor.php:258
+#: templates/admin/posteditor.php:262
+#: js/premium/aptemplate_metabox.js:5
+#: js/premium/metabox.js:5
+#: js/premium/settings.js:5
+#: js_src/premium/components/PremiumPostEditor.js:100
+msgid "Price"
+msgstr ""
+
+#: templates/admin/posteditor.php:263
+msgid "Max"
+msgstr ""
+
+#: templates/admin/posteditor.php:266
+msgid "Range"
+msgstr ""
+
+#: templates/admin/posteditor.php:267
+msgid "Format: 123.45"
+msgstr ""
+
+#: templates/admin/posteditor.php:297
+msgid "Description for the product. 1000 characters maximum."
+msgstr ""
+
+#: templates/admin/posteditor.php:306
+msgid "Add a button (optional)"
+msgstr ""
+
+#: templates/admin/posteditor.php:314
+msgid "None"
+msgstr ""
+
+#: templates/admin/posteditor.php:317
+msgid "Visit site"
+msgstr ""
+
+#: templates/admin/posteditor.php:319
+#: js/metabox.js:1
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:5
+#: js/settings.js:1
+#: js_src/admin/components/PostEditor.js:628
+msgid "Book"
+msgstr ""
+
+#: templates/admin/posteditor.php:320
+#: js/metabox.js:1
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:5
+#: js/settings.js:1
+#: js_src/admin/components/PostEditor.js:630
+msgid "Order online"
+msgstr ""
+
+#: templates/admin/posteditor.php:321
+#: js/metabox.js:1
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:5
+#: js/settings.js:1
+#: js_src/admin/components/PostEditor.js:626
+msgid "Buy"
+msgstr ""
+
+#: templates/admin/posteditor.php:323
+#: js/metabox.js:1
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:5
+#: js/settings.js:1
+#: js_src/admin/components/PostEditor.js:634
+msgid "Sign up"
+msgstr ""
+
+#: templates/admin/posteditor.php:324
+msgid "Call now (uses primary phone number of business)"
+msgstr ""
+
+#: templates/admin/posteditor.php:369
+msgid "Optional. Where the user should go when clicking the button. Leave at default ({{post.url}}) to send them to your newly created WordPress post."
+msgstr ""
+
+#: templates/admin/posteditor.php:378
+msgid "Post to location(s)"
+msgstr ""
+
+#: templates/admin/posteditor.php:395
+msgid "Advanced post settings"
+msgstr ""
+
+#: templates/admin/posteditor.php:396
+msgid "Restore default template"
+msgstr ""
+
+#: templates/admin/posteditor.php:406
+msgid "Image settings"
+msgstr ""
+
+#: templates/admin/posteditor.php:412
+msgid "Fetch image from post content"
+msgstr ""
+
+#: templates/admin/posteditor.php:415
+msgid "Try to get an image from the post content (when no custom image is set). This takes priority over the featured image."
+msgstr ""
+
+#: templates/admin/posteditor.php:419
+msgid "Use Featured Image as GMB post image"
+msgstr ""
+
+#: templates/admin/posteditor.php:422
+msgid "Use the Featured Image as GMB Post image (when no custom image is set)"
+msgstr ""
+
+#: templates/admin/posteditor.php:427
+msgid "Links"
+msgstr ""
+
+#: templates/admin/posteditor.php:433
+msgid "Hide"
+msgstr ""
+
+#: templates/admin/posteditor.php:438
+msgid "Inline"
+msgstr ""
+
+#: templates/admin/posteditor.php:443
+msgid "Next line"
+msgstr ""
+
+#: templates/admin/posteditor.php:448
+msgid "Table of links (at the end of the post)"
+msgstr ""
+
+#: templates/admin/posteditor.php:451
+msgid "How the plugin should handle hyperlinks in the content"
+msgstr ""
+
+#: templates/admin/posteditor.php:462
+msgid "Upgrade now!"
+msgstr ""
+
+#: templates/admin/posteditor.php:477
+#: js/premium/metabox.js:5
+#: js_src/premium/metabox-premium.js:37
+msgid "Schedule post"
+msgstr ""
+
+#: templates/admin/posteditor.php:487
+msgid "When the post should be first published"
+msgstr ""
+
+#: templates/admin/posteditor.php:499
+msgid "Automatic repost"
+msgstr ""
+
+#: templates/admin/posteditor.php:509
+msgid "Stop after"
+msgstr ""
+
+#: templates/admin/posteditor.php:513
+msgid "Never"
+msgstr ""
+
+#: templates/admin/posteditor.php:515
+msgid "Date"
+msgstr ""
+
+#: templates/admin/posteditor.php:517
+msgid "Executions"
+msgstr ""
+
+#: templates/admin/posteditor.php:530
+msgid "executions"
+msgstr ""
+
+#: templates/admin/posteditor.php:533
+msgid "Automatically re-publish the post and delete the previous one based on this schedule"
+msgstr ""
+
+#: templates/admin/posteditor.php:549
+msgid "Cancel"
+msgstr ""
+
+#: templates/admin/posteditor.php:551
+#: js/metabox.js:1
+#: js/premium/metabox.js:1
+#: js_src/admin/metabox.js:361
+msgid "Save draft"
+msgstr ""
+
+#: templates/admin/posteditor.php:555
+msgid "Publish Now"
+msgstr ""
+
+#: templates/admin/settings.php:7
+msgid "Thanks for choosing Post to Google My Business! The easiest and most versatile Google My Business plugin for WordPress."
+msgstr ""
+
+#: templates/admin/settings.php:8
+msgid "Need help getting started? Check out the <a target=\"_blank\" href=\"https://tycoonmedia.net/gmb-tutorial-video/\">tutorial video</a>"
+msgstr ""
+
+#: templates/admin/settings.php:19
+msgid "Upgrade to the <strong>Agency</strong> plan of <i>Post to Google My Business</i> to handle multiple Google accounts within a single installation of the plugin. With Post to Google My Business for Agencies, you can:"
+msgstr ""
+
+#: templates/admin/variablebrowser.php:11
+msgid "Variables/preview"
+msgstr ""
+
+#: templates/admin/variablebrowser.php:27
+msgid "Previous"
+msgstr ""
+
+#: templates/admin/variablebrowser.php:28
+msgid "Next"
+msgstr ""
+
+#: templates/admin/variablebrowser.php:34
+msgid "Dynamic data"
+msgstr ""
+
+#: templates/admin/variablebrowser.php:35
+msgid "Post preview"
+msgstr ""
+
+#: templates/admin/variablebrowser.php:40
+msgctxt "\"Variables\" refers to the placeholder tokens in the post text"
+msgid "Dynamic data"
+msgstr ""
+
+#: templates/admin/variablebrowser.php:51
+msgid "Post Preview"
+msgstr ""
+
+#: templates/admin/variablebrowser.php:57
+msgid "Refresh preview"
+msgstr ""
+
+#: templates/admin/variablebrowser.php:62
+msgid "Close"
+msgstr ""
+
+#: templates/metabox.php:10
+#: templates/metabox.php:13
+msgid "New GMB Post"
+msgstr ""
+
+#: js/block_editor.js:1
+#: js_src/admin/components/autopost-toggle.js:35
+msgid "Auto-post to GMB"
+msgstr ""
+
+#: js/block_editor.js:1
+#: js_src/admin/block-editor-index.js:23
+msgid "Post to GMB"
+msgstr ""
+
+#: js/dashboard.js:1
+#: js_src/admin/dashboard.js:80
+msgctxt "Title header for the dialog that opens when you click a post in the calendar"
+msgid "Post info"
+msgstr ""
+
+#: js/metabox.js:1
+#: js/premium/metabox.js:1
+#: js_src/admin/components/SubPostListTable.js:220
+msgid "Refreshing post statuses..."
+msgstr ""
+
+#: js/metabox.js:1
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:5
+#: js/settings.js:1
+#: js_src/admin/components/PostEditor.js:324
+msgid "Premium"
+msgstr ""
+
+#: js/metabox.js:1
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:5
+#: js/settings.js:1
+#: js_src/admin/components/PostEditor.js:295
+msgid "Are you sure you want to restore the default template?"
+msgstr ""
+
+#: js/metabox.js:1
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:5
+#: js/settings.js:1
+#: js_src/admin/components/PostEditor.js:373
+msgid "Insert"
+msgstr ""
+
+#: js/metabox.js:1
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:5
+#: js/settings.js:1
+#: js_src/admin/components/PostEditor.js:374
+msgid "Copy to clipboard"
+msgstr ""
+
+#: js/metabox.js:1
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:5
+#: js/settings.js:1
+#: js_src/admin/components/PostEditor.js:481
+msgid "Dynamic data from the WordPress post currently being edited might be outdated or not yet available. Save/Update the post to get current data."
+msgstr ""
+
+#: js/metabox.js:1
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:5
+#: js/settings.js:1
+#: js_src/admin/components/PostEditor.js:636
+msgid "Call Now"
+msgstr ""
+
+#: js/metabox.js:1
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:5
+#: js/settings.js:1
+#: js_src/admin/components/PostEditor.js:638
+msgid "More information"
+msgstr ""
+
+#: js/metabox.js:1
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:5
+#: js/settings.js:1
+#: js_src/admin/components/PostEditor.js:674
+msgctxt "Sample publishing date in the post preview"
+msgid "Just now"
+msgstr ""
+
+#: js/metabox.js:1
+#: js/premium/metabox.js:1
+#: js_src/admin/metabox.js:163
+msgid "Created posts"
+msgstr ""
+
+#: js/metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/metabox.js:5
+#: js_src/admin/metabox.js:100
+#: js_src/admin/metabox.js:192
+#: js_src/admin/metabox.js:262
+#: js_src/admin/metabox.js:359
+#: js_src/premium/metabox-premium.js:39
+msgid "Publish"
+msgstr ""
+
+#: js/metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/metabox.js:5
+#: js_src/admin/metabox.js:133
+#: js_src/premium/metabox-premium.js:32
+msgid "Save template"
+msgstr ""
+
+#: js/metabox.js:1
+#: js/premium/metabox.js:1
+#: js_src/admin/metabox.js:302
+msgid "You're working on a Google My Business post, but it has not yet been published/scheduled. Press OK to publish/schedule it now, or Cancel to save it as a draft."
+msgstr ""
+
+#: js/metabox.js:1
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:1
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js/settings.js:1
+#: js_src/admin/components/BusinessSelector.js:555
+#: js_src/admin/metabox.js:320
+msgid "Please wait..."
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:1
+#: js_src/premium/components/LocalizedCronSelector.js:30
+#: js_src/premium/components/LocalizedCronSelector.js:31
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "every"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:1
+#: js_src/premium/components/LocalizedCronSelector.js:32
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "every hour"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:1
+#: js_src/premium/components/LocalizedCronSelector.js:33
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "every minute"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:1
+#: js_src/premium/components/LocalizedCronSelector.js:34
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "every day of the week"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:1
+#: js_src/premium/components/LocalizedCronSelector.js:35
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "every day of the month"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:1
+#: js_src/premium/components/LocalizedCronSelector.js:36
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "every month"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:1
+#: js_src/premium/components/LocalizedCronSelector.js:37
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "minute"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:1
+#: js_src/premium/components/LocalizedCronSelector.js:38
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "hour"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:1
+#: js_src/premium/components/LocalizedCronSelector.js:39
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "day"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:1
+#: js_src/premium/components/LocalizedCronSelector.js:40
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "week"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:1
+#: js_src/premium/components/LocalizedCronSelector.js:41
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "month"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:1
+#: js_src/premium/components/LocalizedCronSelector.js:42
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "year"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:1
+#: js_src/premium/components/LocalizedCronSelector.js:43
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "Every <b />"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:1
+#: js_src/premium/components/LocalizedCronSelector.js:44
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid " at <b /> minute(s) past the hour"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:1
+#: js_src/premium/components/LocalizedCronSelector.js:45
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid " at <b />:<b />"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:1
+#: js_src/premium/components/LocalizedCronSelector.js:46
+#: js_src/premium/components/LocalizedCronSelector.js:48
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid " on <b />"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:1
+#: js/premium/metabox.js:1
+#: js/premium/settings.js:1
+#: js_src/premium/components/LocalizedCronSelector.js:47
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid " of <b />"
+msgstr ""
+
+#. translators: %s is idk it is part of the cron selector package but its probably self-explanatory
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js_src/premium/components/LocalizedCronSelector.js:50
+#, js-format
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "The tag %s is not supported !"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js_src/premium/components/LocalizedCronSelector.js:51
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "Bad number of elements"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js_src/premium/components/LocalizedCronSelector.js:52
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "The jquery_element should be set into jqCron settings"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js_src/premium/components/LocalizedCronSelector.js:53
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "Unrecognized expression"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js_src/premium/components/LocalizedCronSelector.js:55
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "monday"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js_src/premium/components/LocalizedCronSelector.js:56
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "tuesday"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js_src/premium/components/LocalizedCronSelector.js:57
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "wednesday"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js_src/premium/components/LocalizedCronSelector.js:58
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "thursday"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js_src/premium/components/LocalizedCronSelector.js:59
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "friday"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js_src/premium/components/LocalizedCronSelector.js:60
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "saturday"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js_src/premium/components/LocalizedCronSelector.js:61
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "sunday"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js_src/premium/components/LocalizedCronSelector.js:64
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "january"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js_src/premium/components/LocalizedCronSelector.js:65
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "february"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js_src/premium/components/LocalizedCronSelector.js:66
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "march"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js_src/premium/components/LocalizedCronSelector.js:67
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "april"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js_src/premium/components/LocalizedCronSelector.js:68
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "may"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js_src/premium/components/LocalizedCronSelector.js:69
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "june"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js_src/premium/components/LocalizedCronSelector.js:70
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "july"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js_src/premium/components/LocalizedCronSelector.js:71
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "august"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js_src/premium/components/LocalizedCronSelector.js:72
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "september"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js_src/premium/components/LocalizedCronSelector.js:73
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "october"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js_src/premium/components/LocalizedCronSelector.js:74
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "november"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js_src/premium/components/LocalizedCronSelector.js:75
+msgctxt "schedule selector - ar, bg, cn, de, en, es, fa, fr, it, ja, ko, nl, pl, pt-br, ru, tr, vi already included, translation not required"
+msgid "december"
+msgstr ""
+
+#. translators: %s is error message
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js/settings.js:1
+#: js_src/admin/components/BusinessSelector.js:106
+#, js-format
+msgid "Failed to load locations: %s"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js/settings.js:1
+#: js_src/admin/components/BusinessSelector.js:186
+msgid "Unknown error occurred trying to load accounts. Check browser console for details"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js/settings.js:1
+#: js_src/admin/components/BusinessSelector.js:176
+msgid "The background process is currently synchronizing your locations, please wait."
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js/settings.js:1
+#: js_src/admin/components/BusinessSelector.js:236
+msgid "An unknown error occurred trying to load the groups. Check browser console for details."
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js/settings.js:1
+#: js_src/admin/components/BusinessSelector.js:294
+msgid "Failed to load locations, unknown error. Check browser console for details."
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js/premium/settings.js:5
+#: js/settings.js:1
+#: js/settings.js:3
+#: js_src/admin/components/BusinessSelector.js:436
+#: js_src/admin/settings.js:38
+msgid "Disconnect the Google account from this website?"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:3
+#: js/premium/metabox.js:3
+#: js/premium/settings.js:3
+#: js/settings.js:1
+#: js_src/admin/components/BusinessSelector.js:451
+msgid "Set account cookies"
+msgstr ""
+
+#. translators: %d is the amount of seconds remaining before the locations can be refreshed again
+#: js/premium/aptemplate_metabox.js:5
+#: js/premium/metabox.js:5
+#: js/premium/settings.js:5
+#: js/settings.js:3
+#: js_src/admin/components/BusinessSelector.js:566
+#, js-format
+msgid "Retry in %d"
+msgstr ""
+
+#: js/premium/aptemplate_metabox.js:5
+#: js/premium/metabox.js:5
+#: js/premium/settings.js:5
+#: js_src/premium/components/PremiumPostEditor.js:97
+msgid "Min"
+msgstr ""
+
+#: js/premium/block_editor.js:1
+#: js_src/premium/components/ApTemplateSelector.js:27
+msgid "Loading templates..."
+msgstr ""
+
+#: js/premium/metabox.js:5
+#: js/premium/settings.js:5
+#: js/settings.js:1
+#: js_src/admin/settings.js:21
+#: js_src/premium/metabox-premium.js:15
+#: js_src/premium/metabox-premium.js:19
+#: js_src/premium/settings-premium.js:17
+msgid "Please wait for all locations to load"
+msgstr ""

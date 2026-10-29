@@ -16,10 +16,11 @@ class WooCommerce_Gateway extends SingleEntity {
 	public $instructions = '';
 
 	// Configuración del mensaje WhatsApp
-	public $message = '';
-	public $phone   = QLWAPP_PHONE_NUMBER;
-	public $type    = 'phone';
-	public $group   = QLWAPP_GROUP_LINK;
+	public $message  = '';
+	public $phone    = QLWAPP_PHONE_NUMBER;
+	public $username = '';
+	public $type     = 'phone';
+	public $group    = QLWAPP_GROUP_LINK;
 
 	// Estado de la orden
 	public $order_status = 'pending';

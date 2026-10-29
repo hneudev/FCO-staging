@@ -3,7 +3,7 @@
  * Plugin Name: Easy Table of Contents
  * Plugin URI: https://tocwp.com/
  * Description: Adds a user friendly and fully automatic way to create and display a table of contents generated from the page content.
- * Version: 2.0.85
+ * Version: 2.0.89
  * Author: Magazine3
  * Author URI: https://tocwp.com/
  * Text Domain: easy-table-of-contents
@@ -28,7 +28,7 @@
  * @package  Easy Table of Contents
  * @category Plugin
  * @author   Magazine3
- * @version  2.0.85
+ * @version  2.0.88
  */
 
 use Eztoc\Table_Of_Contents\Debug;
@@ -52,7 +52,7 @@ if ( ! class_exists( 'ezTOC' ) ) {
 		 * @since 1.0
 		 * @var string
 		 */
-		const VERSION = '2.0.85';
+		const VERSION = '2.0.89';
 
 		/**
 		 * Stores the instance of this class.
@@ -70,6 +70,14 @@ if ( ! class_exists( 'ezTOC' ) ) {
 		 * @var array
 		 */
 		private static $store = array();
+
+		/**
+		 * Rendered post HTML captured after do_blocks() and before do_shortcode().
+		 *
+		 * @since 2.0.90
+		 * @var array
+		 */
+		private static $rendered_content = array();
 
 		/**
 		 * Cached flag: main request is archive/search/blog listing (set at template_redirect).
@@ -177,6 +185,7 @@ if ( ! class_exists( 'ezTOC' ) ) {
 
 			if ( !self::check_beaver_builder_plugin_active() ) {
 
+				add_filter( 'the_content', array( __CLASS__, 'capture_rendered_content' ), 10 );
 				add_filter( 'the_content', array( __CLASS__, 'the_content' ), 100 );
 				/*
 				* Fix for toc not showing / links not working for StoreHub theme custom post types				
@@ -271,7 +280,7 @@ if ( ! class_exists( 'ezTOC' ) ) {
         {
 			if ( ezTOC_Option::get( 'exclude_css' ) && 'css' == ezTOC_Option::get( 'toc_loading' ) ) {
                                 
-				$cssChecked = '#ez-toc-container input[type="checkbox"]:checked + nav, #ez-toc-widget-container input[type="checkbox"]:checked + nav {opacity: 0;max-height: 0;border: none;display: none;}';
+				$cssChecked = '#ez-toc-container input[type="checkbox"]:checked + nav, .ez-toc-split-section input[type="checkbox"]:checked + nav, #ez-toc-widget-container input[type="checkbox"]:checked + nav {opacity: 0;max-height: 0;border: none;display: none;}';
 				wp_register_style( 'eztoc-exclude-toggle-css', false, array(), ezTOC::VERSION );
 				wp_enqueue_style( 'eztoc-exclude-toggle-css', false, array(), ezTOC::VERSION );
 				wp_add_inline_style( 'eztoc-exclude-toggle-css', $cssChecked );
@@ -547,12 +556,12 @@ if ( ! class_exists( 'ezTOC' ) ) {
 				//This is the new hook , it should be used instead of the legacy one.
 				$eztoc_smscroll_jsfile_filter =  apply_filters('eztoc_smscroll_jsfile_filter',EZ_TOC_URL . "assets/js/smooth_scroll{$min}.js");
 				wp_register_script( 'eztoc-scroll-scriptjs', $eztoc_smscroll_jsfile_filter, array( 'jquery' ), ezTOC::VERSION, $in_footer );
-				wp_register_script( 'eztoc-elementor-anchor-fix', EZ_TOC_URL . 'assets/js/elementor-toc-anchor-fix.js', array(), ezTOC::VERSION, $in_footer );
+				wp_register_script( 'eztoc-anchor-fix', EZ_TOC_URL . 'assets/js/toc-anchor-fix.js', array(), ezTOC::VERSION, $in_footer );
 				self::localize_scripts();
 																													
 				if ( self::is_enqueue_scripts_eligible() ) {
 					if ( eztoc_is_plugin_active( 'elementor/elementor.php' ) ) {
-						wp_enqueue_script( 'eztoc-elementor-anchor-fix' );
+						wp_enqueue_script( 'eztoc-anchor-fix' );
 					}
 					self::enqueue_registered_script();	
 					self::enqueue_registered_style();	
@@ -715,6 +724,9 @@ if ( ! class_exists( 'ezTOC' ) ) {
 					if( (( 1 == ezTOC_Option::get('sticky-toggle-close-on-mobile', 0) || '1' == ezTOC_Option::get('sticky-toggle-close-on-mobile', 0) || true == ezTOC_Option::get('sticky-toggle-close-on-mobile', 0) ) && wp_is_mobile()) ||  ( 1 == ezTOC_Option::get('sticky-toggle-close-on-desktop', 0) || '1' == ezTOC_Option::get('sticky-toggle-close-on-desktop', 0) || true == ezTOC_Option::get('sticky-toggle-close-on-desktop', 0) ) ) {
 						$js_sticky['close_on_link_click'] = true;
 					}
+					$js_sticky['device_target']         = eztoc_get_sticky_device_target();
+					$js_sticky['mobile_breakpoint']     = 768;
+					$js_sticky['tablet_max_breakpoint'] = 1024;
 					wp_localize_script( 'eztoc-sticky', 'eztoc_sticky_local', $js_sticky );
 				}
 
@@ -861,7 +873,7 @@ if ( ! class_exists( 'ezTOC' ) ) {
 			$eztoc_current_theme = wp_get_theme();
 			if('Chamomile' == $eztoc_current_theme->get( 'Name' )){
 				$css .= '@media screen and (max-width: 1000px) {
-				          #ez-toc-container nav{
+				          #ez-toc-container nav, .ez-toc-split-section nav{
 				            display: block;        
 				          }    
 				        }';
@@ -869,15 +881,15 @@ if ( ! class_exists( 'ezTOC' ) ) {
 
 			if ( ! ezTOC_Option::get( 'exclude_css' ) ) {
 
-				$css .= 'div#ez-toc-container .ez-toc-title {font-size: ' . esc_attr( ezTOC_Option::get( 'title_font_size', 120 ) ) . esc_attr( ezTOC_Option::get( 'title_font_size_units', '%' ) ) . ';}';
-				$css .= 'div#ez-toc-container .ez-toc-title {font-weight: ' . esc_attr( ezTOC_Option::get( 'title_font_weight', 500 ) ) . ';}';
-				$css .= 'div#ez-toc-container ul li , div#ez-toc-container ul li a {font-size: ' . esc_attr(ezTOC_Option::get( 'font_size', 95 )) . esc_attr(ezTOC_Option::get( 'font_size_units', '%' )) . ';}';
-				$css .= 'div#ez-toc-container ul li , div#ez-toc-container ul li a {font-weight: ' . esc_attr( ezTOC_Option::get( 'font_weight', 500 ) ) . ';}';
-				$css .= 'div#ez-toc-container nav ul ul li {font-size: ' . esc_attr( ezTOC_Option::get( 'child_font_size', 90 ) . esc_attr(ezTOC_Option::get( 'child_font_size_units', '%' ) )) . ';}';
+				$css .= 'div#ez-toc-container .ez-toc-title, .ez-toc-split-section .ez-toc-title {font-size: ' . esc_attr( ezTOC_Option::get( 'title_font_size', 120 ) ) . esc_attr( ezTOC_Option::get( 'title_font_size_units', '%' ) ) . ';}';
+				$css .= 'div#ez-toc-container .ez-toc-title, .ez-toc-split-section .ez-toc-title {font-weight: ' . esc_attr( ezTOC_Option::get( 'title_font_weight', 500 ) ) . ';}';
+				$css .= 'div#ez-toc-container ul li , div#ez-toc-container ul li a, .ez-toc-split-section ul li , .ez-toc-split-section ul li a {font-size: ' . esc_attr(ezTOC_Option::get( 'font_size', 95 )) . esc_attr(ezTOC_Option::get( 'font_size_units', '%' )) . ';}';
+				$css .= 'div#ez-toc-container ul li , div#ez-toc-container ul li a, .ez-toc-split-section ul li , .ez-toc-split-section ul li a {font-weight: ' . esc_attr( ezTOC_Option::get( 'font_weight', 500 ) ) . ';}';
+				$css .= 'div#ez-toc-container nav ul ul li, .ez-toc-split-section nav ul ul li {font-size: ' . esc_attr( ezTOC_Option::get( 'child_font_size', 90 ) . esc_attr(ezTOC_Option::get( 'child_font_size_units', '%' ) )) . ';}';
 
 				if ( ezTOC_Option::get( 'theme' ) === 'custom' || ezTOC_Option::get( 'width' ) != 'auto' ) {
 
-					$css .= 'div#ez-toc-container {';
+					$css .= 'div#ez-toc-container, .ez-toc-split-section {';
 
 					if ( ezTOC_Option::get( 'theme' ) === 'custom' ) {
 
@@ -911,10 +923,10 @@ if ( ! class_exists( 'ezTOC' ) ) {
 
 				if ( 'custom' === ezTOC_Option::get( 'theme' ) ) {
 
-					$css .= 'div#ez-toc-container p.ez-toc-title , #ez-toc-container .ez_toc_custom_title_icon , #ez-toc-container .ez_toc_custom_toc_icon {color: ' . esc_attr( ezTOC_Option::get( 'custom_title_colour' ) ) . ';}';
-					$css .= 'div#ez-toc-container ul.ez-toc-list a {color: ' . esc_attr( ezTOC_Option::get( 'custom_link_colour' ) ) . ';}';
-					$css .= 'div#ez-toc-container ul.ez-toc-list a:hover {color: ' . esc_attr( ezTOC_Option::get( 'custom_link_hover_colour' ) ) . ';}';
-					$css .= 'div#ez-toc-container ul.ez-toc-list a:visited {color: ' . esc_attr( ezTOC_Option::get( 'custom_link_visited_colour' ) ) . ';}';
+					$css .= 'div#ez-toc-container p.ez-toc-title , #ez-toc-container .ez_toc_custom_title_icon , #ez-toc-container .ez_toc_custom_toc_icon, .ez-toc-split-section p.ez-toc-title , .ez-toc-split-section .ez_toc_custom_title_icon , .ez-toc-split-section .ez_toc_custom_toc_icon {color: ' . esc_attr( ezTOC_Option::get( 'custom_title_colour' ) ) . ';}';
+					$css .= 'div#ez-toc-container ul.ez-toc-list a, .ez-toc-split-section ul.ez-toc-list a {color: ' . esc_attr( ezTOC_Option::get( 'custom_link_colour' ) ) . ';}';
+					$css .= 'div#ez-toc-container ul.ez-toc-list a:hover, .ez-toc-split-section ul.ez-toc-list a:hover {color: ' . esc_attr( ezTOC_Option::get( 'custom_link_hover_colour' ) ) . ';}';
+					$css .= 'div#ez-toc-container ul.ez-toc-list a:visited, .ez-toc-split-section ul.ez-toc-list a:visited {color: ' . esc_attr( ezTOC_Option::get( 'custom_link_visited_colour' ) ) . ';}';
 					$css .= '.ez-toc-counter nav ul li a::before {color: ' . esc_attr( ezTOC_Option::get( 'custom_list_prefix_colour' ) ) . ';}';
 					
 				}
@@ -1401,29 +1413,148 @@ if ( ! class_exists( 'ezTOC' ) ) {
 		 *
 		 * @since 2.0
 		 *
-		 * @param int $id
+		 * @param int         $id
+		 * @param string|null $filtered_content Optional already-filtered HTML (e.g. from `the_content`).
+		 *                                      When provided and eligible, skips nested do_blocks / the_content.
 		 *
 		 * @return ezTOC_Post|null
 		 */
-		public static function get( $id ) {
+		public static function get( $id, $filtered_content = null ) {
 
 			$post = null;
 
-			if ( isset( self::$store[ $id ] ) && self::$store[ $id ] instanceof ezTOC_Post && !eztoc_is_plugin_active( 'js_composer_salient/js_composer.php' ) ) {
+			if ( isset( self::$store[ $id ] ) && self::$store[ $id ] instanceof ezTOC_Post && ! eztoc_is_plugin_active( 'js_composer_salient/js_composer.php' ) ) {
 
-				$post = self::$store[ $id ];
-			} else {
-				
-				$post_id = ! empty( $id ) ? $id : get_the_ID();
-				$post = ezTOC_Post::get( $post_id );
+				return self::$store[ $id ];
+			}
 
-				if ( $post instanceof ezTOC_Post ) {
+			$post_id = ! empty( $id ) ? $id : get_the_ID();
 
-					self::$store[ $id ] = $post;
+			if ( ! is_string( $filtered_content ) || '' === $filtered_content ) {
+
+				$filtered_content = null;
+
+				if ( self::the_content_depth() > 0 ) {
+
+					$captured_id = (int) $post_id;
+
+					if ( isset( self::$rendered_content[ $captured_id ] ) && is_string( self::$rendered_content[ $captured_id ] ) && '' !== self::$rendered_content[ $captured_id ] ) {
+						$filtered_content = self::$rendered_content[ $captured_id ];
+					}
 				}
 			}
 
+			$wp_post = get_post( $post_id );
+
+			$use_filtered = null !== $filtered_content
+				&& is_string( $filtered_content )
+				&& '' !== $filtered_content
+				&& $wp_post instanceof WP_Post
+				&& self::should_reuse_filtered_content( $wp_post, $filtered_content );
+
+			/*
+			 * Called during the_content before rendered HTML was captured (for example
+			 * from inside do_blocks). Parse the saved markup instead of nesting another
+			 * the_content pass, which would render every block again.
+			 */
+			if ( ! $use_filtered && self::the_content_depth() > 0 && $wp_post instanceof WP_Post && is_string( $wp_post->post_content ) && '' !== $wp_post->post_content && self::should_reuse_filtered_content( $wp_post, $wp_post->post_content ) ) {
+				$filtered_content = $wp_post->post_content;
+				$use_filtered     = true;
+			}
+
+			if ( $use_filtered ) {
+				$post = ezTOC_Post::from_filtered_content( $wp_post, $filtered_content );
+			} else {
+				$post = ezTOC_Post::get( $post_id );
+			}
+
+			if ( $post instanceof ezTOC_Post ) {
+
+				self::$store[ $id ] = $post;
+			}
+
 			return $post;
+		}
+
+		/**
+		 * Remember rendered HTML after blocks run and before shortcodes run.
+		 *
+		 * The [ez-toc] shortcode executes at priority 11. Reusing this HTML avoids a
+		 * second do_blocks() / the_content pass on the raw post.
+		 *
+		 * @since 2.0.90
+		 *
+		 * @param string $content
+		 * @return string
+		 */
+		public static function capture_rendered_content( $content ) {
+
+			if ( ! is_string( $content ) || '' === $content || self::the_content_depth() > 1 ) {
+				return $content;
+			}
+
+			$post_id = get_the_ID();
+
+			if ( $post_id ) {
+				self::$rendered_content[ (int) $post_id ] = $content;
+			}
+
+			return $content;
+		}
+
+		/**
+		 * How many the_content filters are currently on the stack.
+		 *
+		 * @since 2.0.90
+		 *
+		 * @return int
+		 */
+		private static function the_content_depth() {
+
+			global $wp_current_filter;
+
+			$depth = 0;
+
+			if ( is_array( $wp_current_filter ) ) {
+				foreach ( $wp_current_filter as $filter ) {
+					if ( 'the_content' === $filter ) {
+						$depth++;
+					}
+				}
+			}
+
+			return $depth;
+		}
+
+		/**
+		 * Whether heading extraction may reuse already-filtered content instead of
+		 * re-running do_blocks() and a nested the_content pass on raw post_content.
+		 *
+		 * @since 2.0.87
+		 *
+		 * @param WP_Post $post
+		 * @param string  $filtered_content
+		 * @return bool
+		 */
+		private static function should_reuse_filtered_content( WP_Post $post, $filtered_content ) {
+
+			$reuse = true;
+
+			// Multipage posts still need a full post_content pass so the TOC can include all pages.
+			if ( false !== strpos( $post->post_content, '<!--nextpage-->' ) ) {
+				$reuse = false;
+			}
+
+			/**
+			 * Filter whether to reuse already-filtered content for TOC heading extraction.
+			 *
+			 * @since 2.0.87
+			 *
+			 * @param bool    $reuse
+			 * @param WP_Post $post
+			 * @param string  $filtered_content
+			 */
+			return (bool) apply_filters( 'eztoc_reuse_filtered_content', $reuse, $post, $filtered_content );
 		}
 
 		/**
@@ -1702,6 +1833,16 @@ if ( ! class_exists( 'ezTOC' ) ) {
 				if( ( ezTOC_Option::get( 'toc-run-on-amp-pages', 1 ) !== false && 0 == ezTOC_Option::get( 'toc-run-on-amp-pages', 1 ) || '0' == ezTOC_Option::get( 'toc-run-on-amp-pages', 1 ) || false == ezTOC_Option::get( 'toc-run-on-amp-pages', 1 ) ) && !eztoc_non_amp() ){
 					return $html;
 				}
+				/*
+				 * Classic WooCommerce checkout embeds Terms page content via wc_terms_and_conditions_page_content().
+				 * [ez-toc] on that page then resolves get_the_ID() to the checkout page, re-runs
+				 * [woocommerce_checkout], and loops until memory is exhausted.
+				 *
+				 * @see https://github.com/ahmedkaludi/easy-table-of-contents/issues/905
+				 */
+				if ( function_exists( 'is_checkout' ) && is_checkout() && ( ! function_exists( 'is_order_received_page' ) || ! is_order_received_page() ) ) {
+					return $html;
+				}
 				// Do not render on category/archive/search when content runs in the loop; use eztoc_shortcode_allow_non_singular to override.
 				$explicit_post_id = isset( $atts['post_id'] ) ? absint( $atts['post_id'] ) : 0;
 				/*
@@ -1751,6 +1892,15 @@ if ( ! class_exists( 'ezTOC' ) ) {
 					update_post_meta( $post_id, '_ez-toc-heading-levels', $headings );
 				}
 																				
+				/*
+				 * self::$store may already hold this post, built with the global settings by an earlier
+				 * caller (e.g. the SiteNavigation schema output in wp_head on classic themes). That object
+				 * never saw the temporary post meta above, so drop it and rebuild.
+				 */
+				if ( ( isset( $atts['heading_levels'] ) && $atts['heading_levels'] != '' ) || ( isset( $atts['exclude'] ) && $atts['exclude'] != '' ) ) {
+					unset( self::$store[ $post_id ] );
+				}
+
 				$post = self::get( $post_id );
 
 				// setting original post meta for exclude and heading levels	
@@ -1814,6 +1964,7 @@ if ( ! class_exists( 'ezTOC' ) ) {
 				if(isset($atts["box_title"]) && $atts["box_title"] != ''){
 					$options['box_title'] = $atts["box_title"];
 				}
+				$options = apply_filters( 'eztoc_toc_options', $options, $post );
 				$html = count($options) > 0 ? $post->getTOC($options) : $post->getTOC();	
 			
 				return apply_filters( 'eztoc_shortcode_final_toc_html', $html );
@@ -2041,6 +2192,23 @@ public static function the_content( $content ) {
 		self::cleanup_processing_post( $current_post_id );
 		return Debug::log()->appendTo( $content );
 	}
+
+		/*
+		 * Blog/Fusion builder: a Page with a posts/blog element is `is_singular()` for the
+		 * Page, but `the_content` runs while rendering each loop post. Skip auto-insert when the loop
+		 * post is not the main queried object (same guard as the `[ez-toc]` shortcode).
+		 */
+		if ( in_the_loop() && function_exists( 'get_queried_object_id' ) ) {
+			$queried_id = (int) get_queried_object_id();
+			if ( $queried_id && isset( $GLOBALS['post'] ) && $GLOBALS['post'] instanceof WP_Post ) {
+				$loop_post_id = (int) $GLOBALS['post']->ID;
+				if ( $loop_post_id && $loop_post_id !== $queried_id ) {
+					self::cleanup_processing_post( $current_post_id );
+					return Debug::log()->appendTo( $content );
+				}
+			}
+		}
+
 		// Fix for getting current page id when sub-queries are used on the page
 			$ez_toc_current_post_id = function_exists('get_queried_object_id')?get_queried_object_id():get_the_ID();
 			self::eztoc_restore_post_for_ultimate_faq( $ez_toc_current_post_id );
@@ -2088,9 +2256,9 @@ public static function the_content( $content ) {
 			}
 			$eztoc_current_theme = wp_get_theme();
 			if($eztoc_current_theme->get('Name') == 'MicrojobEngine Child'  || class_exists( 'Timber' ) ){
-				$post = self::get( $ez_toc_current_post_id );
+				$post = self::get( $ez_toc_current_post_id, $content );
 		}else{
-			$post = self::get( get_the_ID());
+			$post = self::get( get_the_ID(), $content );
 		}
 		
 		
@@ -2108,6 +2276,7 @@ public static function the_content( $content ) {
 		         
 		$find    = $post->getHeadings();
 		$replace = $post->getHeadingsWithAnchors();
+			$options = apply_filters( 'eztoc_toc_options', $options, $post );
 			$toc 	 = count($options) > 0 ? $post->getTOC($options) : $post->getTOC();
 			$headings = implode( PHP_EOL, $find );
 			$anchors  = implode( PHP_EOL, $replace );
@@ -2139,8 +2308,10 @@ public static function the_content( $content ) {
 	if ( strpos( $content, 'ez-toc-container' ) || ! $isEligible ) {
 
 		Debug::log( 'shortcode_found', 'Shortcode found, add links to content.', true );
+		$content = mb_find_replace( $find, $replace, $content );
+		$content = apply_filters( 'eztoc_content_after_toc', $content, $post, $options, $replace );
 		self::cleanup_processing_post( $current_post_id );
-		return mb_find_replace( $find, $replace, $content );
+		return Debug::log()->appendTo( $content );
 	}
 			
 			$position  = get_post_meta( get_the_ID(), '_ez-toc-position-specific', true );
@@ -2267,6 +2438,8 @@ public static function the_content( $content ) {
 
 			}
 	}
+
+	$content = apply_filters( 'eztoc_content_after_toc', $content, $post, $options, $replace );
             
 	if ( self::eztoc_is_the_content_filter_context() ) {
 		self::cleanup_processing_post( $current_post_id );
@@ -2371,13 +2544,13 @@ public static function the_content( $content ) {
 					$themeClass = 'ez-toc-sticky-'.ezTOC_Option::get( 'sticky_theme', 'grey' );
 										
 					?>
-					<div class="ez-toc-sticky <?php echo esc_attr($designClass);?>">
+					<div class="ez-toc-sticky <?php echo esc_attr($designClass);?>" role="navigation" aria-label="<?php echo esc_attr__( 'Table of Contents', 'easy-table-of-contents' ); ?>">
 						<div class="ez-toc-sticky-fixed <?php echo esc_attr($toggleClass); ?> <?php echo esc_attr($themeClass); ?>">
 							<div class='ez-toc-sidebar'><?php echo $stickyToggleTOC; //phpcs:ignore  ?></div>
 						</div>
-						<a class='ez-toc-open-icon' href='#' onclick='ezTOC_showBar(event)' <?php echo $linkZindex ?"style='".esc_attr($linkZindex)."'":''; ?>>
-							<span class="arrow"><?php echo esc_html($arrowSide); ?></span>
-							<span class="text"><?php echo esc_html($openButtonText); ?></span>
+						<a class='ez-toc-open-icon' href='#' role="button" onclick='ezTOC_showBar(event)' aria-label="<?php echo esc_attr__( 'Open table of contents', 'easy-table-of-contents' ); ?>" <?php echo $linkZindex ?"style='".esc_attr($linkZindex)."'":''; ?>>
+							<span class="arrow" aria-hidden="true"><?php echo esc_html($arrowSide); ?></span>
+							<span class="text" aria-hidden="true"><?php echo esc_html($openButtonText); ?></span>
 						</a>
 					</div>
 					<?php
@@ -2569,7 +2742,7 @@ public static function the_content_storehub ( $content ) {
 		return Debug::log()->appendTo( $content );
 	}
 	
-	$post = self::get( get_the_ID());
+	$post = self::get( get_the_ID(), $content );
 		
 		if ( ! $post instanceof ezTOC_Post ) {
 			Debug::log( 'not_instance_of_post', 'Not an instance if `WP_Post`.', get_the_ID() );

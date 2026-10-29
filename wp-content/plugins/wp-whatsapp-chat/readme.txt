@@ -4,12 +4,12 @@ Donate link: https://quadlayers.com/products/whatsapp-chat/
 Tags: whatsapp, whatsapp business, whatsapp chat, woocommerce whatsapp, click to chat
 Requires at least: 4.7
 Requires PHP: 5.6
-Tested up to: 7.0
-Stable tag: 8.6.0
+Tested up to: 7.1
+Stable tag: 8.7.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 WC requires at least: 4.0
-WC tested up to: 10.9
+WC tested up to: 11.1
 
 WhatsApp Chat🔥 allows you to enhance customer engagement! Integrate "WhatsApp" or "WhatsApp Business" with a single click.
 
@@ -40,6 +40,7 @@ Social Chat also allows you to include a box to show some contact information an
 
 > * WhatsApp button
 > * WhatsApp contact box
+> * WhatsApp Business @username contacts
 > * WhatsApp button and box colors
 > * Add custom icon in the WhatsApp button
 > * Two button layouts
@@ -187,6 +188,12 @@ Yes, Social Chat WP is fully GDPR compliant and does not store any personal data
 
 Yes, every user of your website will be able to see the number of WhatsApp you are using. For this reason we advise you to not use a WhatsApp number that you want to keep private.
 
+= Can I use my WhatsApp Business username instead of my phone number? =
+
+Yes. Since version 8.7.0 you can set a contact type to "Username" and enter your WhatsApp Business @username. Visitors open the chat through wa.me/@yourusername, on mobile and desktop, without seeing your phone number. You can set your username in WhatsApp Business > Settings > Profile > Username. If you change it, update it in Social Chat: the old link stops working.
+
+You can also use it in the shortcode: [whatsapp username="@yourusername"]
+
 = What is a full phone number in international format? =
 
 Omit any zeroes, brackets or dashes when adding the phone number in international format, including your country code, area and regular phone number.
@@ -199,6 +206,34 @@ Don't use: +001-(555)1234567
 * Brazilian Portuguese (thanks to [Dionizio Bach](@djio))
 
 == Changelog ==
+
+= 8.7.0 =
+* Feat: new "Username" contact type, let visitors chat with your WhatsApp Business @username instead of a phone number (contacts, button, WooCommerce product and archive buttons, WooCommerce payment gateway and the [whatsapp username="..."] shortcode)
+
+= 8.6.7 =
+* Fix: chat box texts are now translated when Social Chat PRO is active
+* Fix: chat box texts now load the JavaScript translations from translate.wordpress.org language packs and Loco Translate JSON files, keeping the existing .mo translations as fallback
+* Fix: LiteSpeed Cache compatibility, keep WordPress i18n scripts out of JS defer, delay and combine so the chat box renders translated
+
+= 8.6.6 =
+* Fix: chat box texts ("Available from %1$s to %2$s", "Available on %s", day names, Online/Offline, etc.) can now be translated through translate.wordpress.org and Loco Translate
+* Fix: admin panel now loads its existing JavaScript translations
+* Fix: validate contact availability hours (HH:MM) to avoid wrong availability messages
+
+= 8.6.5 =
+* WooCommerce 11.1 compatibility
+
+= 8.6.4 =
+* Fix: admin page not rendering because of a broken minified build (pin terser >= 5.51.2 and lock dependencies in CI)
+
+= 8.6.3 =
+* Security: Fix stored XSS through the chat box consent message, header and footer (CVE-2026-18404)
+
+= 8.6.2 =
+* fix: WooCommerce and WordPress compatibility
+
+= 8.6.1 =
+* Fix: Harden quick.bot auth popup handshake (normalized origin validation and centralized message contract)
 
 = 8.6.0 =
 * Improvement: Replace bots API integration with embedded quick.bot iframe

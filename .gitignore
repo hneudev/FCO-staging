@@ -32,3 +32,20 @@ wp-config.php
 /wp-content/updraft/
 /wp-content/backups/
 /wp-content/ai1wm-backups/
+# Server-generated caches, drop-ins and security/backup data (synced from staging, not versioned)
+/wp-content/cache/
+/wp-content/breeze-config/
+/wp-content/advanced-cache.php
+/wp-content/object-cache.php
+/wp-content/mc_data/
+/wp-content/upgrade-temp-backup/
+/wp-content/wpvivid_staging/
+/wp-content/wpvividbackups/
+/wp-content/wpvivid_uploads/
+
+# Stray backup copies
+*.bak
+
+# Local-only AI assistant context (would be public in public_html/)
+CLAUDE.md
+.claude/

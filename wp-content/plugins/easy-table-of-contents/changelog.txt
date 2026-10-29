@@ -1,4 +1,30 @@
 == Changelog ==
+= 2.0.89 15/10/2026 =
+* Fixed : Long single posts time out or fatal since 2.0.87 because the TOC rendered every block again during the content filter #988
+* Fixed : "Preserve Line Breaks" broken in v2.0.88 due to wp_strip_all_tags() refactor #989
+* Fixed : WoodMart + WPBakery gallery compatibility requested missing .min.css parts and the removed lib-owl-carousel stylesheet, causing 404s on every front-end page
+
+= 2.0.88 16/09/2026 =
+* Fixed : [ez-toc] shortcode causes stray paragraphs and line breaks in content rendered after the article #982
+* Fixed : [ez-toc] shortcode ignores heading_levels and exclude when "SiteNavigation Schema" is enabled on a classic theme #979
+* Fixed : Recent Update version 2.0.87 Causing Underline Issue in Easy TOC #978
+
+= 2.0.87.1 07/09/2026 =
+* Improvement : Optimized feedback form  #981
+
+= 2.0.87 27/08/2026 =
+* Added : Option To Track Table of Contents (TOC) Link Clicks #954
+* Added : Spilt TOC on page when it has large heading .#952
+* Fixed : WooCommerce Classic Checkout Crashes When [ez-toc] Shortcode Is Used on Terms and Conditions Page #905
+* Fixed : TOC content filter re-parses all blocks #910
+* Test  : Test with WordPress 7.1 and update readme.txt #976
+
+= 2.0.86 04/08/2026 =
+* Compatibility : Added compatibility with helpie faq #959
+* Improvement : Enable Sticky TOC on Tablet Independently When Disabled for Mobile #957
+* Accessibility: Missing ARIA roles and labels in Sticky TOC container and toggle button #899
+* Improvement : Plugin Check improvements
+
 = 2.0.85 10/06/2026 =
 * Improvement : Collapsible Sub Headings not working for h3 under h2 #969
 * Improvement: New design for sticky toc  #968
