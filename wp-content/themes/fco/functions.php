@@ -2974,6 +2974,11 @@ add_filter('use_block_editor_for_post_type', function($use_block_editor, $post_t
 require get_template_directory() . '/inc/custom-shortcodes.php';
 
 /**
+ * Practice locations data + [fc_phone_ctas] / [fc_locations] shortcodes.
+ */
+require get_template_directory() . '/inc/locations.php';
+
+/**
  * Load Jetpack compatibility file.
  */
 if ( defined( 'JETPACK__VERSION' ) ) {

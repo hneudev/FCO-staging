@@ -5413,3 +5413,101 @@ li {
 	max-width: 100% !important;
 	height: auto;
 }
+
+/*--------------------------------------------------------------
+# Locations ([fc_phone_ctas], [fc_locations] — inc/locations.php)
+--------------------------------------------------------------*/
+
+/* Home CTA under the hero */
+.fc-phone-ctas {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 128px;
+	margin-bottom: 28px;
+}
+.fc-phone-cta {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 8px;
+}
+.home #primary .entry-content .fc-phone-ctas a.link-button {
+	width: auto;
+	max-width: none;
+	white-space: nowrap;
+	padding: 10px 22px;
+	color: var(--light-text);
+	text-decoration: none;
+}
+.home #primary .entry-content .fc-phone-ctas a.link-button:hover,
+.home #primary .entry-content .fc-phone-ctas a.link-button:focus {
+	color: var(--light-text);
+	text-decoration: none;
+}
+.fc-phone-cta__city {
+	color: var(--light-text);
+	font-family: var(--second-font);
+	font-weight: 400;
+	font-size: 15px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+/* Footer "FIND US HERE" */
+.footer-three .widget:has(.fc-locations) {
+	grid-column: 1 / -1;
+}
+.fc-locations__grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 40px;
+}
+.fc-location {
+	display: flex;
+	flex-direction: column;
+}
+#colophon .fc-location__title {
+	margin: 0 0 10px;
+	color: var(--light-text);
+	font-size: 16px;
+}
+#colophon .fc-locations p {
+	margin: 0 0 12px;
+	color: var(--light-text);
+	font-size: 13px;
+	line-height: 1.55;
+}
+#colophon .fc-location a.contact-number {
+	color: #f26b5b;
+}
+#colophon .fc-locations .fc-locations__shared {
+	margin: 20px 0 0;
+	text-align: center;
+}
+#colophon .fc-locations__shared a {
+	color: var(--light-text);
+	text-decoration: none;
+}
+#colophon .fc-locations__shared a:hover {
+	text-decoration: underline;
+}
+.fc-location__map {
+	display: block;
+	width: 100%;
+	height: 240px;
+	margin-top: auto;
+	border: 0;
+	border-radius: 4px;
+}
+
+@media (max-width: 767px) {
+	.fc-phone-ctas {
+		flex-direction: column;
+		align-items: center;
+		gap: 24px;
+	}
+	.fc-locations__grid {
+		grid-template-columns: 1fr;
+	}
+}
