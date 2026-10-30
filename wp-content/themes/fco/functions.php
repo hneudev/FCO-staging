@@ -12,6 +12,18 @@ if ( ! defined( '_S_VERSION' ) ) {
 	define( '_S_VERSION', '1.0.3' );
 }
 
+/**
+ * Cache-busting version for a theme asset: the file's modification time, so
+ * browsers pick up CSS/JS changes after a deploy without a hard reload.
+ *
+ * @param string $path Path relative to the theme directory, e.g. 'style.css'.
+ * @return string
+ */
+function fco_asset_version( $path ) {
+	$file = get_template_directory() . '/' . ltrim( $path, '/' );
+	return file_exists( $file ) ? (string) filemtime( $file ) : _S_VERSION;
+}
+
 if ( ! function_exists( 'fco_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
@@ -425,15 +437,15 @@ function fco_postal_code_callback() {
  */
 function fco_scripts() {
     // Critical header CSS (moved from header.php)
-    wp_enqueue_style( 'fco-header-critical', get_template_directory_uri() . '/css/header-critical.css', array(), _S_VERSION );
-    wp_enqueue_style( 'fco-style', get_stylesheet_uri(), array( 'fco-header-critical' ), _S_VERSION );
+    wp_enqueue_style( 'fco-header-critical', get_template_directory_uri() . '/css/header-critical.css', array(), fco_asset_version( 'css/header-critical.css' ) );
+    wp_enqueue_style( 'fco-style', get_stylesheet_uri(), array( 'fco-header-critical' ), fco_asset_version( 'style.css' ) );
 
-	wp_enqueue_script( 'fco-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'fco-navigation', get_template_directory_uri() . '/js/navigation.js', array(), fco_asset_version( 'js/navigation.js' ), true );
 	
 	// Enqueue diagnostics and debug scripts only in development
 	if ( defined('WP_DEBUG') && WP_DEBUG ) {
-		wp_enqueue_script( 'fco-diagnostics', get_template_directory_uri() . '/js/diagnostics.js', array('fco-navigation'), _S_VERSION, true );
-		wp_enqueue_script( 'fco-accordion-debug', get_template_directory_uri() . '/js/accordion-debug.js', array('fco-navigation'), _S_VERSION, true );
+		wp_enqueue_script( 'fco-diagnostics', get_template_directory_uri() . '/js/diagnostics.js', array('fco-navigation'), fco_asset_version( 'js/diagnostics.js' ), true );
+		wp_enqueue_script( 'fco-accordion-debug', get_template_directory_uri() . '/js/accordion-debug.js', array('fco-navigation'), fco_asset_version( 'js/accordion-debug.js' ), true );
 	}
 
 	// if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -450,7 +462,7 @@ function fco_scripts() {
 		wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js', array(), null, true);
 		// Load YouTube API and video script for 'videos' page
 		if (is_page('videos')) {
-			wp_enqueue_script('video-popovers', get_template_directory_uri() . '/js/video-popovers.js', array(), '1.0', true);
+			wp_enqueue_script('video-popovers', get_template_directory_uri() . '/js/video-popovers.js', array(), fco_asset_version( 'js/video-popovers.js' ), true);
 			wp_enqueue_script('youtube-subscribe-api', 'https://apis.google.com/js/platform.js', array(), null, true);
 		}
 	}
